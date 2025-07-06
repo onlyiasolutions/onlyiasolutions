@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-ESTHETIC - Tu clínica de estética inteligente</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-pacifico {
+            font-family: 'Pacifico', serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1), 0 10px 10px -5px rgba(99, 102, 241, 0.04);
+        }
+        .floating-label {
+            top: 0;
+            left: 0.75rem;
+            transform: translateY(-50%);
+            background-color: white;
+            padding: 0 0.25rem;
+        }
+        input:focus + .floating-label,
+        input:not(:placeholder-shown) + .floating-label,
+        textarea:focus + .floating-label,
+        textarea:not(:placeholder-shown) + .floating-label,
+        select:focus + .floating-label,
+        select:not(:placeholder-shown) + .floating-label {
+            color: #6366f1;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://readdy.ai/api/search-image?query=A%20modern%20aesthetic%20clinic%20interior%20with%20clean%20lines%2C%20soft%20lighting%2C%20and%20a%20luxurious%20reception%20area.%20The%20space%20features%20elegant%20white%20furniture%2C%20marble%20countertops%2C%20and%20subtle%20blue%20accent%20lighting.%20The%20environment%20looks%20sophisticated%2C%20calming%2C%20and%20professional%2C%20perfect%20for%20cosmetic%20treatments%20and%20procedures.&width=1920&height=1080&seq=12345&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        .typing-animation::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-pacifico gradient-text">AI-ESTHETIC</a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="text-gray-700 hover:text-primary transition-colors">Inicio</a></li>
+                    <li><a href="#demo" class="text-gray-700 hover:text-primary transition-colors">Demo Estética</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section min-h-screen flex items-center">
+        <div class="container mx-auto px-4 py-16 text-center md:text-left">
+            <div class="max-w-2xl mx-auto md:mx-0">
+                <h1 class="text-4xl md:text-5xl font-pacifico text-white mb-4">Bienvenido a AI-ESTHETIC</h1>
+                <p class="text-xl text-white/90 mb-8">Tu clínica de estética inteligente</p>
+                <a href="#demo" class="inline-block px-8 py-3 bg-white text-primary font-medium rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap">Probar presupuesto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-pacifico gradient-text text-center mb-12">Nuestros Servicios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
+                        <i class="ri-syringe-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Botox</h3>
+                    <p class="text-gray-600 text-center">Tratamientos con toxina botulínica para reducir arrugas de expresión y líneas finas. Resultados naturales y duraderos con mínima recuperación.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
+                        <i class="ri-heart-pulse-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Rellenos dérmicos</h3>
+                    <p class="text-gray-600 text-center">Recupera el volumen facial perdido y redefine los contornos con nuestros rellenos de ácido hialurónico de última generación.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
+                        <i class="ri-sun-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Rejuvenecimiento facial</h3>
+                    <p class="text-gray-600 text-center">Tratamientos avanzados con láser, radiofrecuencia y peelings químicos para mejorar la textura, luminosidad y firmeza de tu piel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-pacifico gradient-text text-center mb-12">Solicita tu presupuesto instantáneo</h2>
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                <form id="presupuesto-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="relative md:col-span-1">
+                        <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
+                        <label for="nombre" class="floating-label text-sm text-gray-500 transition-all">Nombre completo</label>
+                    </div>
+                    
+                    <div class="relative md:col-span-1">
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
+                        <label for="email" class="floating-label text-sm text-gray-500 transition-all">Email</label>
+                    </div>
+                    
+                    <div class="relative md:col-span-1">
+                        <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
+                        <label for="telefono" class="floating-label text-sm text-gray-500 transition-all">Teléfono</label>
+                    </div>
+                    
+                    <div class="relative md:col-span-1">
+                        <select id="tratamiento" name="tratamiento" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none pr-8" required>
+                            <option value="" disabled selected></option>
+                            <option value="botox">Botox</option>
+                            <option value="rellenos">Rellenos dérmicos</option>
+                            <option value="rejuvenecimiento">Rejuvenecimiento facial</option>
+                            <option value="hifu">HIFU (Ultrasonido focalizado)</option>
+                            <option value="mesoterapia">Mesoterapia facial</option>
+                        </select>
+                        <label for="tratamiento" class="floating-label text-sm text-gray-500 transition-all">Tipo de tratamiento</label>
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                            <i class="ri-arrow-down-s-line text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="relative md:col-span-2">
+                        <textarea id="descripcion" name="descripcion" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none" placeholder=" " required></textarea>
+                        <label for="descripcion" class="floating-label text-sm text-gray-500 transition-all">Describe brevemente tu caso y objetivos</label>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <button type="submit" class="w-full py-3 px-6 gradient-bg text-white font-medium rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap">Solicitar presupuesto</button>
+                    </div>
+                </form>
+                
+                <div id="respuesta-container" class="mt-8 hidden">
+                    <h3 class="text-lg font-semibold mb-4">Respuesta del Agente de Presupuestos IA</h3>
+                    <div id="typing-indicator" class="typing-animation text-gray-600 mb-4">Analizando tu solicitud...</div>
+                    <div id="respuesta" class="bg-gray-50 p-6 rounded-lg border border-gray-200 hidden">
+                        <!-- La respuesta se generará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-pacifico mb-4">AI-ESTHETIC</h3>
+                    <p class="text-gray-300 mb-2">Tu clínica de estética inteligente</p>
+                    <p class="text-gray-300">© 2025 AI-ESTHETIC. Todos los derechos reservados.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contacto</h4>
+                    <div class="flex items-start mb-3">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 mt-1">
+                            <i class="ri-map-pin-line text-gray-300"></i>
+                        </div>
+                        <p class="text-gray-300">Calle Serrano 45, 28001 Madrid, España</p>
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3">
+                            <i class="ri-phone-line text-gray-300"></i>
+                        </div>
+                        <p class="text-gray-300">+34 910 123 456</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3">
+                            <i class="ri-mail-line text-gray-300"></i>
+                        </div>
+                        <p class="text-gray-300">info@ai-esthetic.com</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Enlaces</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Política de privacidad</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Aviso legal</a></li>
+                    </ul>
+                    
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition-colors">
+                            <i class="ri-instagram-line text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition-colors">
+                            <i class="ri-facebook-fill text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition-colors">
+                            <i class="ri-twitter-x-line text-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="form-handler">
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('presupuesto-form');
+            const respuestaContainer = document.getElementById('respuesta-container');
+            const typingIndicator = document.getElementById('typing-indicator');
+            const respuestaElement = document.getElementById('respuesta');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Mostrar el contenedor de respuesta y el indicador de escritura
+                respuestaContainer.classList.remove('hidden');
+                typingIndicator.classList.remove('hidden');
+                respuestaElement.classList.add('hidden');
+                
+                // Simular tiempo de procesamiento
+                setTimeout(function() {
+                    // Ocultar el indicador de escritura y mostrar la respuesta
+                    typingIndicator.classList.add('hidden');
+                    respuestaElement.classList.remove('hidden');
+                    
+                    // Generar respuesta basada en los datos del formulario
+                    const nombre = document.getElementById('nombre').value;
+                    const tratamiento = document.getElementById('tratamiento').value;
+                    const descripcion = document.getElementById('descripcion').value;
+                    
+                    // Generar presupuesto basado en el tratamiento
+                    let presupuesto = '';
+                    let duracion = '';
+                    let sesiones = '';
+                    
+                    switch(tratamiento) {
+                        case 'botox':
+                            presupuesto = '250€ - 450€';
+                            duracion = '15-30 minutos';
+                            sesiones = '1 sesión';
+                            break;
+                        case 'rellenos':
+                            presupuesto = '350€ - 650€';
+                            duracion = '30-45 minutos';
+                            sesiones = '1 sesión';
+                            break;
+                        case 'rejuvenecimiento':
+                            presupuesto = '180€ - 300€';
+                            duracion = '45-60 minutos';
+                            sesiones = '4-6 sesiones';
+                            break;
+                        case 'hifu':
+                            presupuesto = '800€ - 1200€';
+                            duracion = '60-90 minutos';
+                            sesiones = '1 sesión';
+                            break;
+                        case 'mesoterapia':
+                            presupuesto = '150€ - 250€';
+                            duracion = '30-45 minutos';
+                            sesiones = '3-5 sesiones';
+                            break;
+                        default:
+                            presupuesto = '200€ - 600€';
+                            duracion = '30-60 minutos';
+                            sesiones = 'Variable';
+                    }
+                    
+                    // Crear respuesta personalizada
+                    const respuestaHTML = `
+                        <p class="mb-4">Hola ${nombre}, gracias por tu interés en nuestros tratamientos de ${getTratamientoNombre(tratamiento)}.</p>
+                        
+                        <p class="mb-4">Basado en la información que nos has proporcionado, te ofrecemos el siguiente presupuesto estimado:</p>
+                        
+                        <div class="bg-primary/5 p-4 rounded-lg mb-4">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Tratamiento:</span>
+                                <span>${getTratamientoNombre(tratamiento)}</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Presupuesto estimado:</span>
+                                <span class="font-semibold text-primary">${presupuesto}</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Duración aproximada:</span>
+                                <span>${duracion}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-medium">Sesiones recomendadas:</span>
+                                <span>${sesiones}</span>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-4">Este presupuesto es orientativo y puede variar según una evaluación personalizada en consulta. Te recomendamos agendar una cita para una valoración detallada.</p>
+                        
+                        <p class="font-medium">Próximos pasos:</p>
+                        <ol class="list-decimal pl-5 mb-4">
+                            <li class="mb-1">Agenda una consulta de valoración gratuita</li>
+                            <li class="mb-1">Recibe un plan de tratamiento personalizado</li>
+                            <li class="mb-1">Comienza tu tratamiento cuando lo desees</li>
+                        </ol>
+                        
+                        <p>¿Tienes alguna pregunta adicional? No dudes en contactarnos al +34 910 123 456 o responder a este mensaje.</p>
+                    `;
+                    
+                    respuestaElement.innerHTML = respuestaHTML;
+                }, 2000);
+            });
+            
+            // Función para obtener el nombre completo del tratamiento
+            function getTratamientoNombre(valor) {
+                const tratamientos = {
+                    'botox': 'Botox',
+                    'rellenos': 'Rellenos dérmicos',
+                    'rejuvenecimiento': 'Rejuvenecimiento facial',
+                    'hifu': 'HIFU (Ultrasonido focalizado)',
+                    'mesoterapia': 'Mesoterapia facial'
+                };
+                
+                return tratamientos[valor] || 'Tratamiento estético';
+            }
+        });
+    </script>
+</body>
+</html>

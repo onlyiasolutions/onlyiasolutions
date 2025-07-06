@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DENTAL-IA | Tu clínica dental inteligente</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.hero-section {
+background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://readdy.ai/api/search-image?query=A%20modern%2C%20bright%20dental%20clinic%20waiting%20area%20with%20comfortable%20seating%2C%20clean%20minimalist%20design%2C%20soft%20lighting%2C%20plants%2C%20and%20a%20reception%20desk.%20The%20space%20looks%20professional%2C%20calming%2C%20and%20inviting%20with%20light%20blue%20and%20white%20color%20scheme&width=1920&height=1080&seq=dental-clinic-waiting-area&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.service-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.date-picker::-webkit-calendar-picker-indicator {
+filter: invert(0.5);
+}
+input:focus, select:focus, textarea:focus {
+outline: none;
+border-color: #4F46E5;
+box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+.custom-checkbox {
+position: relative;
+padding-left: 30px;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkmark {
+border-color: #4F46E5;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #4F46E5;
+border-color: #4F46E5;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.typing-animation::after {
+content: '|';
+animation: blink 1s infinite;
+}
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+.chat-message {
+opacity: 0;
+transform: translateY(20px);
+animation: fadeIn 0.5s forwards;
+}
+@keyframes fadeIn {
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.custom-select {
+position: relative;
+}
+.select-selected {
+background-color: white;
+}
+.select-items {
+position: absolute;
+background-color: white;
+top: 100%;
+left: 0;
+right: 0;
+z-index: 99;
+max-height: 200px;
+overflow-y: auto;
+border-radius: 0 0 8px 8px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.select-hide {
+display: none;
+}
+.select-items div {
+padding: 10px 16px;
+cursor: pointer;
+}
+.select-items div:hover {
+background-color: #f3f4f6;
+}
+.same-as-selected {
+background-color: #e5e7eb;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<a href="#" class="text-2xl font-['Pacifico'] text-primary">DENTAL-IA</a>
+<nav class="hidden md:flex space-x-8">
+<a href="#top" class="font-medium text-gray-700 hover:text-primary transition-colors">Inicio</a>
+<a href="#servicios" class="font-medium text-gray-700 hover:text-primary transition-colors">Servicios</a>
+<a href="#presupuesto" class="font-medium text-gray-700 hover:text-primary transition-colors">Presupuesto</a>
+<a href="#contacto" class="font-medium text-gray-700 hover:text-primary transition-colors">Contacto</a>
+</nav>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+<i class="ri-menu-line ri-2x"></i>
+</button>
+</div>
+</header>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 bg-white z-40 hidden flex-col pt-20 px-4">
+<a href="#" class="py-4 border-b border-gray-100 font-medium text-gray-700">Inicio</a>
+<a href="#servicios" class="py-4 border-b border-gray-100 font-medium text-gray-700">Servicios</a>
+<a href="#presupuesto" class="py-4 border-b border-gray-100 font-medium text-gray-700">Presupuesto</a>
+<a href="#contacto" class="py-4 border-b border-gray-100 font-medium text-gray-700">Contacto</a>
+</div>
+<!-- Hero Section -->
+<section class="hero-section min-h-screen flex items-center justify-center pt-16">
+<div class="container mx-auto px-4 text-center text-white">
+<h1 class="text-4xl md:text-6xl font-bold mb-4">Bienvenido a DENTAL-IA</h1>
+<p class="text-xl md:text-2xl mb-8">Tu clínica dental inteligente</p>
+<p class="max-w-2xl mx-auto mb-8 text-lg">Combinamos tecnología avanzada y atención personalizada para ofrecerte la mejor experiencia dental. Nuestro equipo de profesionales está listo para cuidar de tu sonrisa.</p>
+<a href="https://forms.gle/F8gbyWrHrT4wgnR38" data-readdy="true" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 !rounded-button inline-block transition-all whitespace-nowrap">Probar presupuesto</a>
+</div>
+</section>
+<!-- Servicios Section -->
+<section id="servicios" class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Nuestros Servicios</h2>
+<p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">Ofrecemos tratamientos dentales avanzados con la última tecnología para garantizar los mejores resultados.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Agente de Presupuestos -->
+<div class="service-card bg-white rounded-lg shadow-lg p-8 transition-all duration-300">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+<i class="ri-calculator-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-center mb-4">Agente de Presupuestos</h3>
+<p class="text-gray-600 text-center">Nuestro sistema inteligente de presupuestos te proporciona estimaciones instantáneas para tus tratamientos dentales. Obtén un presupuesto personalizado en segundos, sin compromiso y con total transparencia.</p>
+</div>
+<!-- CRM Automatizado -->
+<div class="service-card bg-white rounded-lg shadow-lg p-8 transition-all duration-300">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+<i class="ri-customer-service-2-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-center mb-4">CRM Automatizado</h3>
+<p class="text-gray-600 text-center">Creamos un CRM personalizado que funciona en automático: seguimiento de leads, respuestas inteligentes, segmentación de audiencias, y más. Ideal para escalar tu negocio sin aumentar tu equipo.</p>
+</div>
+<!-- Implantes -->
+<div class="service-card bg-white rounded-lg shadow-lg p-8 transition-all duration-300">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+<i class="ri-surgical-mask-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-center mb-4">Implantes</h3>
+<p class="text-gray-600 text-center">Reemplazamos dientes perdidos con implantes de titanio de alta calidad que se integran con tu hueso, proporcionando una solución duradera y natural para tu sonrisa.</p>
+</div>
+<!-- Estética Dental -->
+<div class="service-card bg-white rounded-lg shadow-lg p-8 transition-all duration-300">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+<i class="ri-sparkling-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-center mb-4">Estética Dental</h3>
+<p class="text-gray-600 text-center">Mejora la apariencia de tu sonrisa con nuestros tratamientos de estética dental. Ofrecemos blanqueamiento dental, carillas de porcelana y restauraciones estéticas para lograr la sonrisa que siempre has deseado.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Presupuesto Section -->
+<section id="presupuesto" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Solicita tu presupuesto instantáneo</h2>
+<p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">Nuestro sistema de Inteligencia Artificial analizará tus necesidades y te proporcionará un presupuesto aproximado en segundos.</p>
+<div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
+<form id="presupuesto-form" class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
+<input type="text" id="nombre" name="nombre" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. María García López">
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+<input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="ejemplo@correo.com">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+<input type="tel" id="telefono" name="telefono" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. 612 345 678">
+</div>
+<div>
+<label for="tratamiento" class="block text-sm font-medium text-gray-700 mb-1">Tipo de tratamiento</label>
+<div class="custom-select">
+<div class="select-selected flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded cursor-pointer">
+<span>Selecciona un tratamiento</span>
+<i class="ri-arrow-down-s-line"></i>
+</div>
+<div class="select-items select-hide">
+<div>Limpieza dental</div>
+<div>Empaste</div>
+<div>Endodoncia</div>
+<div>Extracción</div>
+<div>Ortodoncia</div>
+<div>Implante dental</div>
+<div>Blanqueamiento</div>
+<div>Carillas</div>
+<div>Prótesis dental</div>
+<div>Revisión general</div>
+</div>
+<input type="hidden" id="tratamiento" name="tratamiento" value="">
+</div>
+</div>
+</div>
+<div>
+<label for="descripcion" class="block text-sm font-medium text-gray-700 mb-1">Breve descripción del caso</label>
+<textarea id="descripcion" name="descripcion" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded resize-y focus:ring-primary" placeholder="Describe brevemente tu situación dental actual y qué tratamiento te interesa..."></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="fecha" class="block text-sm font-medium text-gray-700 mb-1">Fecha deseada para la cita</label>
+<input type="date" id="fecha" name="fecha" class="date-picker w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary">
+</div>
+<div class="flex items-center">
+<label class="custom-checkbox text-sm text-gray-700">
+Acepto la política de privacidad
+<input type="checkbox" required>
+<span class="checkmark"></span>
+</label>
+</div>
+</div>
+<div class="text-center">
+<button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 !rounded-button inline-block transition-all whitespace-nowrap">Solicitar presupuesto</button>
+</div>
+</form>
+<div id="chat-container" class="mt-8 hidden">
+<div class="border-t pt-6">
+<h3 class="text-lg font-semibold mb-4">Respuesta del Agente de Presupuestos IA</h3>
+<div class="bg-gray-100 rounded-lg p-4">
+<div id="chat-messages" class="space-y-4">
+<!-- Los mensajes del chat se añadirán aquí -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer id="contacto" class="bg-gray-900 text-white py-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h3 class="text-xl font-bold mb-4">DENTAL-IA</h3>
+<p class="mb-4">Tu clínica dental inteligente, combinando tecnología avanzada y atención personalizada para el cuidado óptimo de tu salud bucal.</p>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-4">Contacto</h3>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 mt-1 flex items-center justify-center mr-3">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>Calle Dentista, 123, 28001 Madrid</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 mt-1 flex items-center justify-center mr-3">
+<i class="ri-phone-line"></i>
+</div>
+<span>+34 988 888 888</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 mt-1 flex items-center justify-center mr-3">
+<i class="ri-mail-line"></i>
+</div>
+<span>info@dental-ia.es</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 mt-1 flex items-center justify-center mr-3">
+<i class="ri-time-line"></i>
+</div>
+<span>Lun-Vie: 9:00-20:00 | Sáb: 9:00-14:00</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-400">
+<p>© 2025 DENTAL-IA. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('button.md\\:hidden');
+const mobileMenu = document.getElementById('mobile-menu');
+let menuOpen = false;
+menuButton.addEventListener('click', function() {
+menuOpen = !menuOpen;
+if (menuOpen) {
+mobileMenu.style.display = 'flex';
+menuButton.innerHTML = '<i class="ri-close-line ri-2x"></i>';
+} else {
+mobileMenu.style.display = 'none';
+menuButton.innerHTML = '<i class="ri-menu-line ri-2x"></i>';
+}
+});
+// Cerrar menú al hacer clic en un enlace
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.style.display = 'none';
+menuButton.innerHTML = '<i class="ri-menu-line ri-2x"></i>';
+menuOpen = false;
+});
+});
+});
+</script>
+<script id="smooth-scroll-script">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#top') {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+return;
+}
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="custom-select-script">
+document.addEventListener('DOMContentLoaded', function() {
+const customSelect = document.querySelector('.custom-select');
+const selectSelected = customSelect.querySelector('.select-selected');
+const selectItems = customSelect.querySelector('.select-items');
+const hiddenInput = document.getElementById('tratamiento');
+// Mostrar/ocultar opciones al hacer clic en el select
+selectSelected.addEventListener('click', function(e) {
+e.stopPropagation();
+selectItems.classList.toggle('select-hide');
+selectSelected.classList.toggle('active');
+});
+// Seleccionar una opción
+const options = selectItems.querySelectorAll('div');
+options.forEach(option => {
+option.addEventListener('click', function() {
+selectSelected.querySelector('span').textContent = this.textContent;
+hiddenInput.value = this.textContent;
+// Marcar la opción seleccionada
+options.forEach(opt => opt.classList.remove('same-as-selected'));
+this.classList.add('same-as-selected');
+selectItems.classList.add('select-hide');
+});
+});
+// Cerrar el select al hacer clic fuera
+document.addEventListener('click', function() {
+selectItems.classList.add('select-hide');
+selectSelected.classList.remove('active');
+});
+});
+</script>
+<script id="form-submission-script">
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.getElementById('presupuesto-form');
+const chatContainer = document.getElementById('chat-container');
+const chatMessages = document.getElementById('chat-messages');
+form.addEventListener('submit', function(e) {
+e.preventDefault();
+// Obtener datos del formulario
+const formData = new FormData(form);
+const nombre = formData.get('nombre');
+const tratamiento = document.querySelector('.select-selected span').textContent;
+// Mostrar el contenedor de chat
+chatContainer.classList.remove('hidden');
+chatMessages.innerHTML = '';
+// Mensaje inicial
+addChatMessage('Conectando con el Agente de Presupuestos IA...', 'system');
+// Simular "escribiendo..."
+setTimeout(() => {
+addChatMessage(`Hola ${nombre}, soy Ana, tu asistente virtual de DENTAL-IA. Estoy analizando tu solicitud para un ${tratamiento.toLowerCase()}...`, 'assistant');
+// Simular análisis
+setTimeout(() => {
+addChatMessage('Analizando opciones de tratamiento y generando presupuesto personalizado...', 'system');
+// Generar presupuesto
+setTimeout(() => {
+// Definir precios según el tratamiento
+let precio = 0;
+let duracion = '';
+let sesiones = 1;
+switch(tratamiento) {
+case 'Limpieza dental':
+precio = 60;
+duracion = '45 minutos';
+break;
+case 'Empaste':
+precio = 80;
+duracion = '1 hora';
+break;
+case 'Endodoncia':
+precio = 250;
+duracion = '1.5 horas';
+break;
+case 'Extracción':
+precio = 90;
+duracion = '45 minutos';
+break;
+case 'Ortodoncia':
+precio = 2500;
+duracion = '18 meses';
+sesiones = 'visitas mensuales';
+break;
+case 'Implante dental':
+precio = 1200;
+duracion = '3-6 meses (proceso completo)';
+sesiones = 'varias sesiones';
+break;
+case 'Blanqueamiento':
+precio = 350;
+duracion = '1.5 horas';
+break;
+case 'Carillas':
+precio = 650;
+duracion = '2-3 semanas (proceso completo)';
+sesiones = '2-3 sesiones';
+break;
+case 'Prótesis dental':
+precio = 800;
+duracion = '2-4 semanas (proceso completo)';
+sesiones = '3-4 sesiones';
+break;
+case 'Revisión general':
+precio = 50;
+duracion = '30 minutos';
+break;
+default:
+precio = 100;
+duracion = '1 hora';
+}
+// Mensaje de presupuesto
+const presupuestoHTML = `
+<div class="bg-white rounded-lg p-4 border border-primary/20">
+<h4 class="text-lg font-semibold text-primary mb-2">Presupuesto Estimado: ${tratamiento}</h4>
+<ul class="space-y-2 text-gray-700">
+<li><span class="font-medium">Precio:</span> ${precio}€</li>
+<li><span class="font-medium">Duración:</span> ${duracion}</li>
+<li><span class="font-medium">Sesiones:</span> ${sesiones}</li>
+</ul>
+<p class="mt-3 text-sm text-gray-500">Este es un presupuesto aproximado. Para un presupuesto definitivo, recomendamos una evaluación presencial.</p>
+</div>
+`;
+addChatMessage(presupuestoHTML, 'assistant', false);
+// Mensaje final
+setTimeout(() => {
+addChatMessage(`¿Te gustaría programar una cita para el ${tratamiento.toLowerCase()}? Podemos confirmar tu cita para la fecha que has seleccionado o proponerte otras alternativas. También puedes llamarnos al 912 345 678 para más información.`, 'assistant');
+}, 1000);
+}, 2000);
+}, 1500);
+}, 1000);
+});
+// Función para añadir mensajes al chat
+function addChatMessage(message, sender, isTyping = true) {
+const messageDiv = document.createElement('div');
+messageDiv.classList.add('chat-message');
+if (sender === 'system') {
+messageDiv.innerHTML = `
+<div class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">
+<p class="text-sm">${message}</p>
+</div>
+`;
+} else if (sender === 'assistant') {
+if (isTyping) {
+messageDiv.innerHTML = `
+<div class="flex items-start">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2">
+<i class="ri-customer-service-2-line text-white"></i>
+</div>
+<div class="bg-primary/10 text-gray-800 rounded-lg py-2 px-4 max-w-[80%]">
+<p class="typing-animation">${message}</p>
+</div>
+</div>
+`;
+} else {
+messageDiv.innerHTML = `
+<div class="flex items-start">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2">
+<i class="ri-customer-service-2-line text-white"></i>
+</div>
+<div class="bg-primary/10 text-gray-800 rounded-lg py-2 px-4 max-w-[80%]">
+${message}
+</div>
+</div>
+`;
+}
+}
+chatMessages.appendChild(messageDiv);
+// Scroll al final del chat
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+});
+</script>
+</body>
+</html>
