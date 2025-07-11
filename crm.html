@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IASOLUTIONS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#8b5cf6',secondary:'#ec4899'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@keyframes gradientFlow {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+.gradient-bg {
+background: linear-gradient(-45deg, #5727b0, #8b5cf6, #ec4899, #3b82f6);
+background-size: 400% 400%;
+animation: gradientFlow 15s ease infinite;
+}
+.gradient-text {
+background: linear-gradient(90deg, #8b5cf6, #ec4899);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.card-hover {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.btn-hover {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-hover:hover {
+transform: scale(1.05);
+box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3), 0 4px 6px -2px rgba(139, 92, 246, 0.2);
+}
+input:focus {
+outline: none;
+}
+<style>
+@keyframes bounce {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-10px); }
+}
+@keyframes slideIn {
+from { transform: scale(0.8); opacity: 0; }
+to { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+.chatbot-widget {
+animation: bounce 3s ease-in-out infinite;
+}
+.chatbot-widget:hover {
+animation: none;
+transform: scale(1.1);
+transition: transform 0.3s ease;
+}
+.chat-window {
+animation: slideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+transform-origin: bottom right;
+}
+.chat-message-bot {
+animation: fadeIn 0.5s ease-out;
+}
+.chat-message-user {
+animation: fadeIn 0.5s ease-out;
+}
+</style>
+</head>
+<body class="bg-black text-white min-h-screen relative">
+<!-- Hero Section with Gradient Background -->
+<div class="relative min-h-screen overflow-hidden">
+<div class="absolute inset-0 z-0" style="background-image: url('https://readdy.ai/api/search-image?query=abstract%20digital%20fluid%20gradient%20wave%20with%20blue%2C%20purple%2C%20and%20magenta%20colors%20flowing%20like%20liquid%20on%20black%20background%2C%20elegant%20modern%20technology%20visualization%2C%20high%20resolution%2C%20no%20text%2C%20minimalist%20design&width=1920&height=1080&seq=hero123&orientation=landscape'); background-size: cover; background-position: center;"></div>
+<div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+<!-- Navigation -->
+<nav class="fixed w-full top-0 left-0 z-50 px-6 py-4">
+<div class="max-w-6xl mx-auto">
+<div class="flex justify-start">
+<a href="index.html">
+<img src="https://public.readdy.ai/ai/img_res/b0a696cb-b78c-4572-af2a-0c682941ec72.png" alt="AIA Solutions Logo" class="h-12">
+</a>
+</div>
+</div>
+</nav>
+<!-- Hero Content -->
+<div class="relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-24 text-center min-h-screen">
+<span class="text-primary font-medium mb-4 text-sm sm:text-base">CRM AUTOMÁTICO CON IA</span>
+<h1 class="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8 max-w-5xl leading-tight">Conseguimos más <span class="gradient-text">facturación</span> con IA</h1>
+<p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 sm:mb-12 max-w-2xl">Creamos un CRM personalizado que funciona en automático: seguimiento de leads, respuestas inteligentes, segmentación de audiencias, y más. Ideal para escalar tu negocio sin aumentar tu equipo.</p>
+<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
+<a href="comenzarahoraform.html" class="btn-hover bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto">Solicitar Demo</a>
+<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-base sm:text-lg text-gray-300 mt-6 sm:mt-0">
+<div class="flex items-center gap-2">
+<i class="ri-rocket-line text-primary"></i>
+<span>Implementación rápida</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="ri-line-chart-line text-primary"></i>
+<span>ROI garantizado</span>
+</div>
+</div>
+</div>
+<div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 max-w-3xl px-4 sm:px-0">
+<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
+<i class="ri-customer-service-2-line text-primary text-2xl mb-4"></i>
+<h3 class="text-lg font-medium mb-2">Seguimiento Automático</h3>
+<p class="text-gray-400 text-sm">Gestión inteligente de leads y clientes 24/7</p>
+</div>
+<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
+<i class="ri-message-3-line text-primary text-2xl mb-4"></i>
+<h3 class="text-lg font-medium mb-2">Respuestas IA</h3>
+<p class="text-gray-400 text-sm">Comunicación personalizada y efectiva</p>
+</div>
+<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
+<i class="ri-group-line text-primary text-2xl mb-4"></i>
+<h3 class="text-lg font-medium mb-2">Segmentación</h3>
+<p class="text-gray-400 text-sm">Audiencias optimizadas para mayor conversión</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('animate');
+}
+});
+}, { threshold: 0.5 });
+document.querySelectorAll('.chat-message').forEach(message => {
+observer.observe(message);
+});
+});
+</script>
+</div>
+</div>
+</div>
+</section>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="stats-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const stats = document.querySelectorAll('.stat-number');
+function animateNumber(element, target) {
+let current = 0;
+const increment = target / 50;
+const duration = 2000;
+const interval = duration / 50;
+const timer = setInterval(() => {
+current += increment;
+if (current >= target) {
+current = target;
+clearInterval(timer);
+}
+element.textContent = Math.round(current);
+}, interval);
+}
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const target = parseInt(entry.target.dataset.target);
+animateNumber(entry.target, target);
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.5 });
+stats.forEach(stat => observer.observe(stat));
+});
+</script>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="stats-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const stats = document.querySelectorAll('.stat-number');
+function animateNumber(element, target) {
+let current = 0;
+const increment = target / 50;
+const duration = 2000;
+const interval = duration / 50;
+const timer = setInterval(() => {
+current += increment;
+if (current >= target) {
+current = target;
+clearInterval(timer);
+}
+element.textContent = Math.round(current);
+}, interval);
+}
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const target = parseInt(entry.target.dataset.target);
+animateNumber(entry.target, target);
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.5 });
+stats.forEach(stat => observer.observe(stat));
+});
+</script>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="stats-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const stats = document.querySelectorAll('.stat-number');
+function animateNumber(element, target) {
+let current = 0;
+const increment = target / 50;
+const duration = 2000;
+const interval = duration / 50;
+const timer = setInterval(() => {
+current += increment;
+if (current >= target) {
+current = target;
+clearInterval(timer);
+}
+element.textContent = Math.round(current);
+}, interval);
+}
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const target = parseInt(entry.target.dataset.target);
+animateNumber(entry.target, target);
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.5 });
+stats.forEach(stat => observer.observe(stat));
+});
+</script>
+<!-- Pricing Section -->
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="stats-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const stats = document.querySelectorAll('.stat-number');
+function animateNumber(element, target) {
+let current = 0;
+const increment = target / 50;
+const duration = 2000;
+const interval = duration / 50;
+const timer = setInterval(() => {
+current += increment;
+if (current >= target) {
+current = target;
+clearInterval(timer);
+}
+element.textContent = Math.round(current);
+}, interval);
+}
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const target = parseInt(entry.target.dataset.target);
+animateNumber(entry.target, target);
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.5 });
+stats.forEach(stat => observer.observe(stat));
+});
+</script>
+<!-- CTA Section -->
+<!-- Footer -->
+<footer class="bg-gray-950 py-6 sm:py-8 px-4 sm:px-6">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+<a href="index.html">
+  <img src="https://public.readdy.ai/ai/img_res/1b49ec7b-2cf4-4bc5-87e2-718cb208e11e.png" alt="AIA Solutions Logo" class="h-8" style="pointer-events: auto;">
+</a>
+<p class="text-gray-400 max-w-md text-sm">Escala tu crecimiento con soluciones impulsadas por IA.</p>
+</div>
+<p class="text-gray-500 text-sm text-center">© 2025 IA Solutions. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+<!-- Chatbot Widget -->
+<div id="chatbot-container" class="fixed bottom-4 sm:bottom-10 right-4 sm:right-6 z-50">
+<!-- Chat Window -->
+<div id="chat-window" class="hidden chat-window bg-gray-900 w-[320px] sm:w-[360px] h-[420px] sm:h-[480px] rounded-2xl shadow-2xl flex flex-col mb-4 border border-gray-800 origin-bottom-right">
+<!-- Chat Header -->
+<div class="p-4 border-b border-gray-800 flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line ri-lg text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium">Chat Support</h4>
+<p class="text-sm text-gray-400">Online</p>
+</div>
+</div>
+<button id="close-chat" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-800 transition-colors">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<!-- Chat Messages -->
+<div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+<div class="chat-message-bot flex items-start">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line text-primary"></i>
+</div>
+<div class="bg-gray-800 rounded-lg rounded-tl-none p-3 max-w-[80%]">
+<p class="text-sm">¡Hola! 👋 ¿Cómo puedo ayudarte hoy?</p>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 border-t border-gray-800">
+<div class="flex items-center gap-2">
+<input type="text" id="chat-input" placeholder="Escribe tu mensaje..." class="flex-1 bg-gray-800 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 border-none">
+<button id="send-message" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+<i class="ri-send-plane-fill ri-sm"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script id="chart-script">
+document.addEventListener('DOMContentLoaded', function() {
+const chartContainer = document.getElementById('analytics-chart');
+if (chartContainer) {
+const chart = echarts.init(chartContainer);
+const option = {
+animation: false,
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+top: 10,
+right: 10,
+bottom: 20,
+left: 40
+},
+xAxis: {
+type: 'category',
+data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+axisLine: {
+lineStyle: {
+color: '#4b5563'
+}
+},
+axisLabel: {
+color: '#9ca3af'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#4b5563'
+}
+},
+splitLine: {
+lineStyle: {
+color: '#374151'
+}
+},
+axisLabel: {
+color: '#9ca3af'
+}
+},
+series: [
+{
+name: 'Engagement',
+type: 'line',
+smooth: true,
+data: [120, 132, 101, 134, 90, 180],
+lineStyle: {
+color: 'rgba(87, 181, 231, 1)'
+},
+itemStyle: {
+color: 'rgba(87, 181, 231, 1)'
+},
+showSymbol: false,
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(87, 181, 231, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(87, 181, 231, 0.1)'
+}
+])
+}
+},
+{
+name: 'Conversions',
+type: 'line',
+smooth: true,
+data: [220, 182, 191, 234, 290, 330],
+lineStyle: {
+color: 'rgba(141, 211, 199, 1)'
+},
+itemStyle: {
+color: 'rgba(141, 211, 199, 1)'
+},
+showSymbol: false,
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(141, 211, 199, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(141, 211, 199, 0.1)'
+}
+])
+}
+}
+]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+chart.resize();
+});
+}
+});
+</script>
+<script id="pricing-toggle-script">
+document.addEventListener('DOMContentLoaded', function() {
+const monthlyBtn = document.getElementById('monthly-btn');
+const annualBtn = document.getElementById('annual-btn');
+if (monthlyBtn && annualBtn) {
+monthlyBtn.addEventListener('click', function() {
+monthlyBtn.classList.add('bg-primary', 'text-white');
+monthlyBtn.classList.remove('text-gray-300');
+annualBtn.classList.remove('bg-primary', 'text-white');
+annualBtn.classList.add('text-gray-300');
+});
+annualBtn.addEventListener('click', function() {
+annualBtn.classList.add('bg-primary', 'text-white');
+annualBtn.classList.remove('text-gray-300');
+monthlyBtn.classList.remove('bg-primary', 'text-white');
+monthlyBtn.classList.add('text-gray-300');
+});
+}
+});
+</script>
+<script id="chatbot-script">
+document.addEventListener('DOMContentLoaded', function() {
+const chatWindow = document.getElementById('chat-window');
+const closeChat = document.getElementById('close-chat');
+const chatInput = document.getElementById('chat-input');
+const sendMessage = document.getElementById('send-message');
+const chatMessages = document.getElementById('chat-messages');
+function addMessage(message, isUser = false) {
+const messageDiv = document.createElement('div');
+messageDiv.className = isUser ? 'chat-message-user flex items-start justify-end' : 'chat-message-bot flex items-start';
+const messageContent = `
+${isUser ? '' : `
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line text-primary"></i>
+</div>
+`}
+<div class="bg-${isUser ? 'primary' : 'gray-800'} rounded-lg ${isUser ? 'rounded-tr-none' : 'rounded-tl-none'} p-3 max-w-[80%]">
+<p class="text-sm">${message}</p>
+</div>
+`;
+messageDiv.innerHTML = messageContent;
+chatMessages.appendChild(messageDiv);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+closeChat.addEventListener('click', function() {
+chatWindow.classList.add('hidden');
+});
+function handleSendMessage() {
+const message = chatInput.value.trim();
+if (message) {
+addMessage(message, true);
+chatInput.value = '';
+// Simulate bot response
+setTimeout(() => {
+addMessage("Thanks for your message! Our team will get back to you soon.");
+}, 1000);
+}
+}
+sendMessage.addEventListener('click', handleSendMessage);
+chatInput.addEventListener('keypress', function(e) {
+if (e.key === 'Enter') {
+handleSendMessage();
+}
+});
+});
+</script>
+</body>
+</html>

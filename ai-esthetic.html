@@ -1,355 +1,356 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-ESTHETIC - Tu clínica de estética inteligente</title>
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    <style>
-        :where([class^="ri-"])::before { content: "\f3c2"; }
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .font-pacifico {
-            font-family: 'Pacifico', serif;
-        }
-        .gradient-bg {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1), 0 10px 10px -5px rgba(99, 102, 241, 0.04);
-        }
-        .floating-label {
-            top: 0;
-            left: 0.75rem;
-            transform: translateY(-50%);
-            background-color: white;
-            padding: 0 0.25rem;
-        }
-        input:focus + .floating-label,
-        input:not(:placeholder-shown) + .floating-label,
-        textarea:focus + .floating-label,
-        textarea:not(:placeholder-shown) + .floating-label,
-        select:focus + .floating-label,
-        select:not(:placeholder-shown) + .floating-label {
-            color: #6366f1;
-        }
-        .hero-section {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://readdy.ai/api/search-image?query=A%20modern%20aesthetic%20clinic%20interior%20with%20clean%20lines%2C%20soft%20lighting%2C%20and%20a%20luxurious%20reception%20area.%20The%20space%20features%20elegant%20white%20furniture%2C%20marble%20countertops%2C%20and%20subtle%20blue%20accent%20lighting.%20The%20environment%20looks%20sophisticated%2C%20calming%2C%20and%20professional%2C%20perfect%20for%20cosmetic%20treatments%20and%20procedures.&width=1920&height=1080&seq=12345&orientation=landscape');
-            background-size: cover;
-            background-position: center;
-        }
-        .typing-animation::after {
-            content: '|';
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-ESTHETIC - Tu clínica de estética inteligente</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.font-pacifico {
+font-family: 'Pacifico', serif;
+}
+.gradient-bg {
+background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+.gradient-text {
+background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.service-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1), 0 10px 10px -5px rgba(99, 102, 241, 0.04);
+}
+.floating-label {
+top: 0;
+left: 0.75rem;
+transform: translateY(-50%);
+background-color: white;
+padding: 0 0.25rem;
+}
+input:focus + .floating-label,
+input:not(:placeholder-shown) + .floating-label,
+textarea:focus + .floating-label,
+textarea:not(:placeholder-shown) + .floating-label,
+select:focus + .floating-label,
+select:not(:placeholder-shown) + .floating-label {
+color: #6366f1;
+}
+.hero-section {
+background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://readdy.ai/api/search-image?query=A%20modern%20aesthetic%20clinic%20interior%20with%20clean%20lines%2C%20soft%20lighting%2C%20and%20a%20luxurious%20reception%20area.%20The%20space%20features%20elegant%20white%20furniture%2C%20marble%20countertops%2C%20and%20subtle%20blue%20accent%20lighting.%20The%20environment%20looks%20sophisticated%2C%20calming%2C%20and%20professional%2C%20perfect%20for%20cosmetic%20treatments%20and%20procedures.&width=1920&height=1080&seq=12345&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.typing-animation::after {
+content: '|';
+animation: blink 1s infinite;
+}
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+</style>
 </head>
 <body class="bg-gray-50">
-    <!-- Header -->
-    <header class="fixed w-full z-50 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-pacifico gradient-text">AI-ESTHETIC</a>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#" class="text-gray-700 hover:text-primary transition-colors">Inicio</a></li>
-                    <li><a href="#demo" class="text-gray-700 hover:text-primary transition-colors">Demo Estética</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero-section min-h-screen flex items-center">
-        <div class="container mx-auto px-4 py-16 text-center md:text-left">
-            <div class="max-w-2xl mx-auto md:mx-0">
-                <h1 class="text-4xl md:text-5xl font-pacifico text-white mb-4">Bienvenido a AI-ESTHETIC</h1>
-                <p class="text-xl text-white/90 mb-8">Tu clínica de estética inteligente</p>
-                <a href="#demo" class="inline-block px-8 py-3 bg-white text-primary font-medium rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap">Probar presupuesto</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-pacifico gradient-text text-center mb-12">Nuestros Servicios</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
-                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
-                        <i class="ri-syringe-line text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Botox</h3>
-                    <p class="text-gray-600 text-center">Tratamientos con toxina botulínica para reducir arrugas de expresión y líneas finas. Resultados naturales y duraderos con mínima recuperación.</p>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
-                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
-                        <i class="ri-heart-pulse-line text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Rellenos dérmicos</h3>
-                    <p class="text-gray-600 text-center">Recupera el volumen facial perdido y redefine los contornos con nuestros rellenos de ácido hialurónico de última generación.</p>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
-                    <div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
-                        <i class="ri-sun-line text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Rejuvenecimiento facial</h3>
-                    <p class="text-gray-600 text-center">Tratamientos avanzados con láser, radiofrecuencia y peelings químicos para mejorar la textura, luminosidad y firmeza de tu piel.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Demo Section -->
-    <section id="demo" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-pacifico gradient-text text-center mb-12">Solicita tu presupuesto instantáneo</h2>
-            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
-                <form id="presupuesto-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="relative md:col-span-1">
-                        <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
-                        <label for="nombre" class="floating-label text-sm text-gray-500 transition-all">Nombre completo</label>
-                    </div>
-                    
-                    <div class="relative md:col-span-1">
-                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
-                        <label for="email" class="floating-label text-sm text-gray-500 transition-all">Email</label>
-                    </div>
-                    
-                    <div class="relative md:col-span-1">
-                        <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
-                        <label for="telefono" class="floating-label text-sm text-gray-500 transition-all">Teléfono</label>
-                    </div>
-                    
-                    <div class="relative md:col-span-1">
-                        <select id="tratamiento" name="tratamiento" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none pr-8" required>
-                            <option value="" disabled selected></option>
-                            <option value="botox">Botox</option>
-                            <option value="rellenos">Rellenos dérmicos</option>
-                            <option value="rejuvenecimiento">Rejuvenecimiento facial</option>
-                            <option value="hifu">HIFU (Ultrasonido focalizado)</option>
-                            <option value="mesoterapia">Mesoterapia facial</option>
-                        </select>
-                        <label for="tratamiento" class="floating-label text-sm text-gray-500 transition-all">Tipo de tratamiento</label>
-                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                            <i class="ri-arrow-down-s-line text-gray-400"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="relative md:col-span-2">
-                        <textarea id="descripcion" name="descripcion" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none" placeholder=" " required></textarea>
-                        <label for="descripcion" class="floating-label text-sm text-gray-500 transition-all">Describe brevemente tu caso y objetivos</label>
-                    </div>
-                    
-                    <div class="md:col-span-2">
-                        <button type="submit" class="w-full py-3 px-6 gradient-bg text-white font-medium rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap">Solicitar presupuesto</button>
-                    </div>
-                </form>
-                
-                <div id="respuesta-container" class="mt-8 hidden">
-                    <h3 class="text-lg font-semibold mb-4">Respuesta del Agente de Presupuestos IA</h3>
-                    <div id="typing-indicator" class="typing-animation text-gray-600 mb-4">Analizando tu solicitud...</div>
-                    <div id="respuesta" class="bg-gray-50 p-6 rounded-lg border border-gray-200 hidden">
-                        <!-- La respuesta se generará dinámicamente -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-pacifico mb-4">AI-ESTHETIC</h3>
-                    <p class="text-gray-300 mb-2">Tu clínica de estética inteligente</p>
-                    <p class="text-gray-300">© 2025 AI-ESTHETIC. Todos los derechos reservados.</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contacto</h4>
-                    <div class="flex items-start mb-3">
-                        <div class="w-5 h-5 flex items-center justify-center mr-3 mt-1">
-                            <i class="ri-map-pin-line text-gray-300"></i>
-                        </div>
-                        <p class="text-gray-300">Calle Serrano 45, 28001 Madrid, España</p>
-                    </div>
-                    <div class="flex items-center mb-3">
-                        <div class="w-5 h-5 flex items-center justify-center mr-3">
-                            <i class="ri-phone-line text-gray-300"></i>
-                        </div>
-                        <p class="text-gray-300">+34 910 123 456</p>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-5 h-5 flex items-center justify-center mr-3">
-                            <i class="ri-mail-line text-gray-300"></i>
-                        </div>
-                        <p class="text-gray-300">info@ai-esthetic.com</p>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Enlaces</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Política de privacidad</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Términos y condiciones</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Aviso legal</a></li>
-                    </ul>
-                    
-                    <div class="mt-6 flex space-x-4">
-                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition-colors">
-                            <i class="ri-instagram-line text-white"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition-colors">
-                            <i class="ri-facebook-fill text-white"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition-colors">
-                            <i class="ri-twitter-x-line text-white"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script id="form-handler">
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('presupuesto-form');
-            const respuestaContainer = document.getElementById('respuesta-container');
-            const typingIndicator = document.getElementById('typing-indicator');
-            const respuestaElement = document.getElementById('respuesta');
-            
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Mostrar el contenedor de respuesta y el indicador de escritura
-                respuestaContainer.classList.remove('hidden');
-                typingIndicator.classList.remove('hidden');
-                respuestaElement.classList.add('hidden');
-                
-                // Simular tiempo de procesamiento
-                setTimeout(function() {
-                    // Ocultar el indicador de escritura y mostrar la respuesta
-                    typingIndicator.classList.add('hidden');
-                    respuestaElement.classList.remove('hidden');
-                    
-                    // Generar respuesta basada en los datos del formulario
-                    const nombre = document.getElementById('nombre').value;
-                    const tratamiento = document.getElementById('tratamiento').value;
-                    const descripcion = document.getElementById('descripcion').value;
-                    
-                    // Generar presupuesto basado en el tratamiento
-                    let presupuesto = '';
-                    let duracion = '';
-                    let sesiones = '';
-                    
-                    switch(tratamiento) {
-                        case 'botox':
-                            presupuesto = '250€ - 450€';
-                            duracion = '15-30 minutos';
-                            sesiones = '1 sesión';
-                            break;
-                        case 'rellenos':
-                            presupuesto = '350€ - 650€';
-                            duracion = '30-45 minutos';
-                            sesiones = '1 sesión';
-                            break;
-                        case 'rejuvenecimiento':
-                            presupuesto = '180€ - 300€';
-                            duracion = '45-60 minutos';
-                            sesiones = '4-6 sesiones';
-                            break;
-                        case 'hifu':
-                            presupuesto = '800€ - 1200€';
-                            duracion = '60-90 minutos';
-                            sesiones = '1 sesión';
-                            break;
-                        case 'mesoterapia':
-                            presupuesto = '150€ - 250€';
-                            duracion = '30-45 minutos';
-                            sesiones = '3-5 sesiones';
-                            break;
-                        default:
-                            presupuesto = '200€ - 600€';
-                            duracion = '30-60 minutos';
-                            sesiones = 'Variable';
-                    }
-                    
-                    // Crear respuesta personalizada
-                    const respuestaHTML = `
-                        <p class="mb-4">Hola ${nombre}, gracias por tu interés en nuestros tratamientos de ${getTratamientoNombre(tratamiento)}.</p>
-                        
-                        <p class="mb-4">Basado en la información que nos has proporcionado, te ofrecemos el siguiente presupuesto estimado:</p>
-                        
-                        <div class="bg-primary/5 p-4 rounded-lg mb-4">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Tratamiento:</span>
-                                <span>${getTratamientoNombre(tratamiento)}</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Presupuesto estimado:</span>
-                                <span class="font-semibold text-primary">${presupuesto}</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Duración aproximada:</span>
-                                <span>${duracion}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="font-medium">Sesiones recomendadas:</span>
-                                <span>${sesiones}</span>
-                            </div>
-                        </div>
-                        
-                        <p class="mb-4">Este presupuesto es orientativo y puede variar según una evaluación personalizada en consulta. Te recomendamos agendar una cita para una valoración detallada.</p>
-                        
-                        <p class="font-medium">Próximos pasos:</p>
-                        <ol class="list-decimal pl-5 mb-4">
-                            <li class="mb-1">Agenda una consulta de valoración gratuita</li>
-                            <li class="mb-1">Recibe un plan de tratamiento personalizado</li>
-                            <li class="mb-1">Comienza tu tratamiento cuando lo desees</li>
-                        </ol>
-                        
-                        <p>¿Tienes alguna pregunta adicional? No dudes en contactarnos al +34 910 123 456 o responder a este mensaje.</p>
-                    `;
-                    
-                    respuestaElement.innerHTML = respuestaHTML;
-                }, 2000);
-            });
-            
-            // Función para obtener el nombre completo del tratamiento
-            function getTratamientoNombre(valor) {
-                const tratamientos = {
-                    'botox': 'Botox',
-                    'rellenos': 'Rellenos dérmicos',
-                    'rejuvenecimiento': 'Rejuvenecimiento facial',
-                    'hifu': 'HIFU (Ultrasonido focalizado)',
-                    'mesoterapia': 'Mesoterapia facial'
-                };
-                
-                return tratamientos[valor] || 'Tratamiento estético';
-            }
-        });
-    </script>
+<!-- Header -->
+<header class="fixed w-full z-50 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm">
+<div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<a href="#" class="text-2xl font-pacifico gradient-text" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">AI-ESTHETIC</a>
+<nav>
+<ul class="flex space-x-6">
+</ul>
+</nav>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero-section min-h-screen flex items-center">
+<div class="container mx-auto px-4 py-16 text-center md:text-left">
+<div class="max-w-2xl mx-auto md:mx-0 backdrop-blur-sm bg-black/20 p-8 rounded-lg border border-white/10">
+<h1 class="text-5xl md:text-6xl font-sans font-bold text-white mb-6 drop-shadow-lg tracking-tight">Bienvenido a AI-ESTHETIC</h1>
+<h2 class="text-3xl text-white mb-6 font-semibold drop-shadow-md">Transforma tu clínica estética con IA</h2>
+<p class="text-xl text-white mb-10 max-w-xl leading-relaxed">Impulsamos tu clínica estética con Inteligencia Artificial para generar presupuestos al instante y diseñar planes de tratamiento personalizados. Acelera tu flujo de trabajo, mejora la precisión diagnóstica y ofrece a tus pacientes una experiencia más ágil y segura.</p>
+<a href="#demo" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'}); return false;" class="inline-block px-10 py-4 bg-white text-primary text-lg font-semibold rounded-button shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap">Probar presupuesto</a>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-20 bg-gradient-to-b from-white to-primary/5">
+<div class="container mx-auto px-4">
+<h2 class="text-4xl font-bold text-center mb-4">Nuestros Servicios</h2>
+<p class="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">Descubre cómo la inteligencia artificial está transformando la experiencia en estética</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Service 1 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
+<i class="ri-user-voice-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Consultoría Inicial</h3>
+<p class="text-gray-600 text-center">Solicita tu consulta gratuita con nuestros expertos para evaluar tus necesidades y crear un plan personalizado. Analizamos procesos, herramientas actuales y proponemos una hoja de ruta personalizada para automatizar y optimizar resultados.</p>
+</div>
+<!-- Service 2 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
+<i class="ri-customer-service-2-fill text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Captación de Clientes con IA</h3>
+<p class="text-gray-600 text-center">Sistema completo de captación de leads mediante inteligencia artificial. Pensado para negocios que quieren escalar ventas sin depender del esfuerzo humano constante.</p>
+</div>
+<!-- Service 3 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
+<i class="ri-customer-service-2-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 text-center mb-3">CRM Automatizado</h3>
+<p class="text-gray-600 text-center">Sistema inteligente que gestiona automáticamente el seguimiento de pacientes, recordatorios de citas y recomendaciones personalizadas para optimizar tus resultados.</p>
+</div>
+<!-- Service 4 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-white px-4 py-1 rounded-bl-lg text-sm font-medium">
+¡Promoción!
+</div>
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mx-auto mb-6">
+<i class="ri-robot-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 text-center mb-3">Asistente Virtual 24/7 Personalizado</h3>
+<p class="text-gray-600 text-center">Nuestros asistentes inteligentes están siempre disponibles para realizar tareas de atención al cliente, responder consultas, gestionar citas y proporcionar información precisa al instante. Mejora la satisfacción de tus pacientes ofreciendo soporte continuo y sin esperas, todo con la calidad de un servicio profesional.</p>
+</div>
+</div>
+<!-- Virtual Assistant Section -->
+<div class="mt-20 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2 items-center">
+<div class="p-12 relative">
+<div class="absolute -top-6 left-0 flex gap-2">
+<span class="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full shadow-sm">Nuevo</span>
+<span class="bg-secondary text-white text-xs font-medium px-3 py-1 rounded-full shadow-sm">¡Promoción!</span>
+</div>
+<div class="absolute -right-12 top-0 w-48 bg-secondary text-white text-sm font-medium py-1 px-12 rotate-45 text-center shadow-md">Promoción</div>
+<div class="w-20 h-20 flex items-center justify-center bg-white rounded-full shadow-lg mb-8">
+<i class="ri-24-hours-line text-primary text-3xl"></i>
+</div>
+<h3 class="text-2xl font-semibold text-gray-800 mb-4">Agente de Presupuestos IA</h3>
+<p class="text-gray-600 mb-6">¡Obtén tu presupuesto al instante! Nuestro agente inteligente te proporcionará una estimación personalizada en segundos. Pruébalo tal y como lo harían tus clientes con tu clínica. </p>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-600">
+<i class="ri-checkbox-circle-line text-primary mr-2"></i>
+<span>Resolver dudas sobre tratamientos</span>
+</li>
+<li class="flex items-center text-gray-600">
+<i class="ri-checkbox-circle-line text-primary mr-2"></i>
+<span>Obtener un presupuesto personalizado</span>
+</li>
+<li class="flex items-center text-gray-600">
+<i class="ri-checkbox-circle-line text-primary mr-2"></i>
+<span>Proporcionar información personalizada</span>
+</li>
+<li class="flex items-center text-gray-600">
+<i class="ri-checkbox-circle-line text-primary mr-2"></i>
+<span>Respuesta inmediata vía correo electrónico</span>
+</li>
+</ul>
+<button onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})" class="mt-8 px-8 py-3 bg-white text-primary font-medium rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap flex items-center">
+<i class="ri-mail-line mr-2"></i>
+Probar Ahora
+</button>
+</div>
+<div class="relative h-full min-h-[400px] bg-center bg-cover" style="background-image: url('https://readdy.ai/api/search-image?query=A%20modern%20and%20minimalist%203D%20render%20of%20a%20virtual%20AI%20assistant%20interface%2C%20featuring%20a%20clean%20design%20with%20soft%20blue%20and%20purple%20gradient%20elements.%20The%20interface%20shows%20chat%20bubbles%20and%20interactive%20elements%20floating%20in%20a%20white%20space%2C%20with%20subtle%20shadows%20and%20depth%20effects&width=800&height=1000&seq=98765&orientation=portrait')">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Demo Section -->
+<section id="demo" class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-2xl md:text-3xl font-semibold gradient-text text-center mb-3 md:mb-4 px-4">¡Prueba nuestro agente de presupuestos!</h2>
+<p class="text-sm md:text-base text-gray-600 text-center mb-8 md:mb-12 px-4 leading-relaxed">Nuestro sistema de Inteligencia Artificial analizará tus necesidades y te proporcionará un presupuesto aproximado en segundos. Pruébalo con tus datos de contacto reales para recibir tu presupuesto personalizado en tu correo electrónico.</p>
+<div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
+<form id="presupuesto-form" data-readdy-form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="relative md:col-span-1">
+<input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
+<label for="nombre" class="floating-label text-sm text-gray-500 transition-all">Nombre <span class="text-red-500">*</span></label>
+</div>
+<div class="relative md:col-span-1">
+<input type="text" id="apellidos" name="apellidos" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
+<label for="apellidos" class="floating-label text-sm text-gray-500 transition-all">Apellidos <span class="text-red-500">*</span></label>
+</div>
+<div class="relative md:col-span-1">
+<input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
+<label for="telefono" class="floating-label text-sm text-gray-500 transition-all">Teléfono <span class="text-red-500">*</span></label>
+</div>
+<div class="relative md:col-span-1">
+<input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder=" " required>
+<label for="email" class="floating-label text-sm text-gray-500 transition-all">Correo Electrónico <span class="text-red-500">*</span></label>
+</div>
+<div class="relative md:col-span-2">
+<select id="tratamiento" name="tratamiento" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none pr-8" required>
+<option value="" disabled selected></option>
+<option value="botox">Botox</option>
+<option value="rellenos">Rellenos dérmicos</option>
+<option value="rejuvenecimiento">Rejuvenecimiento facial</option>
+<option value="hifu">HIFU (Ultrasonido focalizado)</option>
+<option value="mesoterapia">Mesoterapia facial</option>
+</select>
+<label for="tratamiento" class="floating-label text-sm text-gray-500 transition-all">¿Qué zona o tratamiento te interesa?</label>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+<div class="relative md:col-span-2">
+<select id="objetivo" name="objetivo" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none pr-8" required>
+<option value="" disabled selected></option>
+<option value="rejuvenecimiento">Rejuvenecimiento facial</option>
+<option value="hidratacion">Mejorar la hidratación de la piel</option>
+<option value="arrugas">Reducir arrugas y líneas de expresión</option>
+<option value="flacidez">Tratar la flacidez facial</option>
+<option value="manchas">Eliminar manchas y mejorar el tono</option>
+<option value="acne">Tratar el acné y sus secuelas</option>
+<option value="otro">Otro objetivo</option>
+</select>
+<label for="objetivo" class="floating-label text-sm text-gray-500 transition-all">¿Cuál es tu objetivo principal?</label>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+<div class="relative md:col-span-2">
+<select id="plazo" name="plazo" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none pr-8" required>
+<option value="" disabled selected></option>
+<option value="inmediato">Lo antes posible</option>
+<option value="1mes">En el próximo mes</option>
+<option value="3meses">En los próximos 3 meses</option>
+<option value="6meses">En los próximos 6 meses</option>
+<option value="flexible">Soy flexible con el tiempo</option>
+</select>
+<label for="plazo" class="floating-label text-sm text-gray-500 transition-all">¿En qué plazo te gustaría realizar el tratamiento?</label>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+<div class="relative md:col-span-2">
+<select id="presupuesto" name="presupuesto" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary appearance-none pr-8" required>
+<option value="" disabled selected></option>
+<option value="hasta500">Hasta 500€</option>
+<option value="500-1000">Entre 500€ y 1.000€</option>
+<option value="1000-2000">Entre 1.000€ y 2.000€</option>
+<option value="2000-3000">Entre 2.000€ y 3.000€</option>
+<option value="mas3000">Más de 3.000€</option>
+<option value="consultar">Prefiero consultar opciones</option>
+</select>
+<label for="presupuesto" class="floating-label text-sm text-gray-500 transition-all">¿Cuál es tu presupuesto aproximado?</label>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+<div class="relative md:col-span-2">
+<textarea id="condicion_medica" name="condicion_medica" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none" rows="4" maxlength="500" placeholder=" "></textarea>
+<label for="condicion_medica" class="floating-label text-sm text-gray-500 transition-all">¿Tienes alguna condición médica relevante que debamos saber?</label>
+<div class="absolute bottom-3 right-3 text-xs text-gray-400">
+<span id="char-count-condicion">0</span>/500
+</div>
+</div>
+<div class="md:col-span-2">
+<button type="submit" class="w-full py-3 px-6 gradient-bg text-white font-medium rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap">Solicitar presupuesto</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Call Scheduling Section -->
+<section class="py-16 bg-gradient-to-b from-white to-primary/5">
+<div class="container mx-auto px-4">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="text-3xl font-bold mb-4">¿Quieres agendar una llamada con nosotros?</h2>
+<p class="text-gray-600 text-lg mb-8">Rellena nuestro formulario y nos pondremos en contacto contigo para encontrar el mejor momento para valorar si podemos ayudarte.</p>
+<a href="comenzarahoraform.html" data-readdy="true" class="inline-flex items-center px-8 py-4 gradient-bg text-white font-medium rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap">
+<i class="ri-phone-line mr-2"></i>
+Agendar llamada gratuita
+</a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<h3 class="text-xl font-pacifico mb-4"><a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">AI-ESTHETIC</a></h3>
+<p class="text-gray-300 mb-2">Tu clínica de estética inteligente</p>
+<p class="text-gray-300">© 2025 IA Solutions - AI-ESTHETIC. Todos los derechos reservados.</p>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Contacto</h4>
+<div class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-mail-line text-gray-300"></i>
+</div>
+<p class="text-gray-300">onlyiasolutions@gmail.com</p>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Enlaces</h4>
+<ul class="space-y-2">
+<li><a href="privacidad.html" class="text-gray-300 hover:text-white transition-colors">Política de privacidad</a></li>
+<li><a href="terminosservicio.html" class="text-gray-300 hover:text-white transition-colors">Términos y condiciones</a></li>
+<li><a href="cookies.html" class="text-gray-300 hover:text-white transition-colors">Política de cookies</a></li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script id="form-handler">
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.getElementById('presupuesto-form');
+const textArea = document.getElementById('condicion_medica');
+const charCount = document.getElementById('char-count-condicion');
+form.addEventListener('submit', async function(e) {
+e.preventDefault();
+const formData = new FormData(form);
+const formDataObj = {};
+formData.forEach((value, key) => {
+formDataObj[key] = value;
+});
+try {
+const response = await fetch('https://readdy.ai/api/form/d1lepdrgivlc0ubacmag', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded',
+},
+body: new URLSearchParams(formDataObj).toString()
+});
+if (response.ok) {
+const successMessage = document.createElement('div');
+successMessage.className = 'text-green-600 text-center py-4 font-medium';
+successMessage.textContent = '¡Gracias por su tiempo! En breve recibirá una respuesta';
+form.insertAdjacentElement('afterend', successMessage);
+form.reset();
+} else {
+throw new Error('Network response was not ok');
+}
+} catch (error) {
+console.error('Error:', error);
+const errorMessage = document.createElement('div');
+errorMessage.className = 'text-red-600 text-center py-4';
+errorMessage.textContent = 'Ha ocurrido un error. Por favor, inténtelo de nuevo más tarde.';
+form.insertAdjacentElement('afterend', errorMessage);
+}
+});
+textArea.addEventListener('input', function() {
+const remaining = this.value.length;
+charCount.textContent = remaining;
+if (remaining >= 500) {
+this.value = this.value.substring(0, 500);
+charCount.textContent = 500;
+}
+});
+});
+</script>
 </body>
 </html>
