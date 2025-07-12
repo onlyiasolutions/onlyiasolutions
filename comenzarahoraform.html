@@ -78,6 +78,40 @@ animation: fadeIn 0.5s ease-out;
 }
 </style>
 </head>
+<script>
+  const form = document.getElementById('formulario-contacto');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+
+    // Bloquear botón mientras se envía
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
+    }
+
+    try {
+      await fetch('https://hook.eu2.make.com/urg3n14bs7b6n9lk534p7agswu5ahx32', {
+        method: 'POST',
+        body: formData
+      });
+
+      // Mostrar mensaje de gracias y ocultar el formulario
+      form.innerHTML = '<p style="font-weight: bold; font-size: 18px;">✅ ¡Gracias por tu tiempo! Hemos recibido tu solicitud. Te contactaremos muy pronto.</p>';
+    } catch (error) {
+      console.error(error);
+      alert('❌ Hubo un error al enviar el formulario. Inténtalo más tarde.');
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      }
+    }
+  });
+</script>
 <body class="bg-black text-white min-h-screen relative">
 <!-- Hero Section with Gradient Background -->
 <div class="relative min-h-screen overflow-x-hidden">
@@ -97,8 +131,7 @@ animation: fadeIn 0.5s ease-out;
 <div class="relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 py-12 sm:py-24 text-center min-h-screen">
 <div class="w-full max-w-3xl mx-auto bg-gray-900/60 backdrop-blur-lg rounded-2xl p-4 sm:p-8 border border-gray-800/50 shadow-2xl mt-16 sm:mt-0">
 <h2 class="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8 gradient-text">¿Listo para llevar tu negocio al siguiente nivel con IA?</h2>
-<form id="ai-business-form" data-readdy-form class="space-y-6 text-left min-h-[600px] flex flex-col justify-between">
-<div class="flex-1 space-y-6">
+<form id="ai-business-form" data-readdy-form action="https://hook.eu2.make.com/urg3n14bs7b6n9lk534p7agswu5ahx32" method="POST" target="hidden_iframe" onsubmit="document.getElementById('form-success').style.display='block';" class="space-y-6 text-left min-h-[600px] flex flex-col justify-between"><div class="flex-1 space-y-6">
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
 <div class="space-y-2">
 <label for="firstName" class="block text-sm font-medium text-gray-300">Nombre</label>
@@ -563,56 +596,17 @@ monthlyBtn.classList.add('text-gray-300');
 </script>
 <script id="form-handler">
 document.addEventListener('DOMContentLoaded', function() {
-const form = document.getElementById('ai-business-form');
-const textarea = document.getElementById('ai_goals');
-const charCount = document.getElementById('char-count');
-textarea.addEventListener('input', function() {
-const remaining = this.value.length;
-charCount.textContent = `${remaining}/500`;
-if (remaining >= 500) {
-this.value = this.value.slice(0, 500);
-}
-});
-form.addEventListener('submit', async function(e) {
-e.preventDefault();
-const submitButton = form.querySelector('button[type="submit"]');
-const originalText = submitButton.textContent;
-submitButton.disabled = true;
-submitButton.textContent = 'Enviando...';
-try {
-const formData = new FormData(form);
-const response = await fetch('https://readdy.ai/api/form/d1mmeetiu7h5n36hq2jg', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/x-www-form-urlencoded',
-},
-body: new URLSearchParams(formData),
-});
-if (response.ok) {
-const successMessage = document.createElement('div');
-successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-successMessage.textContent = '¡Formulario enviado con éxito!';
-document.body.appendChild(successMessage);
-form.reset();
-setTimeout(() => {
-successMessage.remove();
-}, 3000);
-} else {
-throw new Error('Error en el envío');
-}
-} catch (error) {
-const errorMessage = document.createElement('div');
-errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-errorMessage.textContent = 'Error al enviar el formulario. Por favor, inténtalo de nuevo.';
-document.body.appendChild(errorMessage);
-setTimeout(() => {
-errorMessage.remove();
-}, 3000);
-} finally {
-submitButton.disabled = false;
-submitButton.textContent = originalText;
-}
-});
+  const form = document.getElementById('ai-business-form');
+  const textarea = document.getElementById('ai_goals');
+  const charCount = document.getElementById('char-count');
+
+  textarea.addEventListener('input', function() {
+    const remaining = this.value.length;
+    charCount.textContent = `${remaining}/500`;
+    if (remaining >= 500) {
+      this.value = this.value.slice(0, 500);
+    }
+  });
 });
 </script>
 <script id="chatbot-script">
@@ -659,6 +653,32 @@ if (e.key === 'Enter') {
 handleSendMessage();
 }
 });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('ai-business-form');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Evita la redirección
+
+    // Envía los datos manualmente
+    const formData = new FormData(form);
+
+    navigator.sendBeacon(form.action, new URLSearchParams(formData));
+
+    // Muestra mensaje de confirmación
+    const successMessage = document.createElement('div');
+    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+    successMessage.textContent = '¡Gracias por tu tiempo! Hemos recibido tu información.';
+    document.body.appendChild(successMessage);
+
+    form.reset(); // Limpia el formulario
+
+    setTimeout(() => {
+      successMessage.remove();
+    }, 4000);
+  });
 });
 </script>
 </body>
