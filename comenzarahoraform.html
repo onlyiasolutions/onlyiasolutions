@@ -665,31 +665,5 @@ handleSendMessage();
 });
 });
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('ai-business-form');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault(); // Evita la redirección
-
-    // Envía los datos manualmente
-    const formData = new FormData(form);
-
-    navigator.sendBeacon(form.action, new URLSearchParams(formData));
-
-    // Muestra mensaje de confirmación
-    const successMessage = document.createElement('div');
-    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-    successMessage.textContent = '¡Gracias por tu tiempo! Hemos recibido tu información.';
-    document.body.appendChild(successMessage);
-
-    form.reset(); // Limpia el formulario
-
-    setTimeout(() => {
-      successMessage.remove();
-    }, 4000);
-  });
-});
-</script>
 </body>
 </html>
