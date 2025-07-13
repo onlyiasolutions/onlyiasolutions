@@ -243,135 +243,125 @@ background-color: #e5e7eb;
 </section>
 <!-- Presupuesto Section -->
 <section id="presupuesto" class="py-12 md:py-20 bg-gray-50">
-<div class="container mx-auto px-4">
-<h2 class="text-2xl md:text-4xl font-bold text-center mb-3 md:mb-4">Prueba nuestro Agente de Presupuestos</h2>
-<p class="text-base md:text-lg text-gray-600 text-center max-w-3xl mx-auto mb-8 md:mb-12">Nuestro sistema de Inteligencia Artificial analizará tus necesidades y te proporcionará un presupuesto aproximado en segundos. Pruébalo con tus datos de contacto reales para recibir tu presupuesto personalizado en tu correo electrónico</p>
-<div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-4 md:p-8">
-<form id="presupuesto-dentalia-form" action="https://hook.eu2.make.com/uncuglv4bdnmjivbhf2aeg8l3nf9mjki" method="POST">
-  <div>
-    <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre <span class="text-red-500">*</span></label>
-    <input type="text" id="nombre" name="nombre" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. María">
-  </div>
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl md:text-4xl font-bold text-center mb-3 md:mb-4">Prueba nuestro Agente de Presupuestos</h2>
+    <p class="text-base md:text-lg text-gray-600 text-center max-w-3xl mx-auto mb-8 md:mb-12">
+      Nuestro sistema de Inteligencia Artificial analizará tus necesidades y te proporcionará un presupuesto aproximado en segundos. Pruébalo con tus datos de contacto reales para recibir tu presupuesto personalizado en tu correo electrónico
+    </p>
 
-  <div>
-    <label for="apellidos" class="block text-sm font-medium text-gray-700 mb-1">Apellidos <span class="text-red-500">*</span></label>
-    <input type="text" id="apellidos" name="apellidos" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. García López">
+    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-4 md:p-8">
+      <form id="presupuesto-dentalia-form" action="https://hook.eu2.make.com/rds67xtofrwgxi43nuc3889v3dk43neg" method="POST" class="space-y-6 text-left">
+
+        <!-- Nombre -->
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre <span class="text-red-500">*</span></label>
+          <input type="text" id="nombre" name="nombre" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. María">
+        </div>
+
+        <!-- Apellidos -->
+        <div>
+          <label for="apellidos" class="block text-sm font-medium text-gray-700 mb-1">Apellidos <span class="text-red-500">*</span></label>
+          <input type="text" id="apellidos" name="apellidos" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. García López">
+        </div>
+
+        <!-- Correo -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico <span class="text-red-500">*</span></label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="ejemplo@correo.com">
+        </div>
+
+        <!-- Teléfono -->
+        <div>
+          <label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono <span class="text-red-500">*</span></label>
+          <input type="tel" id="telefono" name="telefono" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. 612 345 678">
+        </div>
+
+        <!-- Necesidad dental -->
+        <div>
+          <label for="necesidad" class="block text-sm font-medium text-gray-700 mb-1">¿Cuál es tu principal necesidad dental ahora mismo?</label>
+          <select id="necesidad" name="necesidad" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Quiero mejorar la estética de mi sonrisa</option>
+            <option>Tengo dolor o molestias</option>
+            <option>Necesito una revisión general</option>
+            <option>Necesito un tratamiento específico</option>
+            <option>Quiero consultar precios</option>
+            <option>Otro motivo</option>
+          </select>
+        </div>
+
+        <!-- Última visita -->
+        <div>
+          <label for="ultima_visita" class="block text-sm font-medium text-gray-700 mb-1">¿Has visitado recientemente a un dentista?</label>
+          <select id="ultima_visita" name="ultima_visita" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Sí, en los últimos 6 meses</option>
+            <option>Sí, hace más de 6 meses</option>
+            <option>No, hace mucho tiempo</option>
+            <option>Nunca</option>
+          </select>
+        </div>
+
+        <!-- Urgencia -->
+        <div>
+          <label for="urgencia" class="block text-sm font-medium text-gray-700 mb-1">¿Cuál es tu nivel de urgencia?</label>
+          <select id="urgencia" name="urgencia" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Lo antes posible</option>
+            <option>En las próximas semanas</option>
+            <option>Solo estoy informándome por ahora</option>
+          </select>
+        </div>
+
+        <!-- Detalles del presupuesto -->
+        <div>
+          <label for="detalles" class="block text-sm font-medium text-gray-700 mb-1">¿Qué te gustaría saber con más detalle en el presupuesto?</label>
+          <select id="detalles" name="detalles" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Precio total estimado</option>
+            <option>Posibilidades de financiación</option>
+            <option>Tiempo estimado de tratamiento</option>
+            <option>Opciones de estética dental</option>
+            <option>Opciones sin dolor / anestesia</option>
+            <option>Todo lo anterior</option>
+          </select>
+        </div>
+
+        <!-- Seguro dental -->
+        <div>
+          <label for="seguro_dental" class="block text-sm font-medium text-gray-700 mb-1">¿Tienes seguro dental?</label>
+          <select id="seguro_dental" name="seguro_dental" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Sí</option>
+            <option>No</option>
+            <option>No lo sé</option>
+          </select>
+        </div>
+
+        <!-- Comentarios -->
+        <div>
+          <label for="comentarios" class="block text-sm font-medium text-gray-700 mb-1">¿Algo más que quieras comentarnos?</label>
+          <textarea id="comentarios" name="comentarios" rows="4" maxlength="500" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary resize-none" placeholder="Escribe aquí tus comentarios adicionales..."></textarea>
+          <div class="text-xs text-gray-500 mt-1">Máximo 500 caracteres</div>
+        </div>
+
+        <!-- Checkbox privacidad -->
+        <div class="flex items-center">
+          <label class="custom-checkbox text-xs md:text-sm text-gray-700">
+            Acepto la política de privacidad
+            <input type="checkbox" required>
+            <span class="checkmark"></span>
+          </label>
+        </div>
+
+        <!-- Botón -->
+        <div class="text-center">
+          <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-button transition-all">Solicitar presupuesto</button>
+        </div>
+
+      </form>
+    </div>
   </div>
-</div>
-<div>
-<label for="apellidos" class="block text-sm font-medium text-gray-700 mb-1">Apellidos <span class="text-red-500">*</span></label>
-<input type="text" id="apellidos" name="apellidos" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. García López">
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div>
-<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico <span class="text-red-500">*</span></label>
-<input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="ejemplo@correo.com">
-</div>
-<div>
-<label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono <span class="text-red-500">*</span></label>
-<input type="tel" id="telefono" name="telefono" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary" placeholder="Ej. 612 345 678">
-</div>
-</div>
-<div>
-<label for="necesidad" class="block text-sm font-medium text-gray-700 mb-1">¿Cuál es tu principal necesidad dental ahora mismo?</label>
-<div class="custom-select">
-<div class="select-selected flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded cursor-pointer">
-<span>Selecciona una opción</span>
-<i class="ri-arrow-down-s-line"></i>
-</div>
-<div class="select-items select-hide">
-<div>Quiero mejorar la estética de mi sonrisa</div>
-<div>Tengo dolor o molestias</div>
-<div>Necesito una revisión general</div>
-<div>Necesito un tratamiento específico</div>
-<div>Quiero consultar precios</div>
-<div>Otro motivo</div>
-</div>
-<input type="hidden" id="necesidad" name="necesidad" value="">
-</div>
-</div>
-<div>
-<label for="ultima_visita" class="block text-sm font-medium text-gray-700 mb-1">¿Has visitado recientemente a un dentista?</label>
-<div class="custom-select">
-<div class="select-selected flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded cursor-pointer">
-<span>Selecciona una opción</span>
-<i class="ri-arrow-down-s-line"></i>
-</div>
-<div class="select-items select-hide">
-<div>Sí, en los últimos 6 meses</div>
-<div>Sí, hace más de 6 meses</div>
-<div>No, hace mucho tiempo</div>
-<div>Nunca</div>
-</div>
-<input type="hidden" id="ultima_visita" name="ultima_visita" value="">
-</div>
-</div>
-<div>
-<label for="urgencia" class="block text-sm font-medium text-gray-700 mb-1">¿Cuál es tu nivel de urgencia?</label>
-<div class="custom-select">
-<div class="select-selected flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded cursor-pointer">
-<span>Selecciona una opción</span>
-<i class="ri-arrow-down-s-line"></i>
-</div>
-<div class="select-items select-hide">
-<div>Lo antes posible</div>
-<div>En las próximas semanas</div>
-<div>Solo estoy informándome por ahora</div>
-</div>
-<input type="hidden" id="urgencia" name="urgencia" value="">
-</div>
-</div>
-<div>
-<label for="detalles" class="block text-sm font-medium text-gray-700 mb-1">¿Qué te gustaría saber con más detalle en el presupuesto?</label>
-<div class="custom-select">
-<div class="select-selected flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded cursor-pointer">
-<span>Selecciona una opción</span>
-<i class="ri-arrow-down-s-line"></i>
-</div>
-<div class="select-items select-hide">
-<div>Precio total estimado</div>
-<div>Posibilidades de financiación</div>
-<div>Tiempo estimado de tratamiento</div>
-<div>Opciones de estética dental</div>
-<div>Opciones sin dolor / anestesia</div>
-<div>Todo lo anterior</div>
-</div>
-<input type="hidden" id="detalles" name="detalles" value="">
-</div>
-</div>
-<div>
-<label for="seguro_dental" class="block text-sm font-medium text-gray-700 mb-1">¿Tienes seguro dental?</label>
-<div class="custom-select">
-<div class="select-selected flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded cursor-pointer">
-<span>Selecciona una opción</span>
-<i class="ri-arrow-down-s-line"></i>
-</div>
-<div class="select-items select-hide">
-<div>Si</div>
-<div>No</div>
-<div>No lo sé</div>
-</div>
-<input type="hidden" id="seguro_dental" name="seguro_dental" value="">
-</div>
-</div>
-<div>
-<label for="comentarios" class="block text-sm font-medium text-gray-700 mb-1">¿Algo más que quieras comentarnos?</label>
-<textarea id="comentarios" name="comentarios" rows="4" maxlength="500" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary resize-none" placeholder="Escribe aquí tus comentarios adicionales..."></textarea>
-<div class="text-xs text-gray-500 mt-1">Máximo 500 caracteres</div>
-</div>
-<div class="flex items-center mb-6">
-<label class="custom-checkbox text-xs md:text-sm text-gray-700">
-Acepto la política de privacidad
-<input type="checkbox" required>
-<span class="checkmark"></span>
-</label>
-</div>
-<div class="text-center">
-<button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 !rounded-button inline-block transition-all whitespace-nowrap">Solicitar presupuesto</button>
-</div>
-</form>
-</div>
-</div>
 </section>
 <!-- Call Scheduling Section -->
 <section class="py-12 md:py-20 bg-white">
