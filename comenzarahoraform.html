@@ -623,28 +623,41 @@ handleSendMessage();
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  console.log('✅ DOMContentLoaded: script cargado');
+
   const form = document.getElementById('ai-business-form');
-  if (!form) return;
+  if (!form) {
+    console.warn('❌ No se encontró el formulario con id ai-business-form');
+    return;
+  }
+
+  console.log('✅ Formulario encontrado');
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (!submitButton) {
+    console.warn('❌ No se encontró el botón de enviar');
+    return;
+  }
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
+    console.log('🟢 Submit detectado');
 
     const formData = new FormData(form);
-    const submitButton = form.querySelector('button[type="submit"]');
-    if (!submitButton) return;
-
     const originalText = submitButton.textContent;
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
 
     try {
-      await fetch(form.action, {
+      const response = await fetch(form.action, {
         method: 'POST',
         body: new URLSearchParams(formData),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       });
+
+      console.log('✅ Enviado correctamente');
 
       const successMessage = document.createElement('div');
       successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
@@ -654,8 +667,8 @@ document.addEventListener('DOMContentLoaded', function () {
       form.reset();
       setTimeout(() => successMessage.remove(), 4000);
     } catch (error) {
-      console.error(error);
-      alert('❌ Hubo un error al enviar el formulario. Inténtalo más tarde.');
+      console.error('❌ Error al enviar el formulario:', error);
+      alert('Hubo un error al enviar el formulario. Intenta más tarde.');
     } finally {
       submitButton.disabled = false;
       submitButton.textContent = originalText;
