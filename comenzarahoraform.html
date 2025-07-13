@@ -172,7 +172,7 @@ animation: fadeIn 0.5s ease-out;
 </div>
 </div>
 <div class="flex justify-center">
-<button id="submit-button" class="px-8 py-3 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors">
+<button id="submit-button" type="submit" class="px-8 py-3 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors">
 Enviar consulta
 </button>
 </div>
@@ -624,9 +624,11 @@ handleSendMessage();
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('ai-business-form');
-  if (!form) return;
-
-  const submitButton = form.querySelector('button[type="submit"]');
+  const submitButton = document.getElementById('submit-button');
+  if (!form) {
+    console.error('❌ Formulario no encontrado');
+    return;
+  }
   if (!submitButton) {
     console.error('❌ No se encontró el botón de enviar dentro del formulario.');
     return;
@@ -635,7 +637,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const originalText = submitButton.textContent;
 
   form.addEventListener('submit', async function (e) {
-    e.preventDefault(); // Evita la redirección
+    e.preventDefault();
 
     const formData = new FormData(form);
     submitButton.disabled = true;
@@ -652,7 +654,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (!response.ok) throw new Error('Error en el envío');
 
-      // Mensaje de éxito
       const successMessage = document.createElement('div');
       successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
       successMessage.textContent = '✅ ¡Gracias por tu tiempo! Hemos recibido tu información.';
