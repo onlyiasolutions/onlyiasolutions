@@ -61,16 +61,26 @@ overflow-x: auto;
 <script>tailwind.config={theme:{extend:{colors:{primary:'#8b5cf6',secondary:'#ec4899'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 </head>
 <body class="bg-slate-900 text-white min-h-screen">
-<header class="py-6 border-b border-slate-800">
-<div class="container mx-auto px-4 md:px-6 lg:px-8 flex justify-between items-center">
-</div>
-</header>
-<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-4xl">
-<div class="mb-8 sm:mb-12 text-center">
-<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-blue-500">Política de Cookies</h1>
-<p class="text-lg sm:text-xl text-blue-400">Información sobre el uso de cookies en onlyiasolutions.com</p>
-<p class="mt-3 sm:mt-4 text-gray-300">Última actualización: 7 de julio de 2025</p>
-</div>
+  <!-- Header con nav y logo -->
+  <header class="border-b border-slate-800">
+    <nav class="w-full px-6 py-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex justify-start">
+          <a href="index.html">
+            <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content separado del header -->
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
+    <div class="mb-8 sm:mb-12 text-center">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-blue-500">Política de Cookies</h1>
+      <p class="text-lg sm:text-xl text-blue-400">Información sobre el uso de cookies en onlyiasolutions.com</p>
+      <p class="mt-3 sm:mt-4 text-gray-300">Última actualización: 7 de julio de 2025</p>
+    </div>
 <section class="mb-8 sm:mb-12">
 <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-blue-500">¿Qué son las cookies?</h2>
 <p class="mb-3 sm:mb-4 text-sm sm:text-base text-gray-200">Las cookies son pequeños archivos de texto que los sitios web colocan en su dispositivo cuando los visita. Estas cookies ayudan a que el sitio web recuerde información sobre su visita, como su idioma preferido y otras configuraciones. Esto puede hacer que su próxima visita sea más fácil y que el sitio le resulte más útil.</p>
