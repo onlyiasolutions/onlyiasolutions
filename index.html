@@ -46,7 +46,6 @@ box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3), 0 4px 6px -2px rgba(139, 9
 input:focus {
 outline: none;
 }
-<style>
 @keyframes bounce {
 0%, 100% { transform: translateY(0); }
 50% { transform: translateY(-10px); }
@@ -77,12 +76,39 @@ animation: fadeIn 0.5s ease-out;
 .chat-message-user {
 animation: fadeIn 0.5s ease-out;
 }
+/* Fade-in-up animation for planeta.png */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out forwards;
+}
+/* Animación para botones CTA */
+.cta-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
-<!-- Hero Section with Gradient Background -->
+<!-- Hero Section with Spline Robot Background -->
 <div class="relative min-h-screen overflow-hidden">
-<div class="absolute inset-0 z-0" style="background-image: url('https://readdy.ai/api/search-image?query=abstract%20digital%20fluid%20gradient%20wave%20with%20blue%2C%20purple%2C%20and%20magenta%20colors%20flowing%20like%20liquid%20on%20black%20background%2C%20elegant%20modern%20technology%20visualization%2C%20high%20resolution%2C%20no%20text%2C%20minimalist%20design&width=1920&height=1080&seq=hero123&orientation=landscape'); background-size: cover; background-position: center;"></div>
+  <iframe
+    src="https://my.spline.design/abstractnirvana-Cylj3Q79lCJmwigqRFwR9DtY/"
+    frameborder="0"
+    loading="lazy"
+    style="position: absolute; top: 0; left: 0; width: 150%; height: 150%; transform: translate(-17%, -20%) scale(1.2); z-index: 0; pointer-events: none;"
+  ></iframe>
 <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
 <!-- Navigation -->
 <nav class="fixed w-full top-0 left-0 z-50 px-6 py-4">
@@ -108,17 +134,20 @@ animation: fadeIn 0.5s ease-out;
 </div>
 </nav>
 <!-- Hero Content -->
-<div class="relative z-20 flex flex-col items-center justify-center px-4 md:px-6 py-16 md:py-24 text-center min-h-screen">
-<span class="text-primary font-medium mb-4">AI-POWERED BUSINESS</span>
-<h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 max-w-5xl leading-tight mx-auto flex items-center justify-center flex-wrap"><span id="rot-wrap" class="inline-block overflow-hidden" style="transition:width .3s ease-in-out"><span id="rotating-word" class="inline-block">Transforma</span></span><span class="ml-1">tu negocio con <span class="gradient-text">Inteligencia Artificial</span></span></h1>
-<p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 md:mb-12 max-w-2xl">Escala tu crecimiento con soluciones impulsadas por IA, agentes personalizados y flujos de trabajo automatizados que entregan resultados 10 veces más rápido.</p>
-<div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-<a href="comenzarahoraform.html" class="btn-hover bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto">Comienza Ahora</a>
-</div>
+<div class="relative z-20 flex flex-col items-center justify-center px-4 md:px-6 py-16 md:py-24 text-center min-h-screen fade-section">
+  <span class="text-primary font-medium mb-4">AI-POWERED BUSINESS</span>
+  <h1 class="main-title text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 max-w-5xl leading-tight mx-auto flex items-center justify-center flex-wrap">
+    <span id="rot-wrap" class="inline-block overflow-hidden" style="transition:width .3s ease-in-out"><span id="rotating-word" class="inline-block">Transforma</span></span>
+    <span class="ml-1">tu negocio con <span class="gradient-text">Inteligencia Artificial</span></span>
+  </h1>
+  <p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 md:mb-12 max-w-2xl">Escala tu negocio con soluciones impulsadas por IA, agentes personalizados y flujos de trabajo automatizados que entregan resultados 10 veces más rápido.</p>
+  <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+    <a href="comenzarahoraform.html" class="btn-hover cta-button bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto">Comienza Ahora</a>
+  </div>
 </div>
 </div>
 <!-- Features Section -->
-<section id="services" class="py-20 px-6 bg-black scroll-mt-20">
+<section id="services" class="py-20 px-6 bg-black scroll-mt-20 fade-section">
 <div class="max-w-7xl mx-auto">
 <div class="text-center mb-16">
 <h2 class="text-primary text-xl mb-3">Nuestros Servicios</h2>
@@ -347,7 +376,7 @@ stats.forEach(stat => observer.observe(stat));
 });
 </script>
 <!-- Benefits Section -->
-<section id="benefits" class="py-20 px-6 bg-gray-950 scroll-mt-20">
+<section id="benefits" class="py-20 px-6 bg-gray-950 scroll-mt-20 fade-section">
 <div class="max-w-7xl mx-auto">
 <div class="text-center mb-16">
 <h2 class="text-primary text-xl mb-3">Beneficios</h2>
@@ -511,7 +540,7 @@ stats.forEach(stat => observer.observe(stat));
 });
 </script>
 <!-- Values Section -->
-<section class="py-20 px-6 bg-black scroll-mt-20">
+<section class="py-20 px-6 bg-black scroll-mt-20 fade-section">
 <div class="max-w-7xl mx-auto">
 <div class="text-center mb-16">
 <h2 class="text-primary text-xl mb-3">Nuestros Valores</h2>
@@ -541,7 +570,7 @@ stats.forEach(stat => observer.observe(stat));
 <i class="ri-plant-line ri-2x text-green-500"></i>
 </div>
 <h4 class="text-xl font-bold text-white mb-4">Impacto positivo</h4>
-<p class="text-gray-300">Desarrollamos tecnología con propósito, buscando generar un impacto positivo en la sociedad y el medio ambiente.</p>
+<p class="text-gray-300">Desarrollamos tecnología con propósito, buscando generar un impacto positivo en la sociedad. No reemplazamos personas, potenciamos equipos.</p>
 </div>
 <!-- Value 4 -->
 <div class="bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 border border-gray-800">
@@ -555,7 +584,7 @@ stats.forEach(stat => observer.observe(stat));
 </div>
 </section>
 <!-- Our Agencies Section -->
-<section id="agencies" class="py-12 md:py-20 px-4 md:px-6 bg-black scroll-mt-20">
+<section id="agencies" class="py-12 md:py-20 px-4 md:px-6 bg-black scroll-mt-20 fade-section">
 <div class="max-w-7xl mx-auto">
 <div class="text-center mb-12 md:mb-20">
 <h2 class="text-primary text-xl md:text-2xl mb-3 md:mb-4">Nuestras Agencias</h2>
@@ -674,10 +703,10 @@ stats.forEach(stat => observer.observe(stat));
 </script>
 <!-- Pricing Section -->
 <!-- FAQ Section -->
-<section id="faq" class="py-20 px-6 bg-black scroll-mt-20">
+<section id="faq" class="py-20 px-6 bg-black scroll-mt-20 fade-section">
 <div class="max-w-3xl mx-auto">
 <div class="text-center mb-16">
-<h2 class="text-primary text-xl mb-3">Preguntas Frecuentes</h2>
+<h2 class="text-primary text-xl mb-3">¿Tienes dudas? Tenemos respuestas.</h2>
 <h3 class="text-4xl font-bold mb-6">Preguntas Frecuentes</h3>
 <p class="text-gray-300">Encuentra respuestas a las preguntas comunes sobre nuestra plataforma.</p>
 </div>
@@ -769,42 +798,23 @@ observer.unobserve(entry.target);
 stats.forEach(stat => observer.observe(stat));
 });
 </script>
-<!-- CTA Section -->
-<section class="relative h-[600px] sm:h-[500px] md:h-[400px] overflow-hidden rounded-3xl mx-auto max-w-7xl px-4 sm:px-6 md:px-0 my-8 md:my-16">
-<div class="absolute inset-0 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300"></div>
-<style>
-@keyframes rotateClockwise {
-0% {
-transform: rotate(0deg);
-}
-100% {
-transform: rotate(360deg);
-}
-}
-@keyframes rotateCounterClockwise {
-0% {
-transform: rotate(0deg);
-}
-100% {
-transform: rotate(-360deg);
-}
-}
-</style>
-<div class="absolute left-[50%] sm:left-[5%] md:left-[10%] top-[20%] sm:top-1/4 md:top-1/2 transform -translate-x-1/2 sm:translate-x-0 md:-translate-y-1/2 w-[80%] sm:w-[60%] md:w-[40%] perspective-[1000px] flex items-center gap-4">
-<div class="w-2/3 relative z-0">
-<img src="https://public.readdy.ai/ai/img_res/98396f56-37d0-4c87-ace9-f7de22e11642.jpg" alt="Abstract Shape" class="w-full h-auto object-cover scale-150" style="animation: rotateClockwise 20s linear infinite;">
+<!-- Hero CTA Box with Robot -->
+<div class="relative z-20 flex flex-col md:flex-row items-center justify-center gap-12 p-8 md:p-16 bg-[#111111] rounded-[40px] max-w-5xl mx-auto mt-2 mb-20">
+  <div class="w-full md:w-1/2 overflow-hidden rounded-2xl" style="min-height:320px; height: 320px;">
+    <iframe
+      src="https://my.spline.design/blackabstractart-zpF4tLAb22tlNdy5SSG9hiuk/"
+      frameborder="0"
+      style="width: 200%; height: 200%; transform: scale(1.6) translate(-25%, -25%); pointer-events: none;"
+    ></iframe>
+  </div>
+  <!-- Texto y Botón -->
+  <div class="w-full md:w-1/2 text-center md:text-left">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Desbloquea un<br>crecimiento ilimitado.</h2>
+    <a href="comenzarahoraform.html" class="inline-flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-medium px-6 py-3 rounded-[100px] hover:opacity-90 transition-opacity text-lg mt-2 cta-button">
+      Comenzar Ahora
+    </a>
+  </div>
 </div>
-<div class="w-1/2 relative z-10 -ml-8">
-<img src="https://public.readdy.ai/ai/img_res/3cf1d9a4-5823-403b-b9da-7dcf837b7aea.jpg" alt="Abstract Shape 2" class="w-full h-auto object-cover" style="animation: rotateCounterClockwise 20s linear infinite;">
-</div>
-</div>
-<div class="absolute left-[50%] sm:left-[5%] md:left-[55%] bottom-8 sm:bottom-12 md:bottom-auto md:top-1/2 transform -translate-x-1/2 sm:translate-x-0 md:-translate-y-1/2 text-center sm:text-left w-[90%] md:w-auto">
-<h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Desbloquea un<br>crecimiento ilimitado.</h2>
-<a href="comenzarahoraform.html" class="inline-flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-medium px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 rounded-[100px] hover:opacity-90 transition-opacity whitespace-nowrap text-base sm:text-lg md:text-xl">
-Comenzar Ahora
-</a>
-</div>
-</section>
 <!-- Footer -->
 <footer class="bg-gray-950 py-16 px-6">
 <div class="max-w-7xl mx-auto">
@@ -813,7 +823,7 @@ Comenzar Ahora
 <a href="#" class="inline-block mb-6" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
 <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
 </a>
-<p class="text-gray-400 mb-6 max-w-md">Escala tu crecimiento con soluciones impulsadas por IA, agentes personalizados y flujos de trabajo automatizados que entregan resultados 10 veces más rápido.</p>
+<p class="text-gray-400 mb-6 max-w-md">Escala tu negocio con soluciones impulsadas por IA, agentes personalizados y flujos de trabajo automatizados que entregan resultados 10 veces más rápido.</p>
 </div>
 </div>
 <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
@@ -1149,4 +1159,33 @@ handleSendMessage();
 });
 </script>
 </body>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<script>
+  // Fade in de secciones con clase .fade-section
+  gsap.utils.toArray(".fade-section").forEach((section) => {
+    gsap.from(section, {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        toggleActions: "play none none none"
+      },
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      ease: "power3.out"
+    });
+  });
+
+  // Animación del título principal
+  gsap.from(".main-title", {
+    opacity: 0,
+    y: 60,
+    duration: 1,
+    delay: 0.5,
+    ease: "power2.out"
+  });
+</script>
 </html>
