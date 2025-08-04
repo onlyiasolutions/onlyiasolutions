@@ -37,16 +37,19 @@ transform: translateY(-5px);
 box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 .btn-hover {
-transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: scale(1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
+
 .btn-hover:hover {
-transform: scale(1.05);
-box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3), 0 4px 6px -2px rgba(139, 92, 246, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3),
+              0 4px 6px -2px rgba(139, 92, 246, 0.2);
 }
 input:focus {
 outline: none;
 }
-<style>
 @keyframes bounce {
 0%, 100% { transform: translateY(0); }
 50% { transform: translateY(-10px); }
@@ -77,7 +80,37 @@ animation: fadeIn 0.5s ease-out;
 .chat-message-user {
 animation: fadeIn 0.5s ease-out;
 }
+
+.hover-effect-tab {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+  background: linear-gradient(to right, #8b5cf6 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position-x: 100%;
+  transition: color 0.3s ease;
+}
+
+.hover-effect-tab:hover {
+  color: #8b5cf6;
+}
+</body>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.utils.toArray(".hover-effect-tab").forEach(tab => {
+      tab.addEventListener("mouseenter", () => {
+        gsap.fromTo(tab, 
+          { backgroundPositionX: "-100%" }, 
+          { backgroundPositionX: "0%", duration: 0.6, ease: "power2.out" }
+        );
+      });
+    });
+  });
+</script>
+</html>
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body class="bg-black text-white min-h-screen relative">
 <!-- Hero Section with Gradient Background -->
@@ -100,34 +133,45 @@ animation: fadeIn 0.5s ease-out;
 <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8 max-w-5xl leading-tight">Conseguimos más <span class="gradient-text">facturación</span> con IA</h1>
 <p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 sm:mb-12 max-w-2xl">Creamos un CRM personalizado que funciona en automático: seguimiento de leads, respuestas inteligentes, segmentación de audiencias, y más. Ideal para escalar tu negocio sin aumentar tu equipo.</p>
 <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
-<a href="comenzarahoraform.html" class="btn-hover bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto">Solicitar Demo</a>
-<div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-base sm:text-lg text-gray-300 mt-6 sm:mt-0">
-<div class="flex items-center gap-2">
-<i class="ri-rocket-line text-primary"></i>
-<span>Implementación rápida</span>
-</div>
-<div class="flex items-center gap-2">
-<i class="ri-line-chart-line text-primary"></i>
-<span>ROI garantizado</span>
-</div>
-</div>
+  <!-- El botón de Solicitar Demo está visible y no tiene clases ocultas ni estilos de opacidad/d-none -->
+  <a href="comenzarahoraform.html"
+     class="btn-hover bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto"
+     style="display: block; opacity: 1; visibility: visible;">
+    Solicitar Demo
+  </a>
+    <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-base sm:text-lg text-gray-300 mt-6 sm:mt-0">
+      <div class="flex items-center gap-2">
+        <i class="ri-rocket-line text-primary"></i>
+        <span class="hover-effect-tab">Implementación rápida</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <i class="ri-line-chart-line text-primary"></i>
+        <span class="hover-effect-tab">ROI garantizado</span>
+      </div>
+    </div>
 </div>
 <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 max-w-3xl px-4 sm:px-0">
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
-<i class="ri-customer-service-2-line text-primary text-2xl mb-4"></i>
-<h3 class="text-lg font-medium mb-2">Seguimiento Automático</h3>
-<p class="text-gray-400 text-sm">Gestión inteligente de leads y clientes 24/7</p>
-</div>
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
-<i class="ri-message-3-line text-primary text-2xl mb-4"></i>
-<h3 class="text-lg font-medium mb-2">Respuestas IA</h3>
-<p class="text-gray-400 text-sm">Comunicación personalizada y efectiva</p>
-</div>
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
-<i class="ri-group-line text-primary text-2xl mb-4"></i>
-<h3 class="text-lg font-medium mb-2">Segmentación</h3>
-<p class="text-gray-400 text-sm">Audiencias optimizadas para mayor conversión</p>
-</div>
+  <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
+    <div class="flex flex-col items-center text-center">
+      <i class="ri-customer-service-2-line text-primary text-3xl mb-4"></i>
+      <h3 class="text-lg font-semibold mb-2 hover-effect-tab">Seguimiento Automático</h3>
+      <p class="text-gray-400 text-sm">Gestión inteligente de leads y clientes 24/7</p>
+    </div>
+  </div>
+  <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
+    <div class="flex flex-col items-center text-center">
+      <i class="ri-message-3-line text-primary text-3xl mb-4"></i>
+      <h3 class="text-lg font-semibold mb-2 hover-effect-tab">Respuestas IA</h3>
+      <p class="text-gray-400 text-sm">Comunicación personalizada y efectiva</p>
+    </div>
+  </div>
+  <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6">
+    <div class="flex flex-col items-center text-center">
+      <i class="ri-group-line text-primary text-3xl mb-4"></i>
+      <h3 class="text-lg font-semibold mb-2 hover-effect-tab">Segmentación</h3>
+      <p class="text-gray-400 text-sm">Audiencias optimizadas para mayor conversión</p>
+    </div>
+  </div>
 </div>
 </div>
 </div>
@@ -556,6 +600,49 @@ handleSendMessage();
 }
 });
 });
+</script>
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.from("nav", {
+      y: -80,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    gsap.from("h1", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.4,
+      ease: "power2.out"
+    });
+
+    gsap.from("p", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.6,
+      ease: "power2.out"
+    });
+
+    gsap.fromTo(".btn-hover", 
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.8, delay: 0.8, ease: "back.out(1.7)" }
+    );
+  });
+
+  // Hover animation for demo button
+  document.addEventListener("DOMContentLoaded", () => {
+    const demoButton = document.querySelector('.btn-hover');
+    demoButton.addEventListener('mouseenter', () => {
+      gsap.to(demoButton, { scale: 1.08, duration: 0.3, ease: "power2.out" });
+    });
+    demoButton.addEventListener('mouseleave', () => {
+      gsap.to(demoButton, { scale: 1.0, duration: 0.3, ease: "power2.out" });
+    });
+  });
 </script>
 </body>
 </html>

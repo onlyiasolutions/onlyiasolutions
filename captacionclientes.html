@@ -78,6 +78,7 @@ animation: fadeIn 0.5s ease-out;
 animation: fadeIn 0.5s ease-out;
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body class="bg-black text-white min-h-screen relative">
 <!-- Hero Section with Gradient Background -->
@@ -113,21 +114,21 @@ animation: fadeIn 0.5s ease-out;
 </div>
 </div>
 <div class="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-3xl w-full px-4 sm:px-0">
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 text-center sm:text-left">
-<i class="ri-advertisement-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
-<h3 class="text-base sm:text-lg font-medium mb-2">Anuncios IA</h3>
-<p class="text-gray-400 text-xs sm:text-sm">Campañas optimizadas automáticamente</p>
-</div>
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 text-center sm:text-left">
-<i class="ri-flow-chart text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
-<h3 class="text-base sm:text-lg font-medium mb-2">Funnels Inteligentes</h3>
-<p class="text-gray-400 text-xs sm:text-sm">Conversión y seguimiento automatizado</p>
-</div>
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 text-center sm:text-left">
-<i class="ri-customer-service-2-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
-<h3 class="text-base sm:text-lg font-medium mb-2">Cierre Asistido</h3>
-<p class="text-gray-400 text-xs sm:text-sm">IA que ayuda a cerrar más ventas</p>
-</div>
+  <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 text-center benefit-card flex flex-col items-center">
+    <i class="ri-advertisement-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+    <h3 class="text-base sm:text-lg font-medium mb-2">Anuncios IA</h3>
+    <p class="text-gray-400 text-xs sm:text-sm">Campañas optimizadas automáticamente</p>
+  </div>
+  <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 text-center benefit-card flex flex-col items-center">
+    <i class="ri-flow-chart text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+    <h3 class="text-base sm:text-lg font-medium mb-2">Funnels Inteligentes</h3>
+    <p class="text-gray-400 text-xs sm:text-sm">Conversión y seguimiento automatizado</p>
+  </div>
+  <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 text-center benefit-card flex flex-col items-center">
+    <i class="ri-customer-service-2-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+    <h3 class="text-base sm:text-lg font-medium mb-2">Cierre Asistido</h3>
+    <p class="text-gray-400 text-xs sm:text-sm">IA que ayuda a cerrar más ventas</p>
+  </div>
 </div>
 </div>
 </div>
@@ -556,6 +557,119 @@ handleSendMessage();
 }
 });
 });
+</script>
+</script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    gsap.from("nav", {
+      y: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    gsap.from("h1", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.4,
+      ease: "power2.out"
+    });
+
+    gsap.from("p", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.6,
+      ease: "power2.out"
+    });
+
+    gsap.fromTo(
+      ".btn-hover",
+      { opacity: 0, scale: 0.8, display: "block" },
+      { opacity: 1, scale: 1, duration: 0.8, delay: 0.8, ease: "back.out(1.7)" }
+    );
+
+    gsap.from(".grid > div", {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      stagger: 0.2,
+      delay: 1,
+      ease: "power2.out"
+    });
+  });
+</script>
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".benefit-card");
+
+    cards.forEach((card) => {
+      const title = card.querySelector("h3");
+      const desc = card.querySelector("p");
+
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          background: "linear-gradient(to right, rgba(139,92,246,0.2), rgba(236,72,153,0.2))",
+          duration: 0.4
+        });
+        gsap.to(title, {
+          color: "#ffffff",
+          scale: 1.05,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        gsap.to(desc, {
+          color: "#e5e7eb",
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          background: "rgba(17,24,39,0.5)",
+          duration: 0.4
+        });
+        gsap.to(title, {
+          color: "#ffffff",
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        gsap.to(desc, {
+          color: "#9ca3af",
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+    });
+  });
+</script>
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btnDemo = document.querySelector(".btn-hover");
+
+    if (btnDemo) {
+      btnDemo.addEventListener("mouseenter", () => {
+        gsap.to(btnDemo, {
+          scale: 1.1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      btnDemo.addEventListener("mouseleave", () => {
+        gsap.to(btnDemo, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+    }
+  });
 </script>
 </body>
 </html>

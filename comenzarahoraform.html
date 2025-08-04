@@ -82,17 +82,32 @@ animation: fadeIn 0.5s ease-out;
 <body class="bg-black text-white min-h-screen relative">
 <!-- Hero Section with Gradient Background -->
 <div class="relative min-h-screen overflow-x-hidden">
-<div class="absolute inset-0 z-0" style="background-image: url('https://readdy.ai/api/search-image?query=abstract%20digital%20fluid%20gradient%20wave%20with%20blue%2C%20purple%2C%20and%20magenta%20colors%20flowing%20like%20liquid%20on%20black%20background%2C%20elegant%20modern%20technology%20visualization%2C%20high%20resolution%2C%20no%20text%2C%20minimalist%20design&width=1920&height=1080&seq=hero123&orientation=landscape'); background-size: cover; background-position: center; min-height: 100vh;"></div>
+<div class="absolute inset-0 z-0">
+  <iframe src="https://my.spline.design/blackabstractart-zpF4tLAb22tlNdy5SSG9hiuk/" frameborder="0" width="100%" height="100%" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></iframe>
+</div>
 <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
 <!-- Navigation -->
 <nav class="fixed w-full top-0 left-0 z-50 px-6 py-4">
-<div class="max-w-6xl mx-auto">
-<div class="flex justify-start">
-<a href="index.html" class="flex items-center">
-<img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
-</a>
-</div>
-</div>
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-white/10 backdrop-blur-md rounded-full border border-white/10 shadow-lg shadow-black/5 px-6 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+        <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
+      </a>
+      <div class="hidden md:flex-1 md:flex items-center justify-center space-x-8">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Inicio</a>
+          <a href="#services" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Servicios</a>
+          <a href="#benefits" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Beneficios</a>
+          <a href="#agencies" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Agencias</a>
+          <a href="#faq" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Preguntas frecuentes</a>
+        </div>
+      </div>
+      <a href="comenzarahoraform.html" class="hidden md:inline-block px-8 py-2.5 bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:scale-105">Comienza Ahora</a>
+      <button class="md:hidden w-10 h-10 flex items-center justify-center text-white">
+        <i class="ri-menu-line ri-lg"></i>
+      </button>
+    </div>
+  </div>
 </nav>
 <!-- Hero Content -->
 <div class="relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 py-12 sm:py-24 text-center min-h-screen">
@@ -385,7 +400,7 @@ stats.forEach(stat => observer.observe(stat));
 <a href="index.html">
 <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
 </a>
-<p class="text-gray-400 max-w-md text-sm text-center sm:text-left">Escala tu crecimiento con soluciones impulsadas por IA.</p>
+<p class="text-gray-400 max-w-md text-sm text-center sm:text-left">Escala tu negocio con soluciones impulsadas por IA.</p>
 </div>
 <p class="text-gray-500 text-sm text-center">© 2025 IA Solutions. Todos los derechos reservados.</p>
 </div>

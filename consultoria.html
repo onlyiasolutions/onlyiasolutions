@@ -78,6 +78,7 @@ animation: fadeIn 0.5s ease-out;
 animation: fadeIn 0.5s ease-out;
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body class="bg-black text-white min-h-screen relative">
 <!-- Hero Section with Gradient Background -->
@@ -112,21 +113,21 @@ animation: fadeIn 0.5s ease-out;
 </div>
 </div>
 <div class="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-3xl w-full px-4 sm:px-6">
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6">
-<i class="ri-search-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
-<h3 class="text-base sm:text-lg font-medium mb-2">Análisis Inicial</h3>
-<p class="text-gray-400 text-xs sm:text-sm">Evaluación completa de procesos y sistemas actuales</p>
-</div>
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6">
-<i class="ri-road-map-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
-<h3 class="text-base sm:text-lg font-medium mb-2">Hoja de Ruta</h3>
-<p class="text-gray-400 text-xs sm:text-sm">Plan detallado de implementación y objetivos</p>
-</div>
-<div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6">
-<i class="ri-line-chart-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
-<h3 class="text-base sm:text-lg font-medium mb-2">Optimización</h3>
-<p class="text-gray-400 text-xs sm:text-sm">Mejora continua y medición de resultados</p>
-</div>
+  <div class="cortina-card bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6">
+    <i class="ri-search-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+    <h3 class="text-base sm:text-lg font-medium mb-2">Análisis Inicial</h3>
+    <p class="text-gray-400 text-xs sm:text-sm">Evaluación completa de procesos y sistemas actuales</p>
+  </div>
+  <div class="cortina-card bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6">
+    <i class="ri-road-map-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+    <h3 class="text-base sm:text-lg font-medium mb-2">Hoja de Ruta</h3>
+    <p class="text-gray-400 text-xs sm:text-sm">Plan detallado de implementación y objetivos</p>
+  </div>
+  <div class="cortina-card bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6">
+    <i class="ri-line-chart-line text-primary text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+    <h3 class="text-base sm:text-lg font-medium mb-2">Optimización</h3>
+    <p class="text-gray-400 text-xs sm:text-sm">Mejora continua y medición de resultados</p>
+  </div>
 </div>
 </div>
 </div>
@@ -334,7 +335,7 @@ stats.forEach(stat => observer.observe(stat));
 <a href="index.html">
 <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
 </a>
-<p class="text-gray-400 max-w-md text-xs sm:text-sm">Escala tu crecimiento con soluciones impulsadas por IA.</p>
+<p class="text-gray-400 max-w-md text-xs sm:text-sm">Escala tu negocio con soluciones impulsadas por IA.</p>
 </div>
 <p class="text-gray-500 text-xs sm:text-sm">© 2025 IA Solutions. Todos los derechos reservados.</p>
 </div>
@@ -555,6 +556,111 @@ handleSendMessage();
 }
 });
 });
+</script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    gsap.from("nav", {
+      y: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    gsap.from("h1", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.4,
+      ease: "power2.out"
+    });
+
+    gsap.from("p", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.6,
+      ease: "power2.out"
+    });
+
+    gsap.fromTo(".btn-hover",
+      { opacity: 0, scale: 0.8, display: "block" },
+      { opacity: 1, scale: 1, duration: 0.8, delay: 0.8, ease: "back.out(1.7)" }
+    );
+
+    gsap.from(".grid > div", {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      stagger: 0.2,
+      delay: 1,
+      ease: "power2.out"
+    });
+  });
+</script>
+<script>
+  // GSAP hover animation for "Solicitar Consultoría" button
+  const consultBtn = document.querySelector('.btn-hover');
+  if (consultBtn) {
+    consultBtn.addEventListener('mouseenter', () => {
+      gsap.to(consultBtn, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: "power1.out"
+      });
+    });
+
+    consultBtn.addEventListener('mouseleave', () => {
+      gsap.to(consultBtn, {
+        scale: 1,
+        duration: 0.3,
+        ease: "power1.inOut"
+      });
+    });
+  }
+</script>
+<script>
+  // GSAP "cortina" hover animation + text effect for specific grid cards
+  document.querySelectorAll('.grid > .cortina-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      // Cortina background animation
+      gsap.fromTo(card, {
+        backgroundPosition: "0% 50%"
+      }, {
+        backgroundPosition: "100% 50%",
+        duration: 0.6,
+        ease: "power2.out"
+      });
+      // Text highlight animation
+      const title = card.querySelector('h3');
+      const desc = card.querySelector('p');
+      gsap.to(title, {
+        scale: 1.05,
+        color: "#fff",
+        duration: 0.3,
+        ease: "power2.out"
+      });
+      gsap.to(desc, {
+        color: "#e5e7eb", // Tailwind gray-200
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      const title = card.querySelector('h3');
+      const desc = card.querySelector('p');
+      gsap.to(title, {
+        scale: 1,
+        color: "#fff",
+        duration: 0.3,
+        ease: "power2.inOut"
+      });
+      gsap.to(desc, {
+        color: "#9ca3af", // Tailwind gray-400
+        duration: 0.3,
+        ease: "power2.inOut"
+      });
+    });
+  });
 </script>
 </body>
 </html>
