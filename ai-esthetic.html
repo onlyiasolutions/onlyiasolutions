@@ -5,12 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI-ESTHETIC - Tu clínica de estética inteligente</title>
 <link rel="icon" type="image/png" href="favicon.png">
-<script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<link rel="stylesheet" href="assets/styles.css">
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
@@ -270,7 +269,7 @@ Probar Ahora
 <div class="max-w-3xl mx-auto text-center">
 <h2 class="text-3xl font-bold mb-4">¿Quieres agendar una llamada con nosotros?</h2>
 <p class="text-gray-600 text-lg mb-8">Rellena nuestro formulario y nos pondremos en contacto contigo para encontrar el mejor momento para valorar si podemos ayudarte.</p>
-<a href="comenzarahoraform.html" data-readdy="true" class="inline-flex items-center px-8 py-4 gradient-bg text-white font-medium rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap">
+<a href="/comenzarahoraform" data-readdy="true" class="inline-flex items-center px-8 py-4 gradient-bg text-white font-medium rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap">
 <i class="ri-phone-line mr-2"></i>
 Agendar llamada gratuita
 </a>
@@ -298,15 +297,14 @@ Agendar llamada gratuita
 <div>
 <h4 class="text-lg font-semibold mb-4">Enlaces</h4>
 <ul class="space-y-2">
-<li><a href="privacidad.html" class="text-gray-300 hover:text-white transition-colors">Política de privacidad</a></li>
-<li><a href="terminosservicio.html" class="text-gray-300 hover:text-white transition-colors">Términos y condiciones</a></li>
-<li><a href="cookies.html" class="text-gray-300 hover:text-white transition-colors">Política de cookies</a></li>
+<li><a href="/privacidad" class="text-gray-300 hover:text-white transition-colors">Política de privacidad</a></li>
+<li><a href="/terminosservicio" class="text-gray-300 hover:text-white transition-colors">Términos y condiciones</a></li>
+<li><a href="/cookies" class="text-gray-300 hover:text-white transition-colors">Política de cookies</a></li>
 </ul>
 </div>
 </div>
 </div>
 </footer>
-</script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('presupuesto-aiesthetic-form');

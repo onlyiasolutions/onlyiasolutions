@@ -7,80 +7,54 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:'#8b5cf6',secondary:'#ec4899'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 @keyframes gradientFlow {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 .gradient-bg {
-background: linear-gradient(-45deg, #5727b0, #8b5cf6, #ec4899, #3b82f6);
-background-size: 400% 400%;
-animation: gradientFlow 15s ease infinite;
+  background: linear-gradient(-45deg, #5727b0, #8b5cf6, #ec4899, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
 }
 .gradient-text {
-background: linear-gradient(90deg, #8b5cf6, #ec4899);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .card-hover {
-transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card-hover:hover {
-transform: translateY(-5px);
-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 .btn-hover {
   transform: scale(1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   will-change: transform;
 }
-
 .btn-hover:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3),
               0 4px 6px -2px rgba(139, 92, 246, 0.2);
 }
-input:focus {
-outline: none;
-}
-@keyframes bounce {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
-}
-@keyframes slideIn {
-from { transform: scale(0.8); opacity: 0; }
-to { transform: scale(1); opacity: 1; }
-}
-@keyframes fadeIn {
-from { opacity: 0; }
-to { opacity: 1; }
-}
-.chatbot-widget {
-animation: bounce 3s ease-in-out infinite;
-}
-.chatbot-widget:hover {
-animation: none;
-transform: scale(1.1);
-transition: transform 0.3s ease;
-}
-.chat-window {
-animation: slideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-transform-origin: bottom right;
-}
-.chat-message-bot {
-animation: fadeIn 0.5s ease-out;
-}
-.chat-message-user {
-animation: fadeIn 0.5s ease-out;
-}
-
+input:focus { outline: none; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes slideIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.chatbot-widget { animation: bounce 3s ease-in-out infinite; }
+.chatbot-widget:hover { animation: none; transform: scale(1.1); transition: transform 0.3s ease; }
+.chat-window { animation: slideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-origin: bottom right; }
+.chat-message-bot { animation: fadeIn 0.5s ease-out; }
+.chat-message-user { animation: fadeIn 0.5s ease-out; }
 .hover-effect-tab {
   position: relative;
   overflow: hidden;
@@ -91,26 +65,8 @@ animation: fadeIn 0.5s ease-out;
   background-position-x: 100%;
   transition: color 0.3s ease;
 }
-
-.hover-effect-tab:hover {
-  color: #8b5cf6;
-}
-</body>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    gsap.utils.toArray(".hover-effect-tab").forEach(tab => {
-      tab.addEventListener("mouseenter", () => {
-        gsap.fromTo(tab, 
-          { backgroundPositionX: "-100%" }, 
-          { backgroundPositionX: "0%", duration: 0.6, ease: "power2.out" }
-        );
-      });
-    });
-  });
-</script>
-</html>
+.hover-effect-tab:hover { color: #8b5cf6; }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body class="bg-black text-white min-h-screen relative">
 <!-- Hero Section with Gradient Background -->
@@ -121,7 +77,7 @@ animation: fadeIn 0.5s ease-out;
 <nav class="fixed w-full top-0 left-0 z-50 px-6 py-4">
 <div class="max-w-6xl mx-auto">
 <div class="flex justify-start">
-<a href="index.html">
+<a href="/">
 <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
 </a>
 </div>
@@ -134,7 +90,7 @@ animation: fadeIn 0.5s ease-out;
 <p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 sm:mb-12 max-w-2xl">Creamos un CRM personalizado que funciona en automático: seguimiento de leads, respuestas inteligentes, segmentación de audiencias, y más. Ideal para escalar tu negocio sin aumentar tu equipo.</p>
 <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
   <!-- El botón de Solicitar Demo está visible y no tiene clases ocultas ni estilos de opacidad/d-none -->
-  <a href="comenzarahoraform.html"
+  <a href="/comenzarahoraform"
      class="btn-hover bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto"
      style="display: block; opacity: 1; visibility: visible;">
     Solicitar Demo
@@ -376,7 +332,7 @@ stats.forEach(stat => observer.observe(stat));
 <div class="max-w-7xl mx-auto">
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
-<a href="index.html">
+<a href="/">
   <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
 </a>
 <p class="text-gray-400 max-w-md text-sm">Escala tu crecimiento con soluciones impulsadas por IA.</p>
