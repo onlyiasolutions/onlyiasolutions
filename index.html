@@ -5,12 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IASOLUTIONS</title>
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="assets/styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:'#8b5cf6',secondary:'#ec4899'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 @keyframes gradientFlow {
@@ -126,7 +125,7 @@ animation: fadeIn 0.5s ease-out;
 <a href="#faq" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Preguntas frecuentes</a>
 </div>
 </div>
-<a href="comenzarahoraform.html" class="hidden md:inline-block px-8 py-2.5 bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:scale-105">Comienza Ahora</a>
+<a href="/comenzarahoraform" class="hidden md:inline-block px-8 py-2.5 bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:scale-105">Comienza Ahora</a>
 <button class="md:hidden w-10 h-10 flex items-center justify-center text-white">
 <i class="ri-menu-line ri-lg"></i>
 </button>
@@ -142,7 +141,7 @@ animation: fadeIn 0.5s ease-out;
   </h1>
   <p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 md:mb-12 max-w-2xl">Escala tu negocio con soluciones impulsadas por IA, agentes personalizados y flujos de trabajo automatizados que entregan resultados 10 veces más rápido.</p>
   <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-    <a href="comenzarahoraform.html" class="btn-hover cta-button bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto">Comienza Ahora</a>
+    <a href="/comenzarahoraform" class="btn-hover cta-button bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto">Comienza Ahora</a>
   </div>
 </div>
 </div>
@@ -187,7 +186,7 @@ animation: fadeIn 0.5s ease-out;
 </li>
 </ul>
 </div>
-<a href="consultoria.html" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+<a href="/consultoria" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
 Solicitar Consultoría
 <i class="ri-arrow-right-line ri-lg ml-2"></i>
 </a>
@@ -226,7 +225,7 @@ Solicitar Consultoría
 </li>
 </ul>
 </div>
-<a href="crm.html" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
+<a href="/crm" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
 Explorar Solución
 <i class="ri-arrow-right-line ri-lg ml-2"></i>
 </a>
@@ -265,7 +264,7 @@ Explorar Solución
 </li>
 </ul>
 </div>
-<a href="captacionclientes.html" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+<a href="/captacionclientes" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
 Descubrir Más
 <i class="ri-arrow-right-line ri-lg ml-2"></i>
 </a>
@@ -304,7 +303,7 @@ Descubrir Más
 </li>
 </ul>
 </div>
-<a href="agentesia.html" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
+<a href="/agentesia" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
 Conocer Más
 <i class="ri-arrow-right-line ri-lg ml-2"></i>
 </a>
@@ -462,7 +461,7 @@ stats.forEach(stat => observer.observe(stat));
 </div>
 <!-- Botón Saber más centrado correctamente -->
 <div class="w-full flex justify-center mt-12">
-  <a href="beneficiosia.html" class="px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/80 transition">
+  <a href="/beneficiosia" class="px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/80 transition">
     Saber más
   </a>
 </div>
@@ -617,7 +616,7 @@ stats.forEach(stat => observer.observe(stat));
 <span>Recomendaciones inteligentes de tratamiento</span>
 </li>
 </ul>
-<a href="dental-ia.html" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+<a href="/dental-ia" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
 Conocer más
 <i class="ri-arrow-right-line ri-lg ml-2"></i>
 </a>
@@ -648,7 +647,7 @@ Conocer más
 <span>Datos y recomendaciones personalizadas</span>
 </li>
 </ul>
-<a href="ai-esthetic.html" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
+<a href="/ai-esthetic" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
 Conocer más
 <i class="ri-arrow-right-line ri-lg ml-2"></i>
 </a>
@@ -810,7 +809,7 @@ stats.forEach(stat => observer.observe(stat));
   <!-- Texto y Botón -->
   <div class="w-full md:w-1/2 text-center md:text-left">
     <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Desbloquea un<br>crecimiento ilimitado.</h2>
-    <a href="comenzarahoraform.html" class="inline-flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-medium px-6 py-3 rounded-[100px] hover:opacity-90 transition-opacity text-lg mt-2 cta-button">
+    <a href="/comenzarahoraform" class="inline-flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-medium px-6 py-3 rounded-[100px] hover:opacity-90 transition-opacity text-lg mt-2 cta-button">
       Comenzar Ahora
     </a>
   </div>
@@ -835,9 +834,9 @@ stats.forEach(stat => observer.observe(stat));
 </div>
 </div>
 <div class="flex flex-wrap gap-4 mt-4 md:mt-0">
-<a href="terminosservicio.html" class="text-gray-500 hover:text-primary transition-colors">Términos de Servicio</a>
-<a href="privacidad.html" class="text-gray-500 hover:text-primary transition-colors">Política de Privacidad</a>
-<a href="cookies.html" class="text-gray-500 hover:text-primary transition-colors">Política de Cookies</a>
+<a href="/terminosservicio" class="text-gray-500 hover:text-primary transition-colors">Términos de Servicio</a>
+<a href="/privacidad" class="text-gray-500 hover:text-primary transition-colors">Política de Privacidad</a>
+<a href="/cookies" class="text-gray-500 hover:text-primary transition-colors">Política de Cookies</a>
 </div>
 </div>
 </div>
@@ -1050,7 +1049,7 @@ mobileMenu.innerHTML = `
 <a href="#benefits" class="text-white text-xl hover:text-primary transition-colors">Beneficios</a>
 <a href="#agencies" class="text-white text-xl hover:text-primary transition-colors">Agencias</a>
 <a href="#faq" class="text-white text-xl hover:text-primary transition-colors">Preguntas frecuentes</a>
-<a href="comenzarahoraform.html" class="bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium px-8 py-3 transition-all duration-300 shadow-lg hover:shadow-xl">Comienza Ahora</a>
+<a href="/comenzarahoraform" class="bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium px-8 py-3 transition-all duration-300 shadow-lg hover:shadow-xl">Comienza Ahora</a>
 </nav>
 </div>
 `;
@@ -1157,6 +1156,59 @@ handleSendMessage();
 }
 });
 });
+</script>
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4 hidden">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
+    <p class="text-gray-300 text-sm md:text-base leading-snug">
+      Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
+      <a href="/cookies" class="text-primary hover:text-secondary underline">Política de Cookies</a>
+      y
+      <a href="/privacidad" class="text-primary hover:text-secondary underline">Política de Privacidad</a>.
+    </p>
+    <div class="flex gap-2 md:ml-auto">
+      <button id="cookie-reject" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition">Rechazar</button>
+      <button id="cookie-accept" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition">Aceptar todas</button>
+    </div>
+  </div>
+</div>
+
+<script id="cookie-consent">
+(function() {
+  const KEY = 'ias_cookie_consent_v1';
+  const banner = document.getElementById('cookie-banner');
+
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(KEY)); } catch(e) { return null; }
+  }
+  function setConsent(status) {
+    const payload = { status, ts: new Date().toISOString() };
+    try { localStorage.setItem(KEY, JSON.stringify(payload)); } catch(e) {}
+    if (status === 'accepted') document.documentElement.classList.add('cookie-consent-accepted');
+    banner && banner.classList.add('hidden');
+  }
+  function init() {
+    const saved = getConsent();
+    if (!saved || !saved.status) {
+      banner && banner.classList.remove('hidden');
+    } else if (saved.status === 'accepted') {
+      document.documentElement.classList.add('cookie-consent-accepted');
+    }
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+    acceptBtn && acceptBtn.addEventListener('click', () => setConsent('accepted'));
+    rejectBtn && rejectBtn.addEventListener('click', () => setConsent('rejected'));
+    // Accesibilidad: ESC para cerrar (rechaza si no hay decisión previa)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && (!getConsent() || !getConsent().status)) setConsent('rejected');
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 </script>
 </body>
 <!-- GSAP & ScrollTrigger -->
