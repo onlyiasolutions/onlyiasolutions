@@ -1210,39 +1210,20 @@ handleSendMessage();
   }
 })();
 </script>
-<div id="cookie-banner" style="position:fixed;left:0;right:0;bottom:0;z-index:1000;display:none">
-  <div style="max-width:900px;margin:0 auto;padding:16px;display:flex;gap:12px;align-items:center;background:#111;color:#fff;border-top:1px solid #333">
-    <span style="flex:1">
-      Usamos cookies para analizar el tráfico y mejorar tu experiencia.
-      <a href="/privacidad" style="text-decoration:underline">Más info</a>.
-    </span>
-    <button id="cookie-accept" style="padding:8px 14px;border-radius:8px;border:0;background:#6d28d9;color:#fff;cursor:pointer">Aceptar</button>
-    <button id="cookie-reject" style="padding:8px 14px;border-radius:8px;border:1px solid #444;background:#222;color:#fff;cursor:pointer">Rechazar</button>
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" class="fixed bottom-0 left-0 right-0 z-[100] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4 hidden">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
+    <p class="text-gray-300 text-sm md:text-base leading-snug">
+      Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
+      <a href="/cookies" class="text-primary hover:text-secondary underline">Política de Cookies</a>
+      y
+      <a href="/privacidad" class="text-primary hover:text-secondary underline">Política de Privacidad</a>.
+    </p>
+    <div class="flex gap-2 md:ml-auto">
+      <button id="cookie-reject" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition">Rechazar</button>
+      <button id="cookie-accept" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition">Aceptar todas</button>
+    </div>
   </div>
 </div>
-
-<script>
-(function () {
-  const KEY = 'cookie-consent';
-  const banner = document.getElementById('cookie-banner');
-  const accept = document.getElementById('cookie-accept');
-  const reject = document.getElementById('cookie-reject');
-
-  const saved = localStorage.getItem(KEY);
-  if (!saved) banner.style.display = 'block';
-
-  function setConsent(value){
-    localStorage.setItem(KEY, value);
-    banner.style.display = 'none';
-
-    // Aquí puedes activar scripts que dependan del consentimiento:
-    // if (value === 'granted') { loadAnalytics(); }
-  }
-
-  accept?.addEventListener('click', () => setConsent('granted'));
-  reject?.addEventListener('click', () => setConsent('denied'));
-})();
-</script>
 </body>
 <!-- GSAP & ScrollTrigger -->
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
