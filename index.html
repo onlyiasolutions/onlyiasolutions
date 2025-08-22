@@ -1157,25 +1157,10 @@ handleSendMessage();
 });
 });
 </script>
-<!-- Cookie Consent Banner -->
-<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4 hidden">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
-    <p class="text-gray-300 text-sm md:text-base leading-snug">
-      Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
-      <a href="/cookies" class="text-primary hover:text-secondary underline">Política de Cookies</a>
-      y
-      <a href="/privacidad" class="text-primary hover:text-secondary underline">Política de Privacidad</a>.
-    </p>
-    <div class="flex gap-2 md:ml-auto">
-      <button id="cookie-reject" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition">Rechazar</button>
-      <button id="cookie-accept" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition">Aceptar todas</button>
-    </div>
-  </div>
-</div>
 
 <script id="cookie-consent">
 (function() {
-  const KEY = 'ias_cookie_consent_v1';
+  const KEY = 'ias_cookie_consent_v2';
   const banner = document.getElementById('cookie-banner');
 
   function getConsent() {
@@ -1210,7 +1195,7 @@ handleSendMessage();
   }
 })();
 </script>
-<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" class="fixed bottom-0 left-0 right-0 z-[100] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4 hidden">
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4 hidden">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
     <p class="text-gray-300 text-sm md:text-base leading-snug">
       Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
