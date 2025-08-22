@@ -1,26 +1,10 @@
 {
-  "name": "onlyiasolutions",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tailwindcss -i ./assets/input.css -o ./assets/styles.css --minify"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/onlyiasolutions/onlyiasolutions.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/onlyiasolutions/onlyiasolutions/issues"
-  },
-  "homepage": "https://github.com/onlyiasolutions/onlyiasolutions#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.10"
+    "tailwindcss": "3.4.10",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.0.0"
   }
 }
