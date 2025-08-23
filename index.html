@@ -1062,44 +1062,20 @@ handleSendMessage();
 
 <script id="cookie-consent">
 (function(){
-  const KEY = 'ias_cookie_consent_v8';
+  const KEY = 'ias_cookie_consent_v9';
   const banner = document.getElementById('prv-banner');
   const acceptBtn = document.getElementById('policy-accept');
   const rejectBtn = document.getElementById('policy-reject');
   const manageBtn = document.getElementById('policy-manage');
 
-  function save(status){
-    try{ localStorage.setItem(KEY, JSON.stringify({status, ts: Date.now()})); }catch(e){}
-    document.documentElement.classList.toggle('policy-accepted', status === 'accepted');
-    document.documentElement.classList.remove('policy-open');
-    if (banner) { banner.classList.add('hidden'); banner.style.display='none'; }
-  }
+  // Cleanup de banners duplicados/legados: conserva solo #prv-banner
+  try {
+    document.querySelectorAll('#cookie-banner, .cookie-banner, .cookies-banner, .cc-window, .cc-banner, [data-cookieconsent], [data-policy="banner"]').forEach(el => {
+      if (el.id !== 'prv-banner') el.remove();
+    });
+  } catch(_) {}
 
-  function needsConsent(){
-    try{ const v = JSON.parse(localStorage.getItem(KEY)); return !v || v.status !== 'accepted'; }
-    catch(e){ return true; }
-  }
-
-  // Initial state
-  if (needsConsent()){
-    document.documentElement.classList.add('policy-open');
-    if (banner) { banner.classList.remove('hidden'); banner.style.display='block'; }
-  } else {
-    document.documentElement.classList.add('policy-accepted');
-    if (banner) { banner.classList.add('hidden'); banner.style.display='none'; }
-  }
-
-  // Wire buttons (no delegation, no auto-creation → evita duplicados)
-  if (acceptBtn) acceptBtn.addEventListener('click', function(e){ e.preventDefault(); save('accepted'); });
-  if (rejectBtn) rejectBtn.addEventListener('click', function(e){ e.preventDefault(); save('rejected'); });
-  if (manageBtn) manageBtn.addEventListener('click', function(e){
-    e.preventDefault();
-    try{ localStorage.removeItem(KEY); }catch(err){}
-    document.documentElement.classList.remove('policy-accepted');
-    document.documentElement.classList.add('policy-open');
-    if (banner) { banner.classList.remove('hidden'); banner.style.display='block'; }
-  });
-})();
+</script>
 </script>
 <div id="prv-banner" data-policy="banner" role="dialog" aria-modal="true" aria-live="polite" aria-label="Preferencias de privacidad" aria-describedby="prv-banner-desc" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
