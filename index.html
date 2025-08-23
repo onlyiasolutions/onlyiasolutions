@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
 <style>
-/* ... todos los estilos anteriores ... */
 :where([class^="ri-"])::before { content: "\f3c2"; }
 @keyframes gradientFlow {
 0% { background-position: 0% 50%; }
@@ -76,6 +75,7 @@ animation: fadeIn 0.5s ease-out;
 .chat-message-user {
 animation: fadeIn 0.5s ease-out;
 }
+/* Fade-in-up animation for planeta.png */
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -89,6 +89,7 @@ animation: fadeIn 0.5s ease-out;
 .animate-fade-in-up {
   animation: fade-in-up 1s ease-out forwards;
 }
+/* Animación para botones CTA */
 .cta-button {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -96,135 +97,35 @@ animation: fadeIn 0.5s ease-out;
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
 }
-
-/* ESTILOS ESPECÍFICOS PARA EL BANNER DE COOKIES */
-#policy-banner {
-  display: none !important;
-  position: fixed !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 9999 !important;
-  background: rgba(17, 24, 39, 0.95) !important;
-  border-top: 1px solid rgb(55, 65, 81) !important;
-  backdrop-filter: blur(8px) !important;
-  padding: 1rem 1.5rem !important;
-}
-
-#policy-banner.show {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-.policy-banner-content {
-  max-width: 112rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .policy-banner-content {
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-}
-
-.policy-banner-text {
-  color: rgb(209, 213, 219);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  flex: 1;
-}
-
-@media (min-width: 768px) {
-  .policy-banner-text {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-.policy-banner-buttons {
-  display: flex;
-  gap: 0.5rem;
-  margin-left: auto;
-}
-
-.policy-btn {
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: none;
-}
-
-.policy-btn-reject {
-  border: 1px solid rgb(55, 65, 81);
-  color: rgb(209, 213, 219);
-  background: transparent;
-}
-
-.policy-btn-reject:hover {
-  background: rgb(31, 41, 55);
-}
-
-.policy-btn-accept {
-  background: linear-gradient(135deg, rgb(139, 92, 246), rgb(236, 72, 153));
-  color: white;
-}
-
-.policy-btn-accept:hover {
-  opacity: 0.9;
-}
-
-.policy-link {
-  color: rgb(139, 92, 246);
-  text-decoration: underline;
-  transition: color 0.2s ease;
-}
-
-.policy-link:hover {
-  color: rgb(236, 72, 153);
-}
 </style>
-
-<!-- SCRIPT INICIAL SIMPLIFICADO (solo detecta el estado) -->
 <script>
-(function(){
-  const STORAGE_KEY = 'ias_cookie_consent_v8';
-  
-  // Función para verificar el estado guardado
-  function checkStoredConsent() {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(stored) : null;
-    } catch (e) {
-      return null;
-    }
-  }
-  
-  // Verificar si ya hay consentimiento guardado
-  const consent = checkStoredConsent();
-  if (!consent || consent.status !== 'accepted') {
-    // No hay consentimiento, preparar para mostrar el banner
-    document.documentElement.setAttribute('data-show-banner', 'true');
-  }
-})();
+  (function(){
+    var KEY='ias_cookie_consent_v8';
+    try{
+      var saved = JSON.parse(localStorage.getItem(KEY));
+      if (!saved || saved.status !== 'accepted') {
+        document.documentElement.classList.add('policy-open');
+      } else {
+        document.documentElement.classList.add('policy-accepted');
+      }
+    }catch(e){}
+  })();
 </script>
+<noscript><style>#prv-banner{display:block}</style></noscript>
+<style>
+  /* Visibilidad por defecto */
+  #prv-banner{display:none;}
+  /* Cuando la raíz lleva policy-open -> SIEMPRE visible */
+  .policy-open #prv-banner{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+  }
+</style>
 </head>
-
 <body class="bg-black text-white min-h-screen relative">
-<!-- Todo tu contenido HTML existente aquí... -->
-<!-- Solo incluyo las partes esenciales para el ejemplo -->
-
-<!-- Hero Section -->
+<!-- Hero Section with Spline Robot Background -->
 <div class="relative min-h-screen overflow-hidden">
   <iframe
     src="https://my.spline.design/abstractnirvana-Cylj3Q79lCJmwigqRFwR9DtY/"
@@ -232,170 +133,1069 @@ animation: fadeIn 0.5s ease-out;
     loading="lazy"
     style="position: absolute; top: 0; left: 0; width: 150%; height: 150%; transform: translate(-16.5%, -20%) scale(1.2); z-index: 0; pointer-events: none;"
   ></iframe>
-  <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-
-  <!-- Navigation -->
-  <nav class="fixed w-full top-0 left-0 z-50 px-6 py-4">
-    <div class="max-w-6xl mx-auto">
-      <div class="bg-white/10 backdrop-blur-md rounded-full border border-white/10 shadow-lg shadow-black/5 px-6 py-3 flex items-center justify-between">
-        <a href="#" class="flex items-center">
-          <img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
-        </a>
-        <!-- Tu menú existente... -->
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Content -->
-  <div class="relative z-20 flex flex-col items-center justify-center px-4 md:px-6 py-16 md:py-24 text-center min-h-screen">
-    <h1 class="text-4xl font-bold mb-6">Transforma tu negocio con IA</h1>
-    <p class="text-xl text-gray-200 mb-8">Soluciones impulsadas por inteligencia artificial</p>
-    <a href="/comenzarahoraform" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full">
-      Comienza Ahora
+<div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+<!-- Navigation -->
+<nav class="fixed w-full top-0 left-0 z-50 px-6 py-4">
+<div class="max-w-6xl mx-auto">
+<div class="bg-white/10 backdrop-blur-md rounded-full border border-white/10 shadow-lg shadow-black/5 px-6 py-3 flex items-center justify-between">
+<a href="#" class="flex items-center" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+<img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
+</a>
+<div class="hidden md:flex-1 md:flex items-center justify-center space-x-8">
+<div class="flex items-center space-x-8">
+<a href="#" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Inicio</a>
+<a href="#services" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Servicios</a>
+<a href="#benefits" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Beneficios</a>
+<a href="#agencies" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Agencias</a>
+<a href="#faq" class="text-white hover:text-primary transition-all duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary hover:after:w-full after:transition-all after:duration-300">Preguntas frecuentes</a>
+</div>
+</div>
+<a href="/comenzarahoraform" class="hidden md:inline-block px-8 py-2.5 bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:scale-105">Comienza Ahora</a>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-white">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Content -->
+<div class="relative z-20 flex flex-col items-center justify-center px-4 md:px-6 py-16 md:py-24 text-center min-h-screen fade-section">
+  <span class="text-primary font-medium mb-4">AI-POWERED BUSINESS</span>
+  <h1 class="main-title text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 max-w-5xl leading-tight mx-auto flex items-center justify-center flex-wrap">
+    <span id="rot-wrap" class="inline-block overflow-hidden" style="transition:width .3s ease-in-out"><span id="rotating-word" class="inline-block">Transforma</span></span>
+    <span class="ml-1">tu negocio con <span class="gradient-text">Inteligencia Artificial</span></span>
+  </h1>
+  <p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 md:mb-12 max-w-2xl">Escala tu negocio con soluciones impulsadas por IA, agentes personalizados y flujos de trabajo automatizados que entregan resultados 10 veces más rápido.</p>
+  <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+    <a href="/comenzarahoraform" class="btn-hover cta-button bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-lg sm:text-xl font-medium px-8 sm:px-16 py-4 sm:py-5 rounded-[100px] shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap w-full sm:w-auto">Comienza Ahora</a>
+  </div>
+</div>
+</div>
+<!-- Features Section -->
+<section id="services" class="py-20 px-6 bg-black scroll-mt-20 fade-section">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">Nuestros Servicios</h2>
+<h3 class="text-4xl font-bold">Soluciones de IA Personalizadas</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Servicio 1: Consultoría en Implementación de IA -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mr-4">
+<i class="ri-brain-line ri-2x text-primary"></i>
+</div>
+<h4 class="text-2xl font-bold">Consultoría en Implementación de IA</h4>
+</div>
+<p class="text-gray-300 mb-6">Analizamos y asesoramos en la implementación de inteligencia artificial para tu empresa. Realizamos un estudio detallado de las posibilidades y creamos una hoja de ruta personalizada.</p>
+<div class="bg-gray-800 rounded-lg p-6 mb-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<i class="ri-brain-line ri-lg text-primary"></i>
+<span class="text-lg font-medium">Consultoría Inteligente</span>
+</div>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Análisis de procesos actuales</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Evaluación de herramientas</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Plan de implementación detallado</span>
+</li>
+</ul>
+</div>
+<a href="/consultoria" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+Solicitar Consultoría
+<i class="ri-arrow-right-line ri-lg ml-2"></i>
+</a>
+</div>
+</div>
+<!-- Servicio 2: CRM Automático con IA -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mr-4">
+<i class="ri-customer-service-2-line ri-2x text-secondary"></i>
+</div>
+<h4 class="text-2xl font-bold">CRM Automático con IA</h4>
+</div>
+<p class="text-gray-300 mb-6">Sistema inteligente que automatiza la gestión de relaciones con clientes, personaliza interacciones y optimiza el seguimiento de ventas con tecnología de IA avanzada.</p>
+<div class="bg-gray-800 rounded-lg p-6 mb-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<i class="ri-robot-line ri-lg text-secondary"></i>
+<span class="text-lg font-medium">Automatización Inteligente</span>
+</div>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Seguimiento automático de leads</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Análisis predictivo de ventas</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Personalización de comunicaciones</span>
+</li>
+</ul>
+</div>
+<a href="/crm" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
+Explorar Solución
+<i class="ri-arrow-right-line ri-lg ml-2"></i>
+</a>
+</div>
+</div>
+<!-- Servicio 3: Captación de Clientes con IA -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mr-4">
+<i class="ri-user-search-line ri-2x text-primary"></i>
+</div>
+<h4 class="text-2xl font-bold">Captación de Clientes con IA</h4>
+</div>
+<p class="text-gray-300 mb-6">Estrategias avanzadas de captación utilizando algoritmos de IA para identificar y atraer clientes potenciales de manera más efectiva y personalizada.</p>
+<div class="bg-gray-800 rounded-lg p-6 mb-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<i class="ri-target-line ri-lg text-primary"></i>
+<span class="text-lg font-medium">Captación Inteligente</span>
+</div>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Segmentación avanzada</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Campañas personalizadas</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Optimización en tiempo real</span>
+</li>
+</ul>
+</div>
+<a href="/captacionclientes" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+Descubrir Más
+<i class="ri-arrow-right-line ri-lg ml-2"></i>
+</a>
+</div>
+</div>
+<!-- Servicio 4: Agentes de IA Personalizados -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mr-4">
+<i class="ri-robot-line ri-2x text-secondary"></i>
+</div>
+<h4 class="text-2xl font-bold">Agentes de IA Personalizados</h4>
+</div>
+<p class="text-gray-300 mb-6">Asistentes virtuales inteligentes diseñados específicamente para tu negocio, capaces de manejar consultas, automatizar tareas y mejorar la experiencia del cliente.</p>
+<div class="bg-gray-800 rounded-lg p-6 mb-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<i class="ri-ai-generate ri-lg text-secondary"></i>
+<span class="text-lg font-medium">Asistentes Inteligentes</span>
+</div>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Respuestas personalizadas</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Aprendizaje continuo</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Integración multicanal</span>
+</li>
+</ul>
+</div>
+<a href="/agentesia" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
+Conocer Más
+<i class="ri-arrow-right-line ri-lg ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('animate');
+}
+});
+}, { threshold: 0.5 });
+document.querySelectorAll('.chat-message-bot, .chat-message-user').forEach(message => {
+observer.observe(message);
+});
+});
+</script>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="stats-animation">
+document.addEventListener('DOMContentLoaded', function() {
+const stats = document.querySelectorAll('.stat-number');
+function animateNumber(element, target) {
+let current = 0;
+const increment = target / 50;
+const duration = 2000;
+const interval = duration / 50;
+const timer = setInterval(() => {
+current += increment;
+if (current >= target) {
+current = target;
+clearInterval(timer);
+}
+element.textContent = Math.round(current);
+}, interval);
+}
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const target = parseInt(entry.target.dataset.target);
+animateNumber(entry.target, target);
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.5 });
+stats.forEach(stat => observer.observe(stat));
+});
+</script>
+<!-- Benefits Section -->
+<section id="benefits" class="py-20 px-6 bg-gray-950 scroll-mt-20 fade-section">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">Beneficios</h2>
+<h3 class="text-4xl font-bold mb-6">¿Por qué elegir nuestros servicios?</h3>
+<p class="text-gray-300 max-w-2xl mx-auto">Descubre cómo nuestra tecnología de IA puede transformar tu negocio y llevarlo al siguiente nivel.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Benefit 1 -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-6">
+<i class="ri-rocket-line ri-2x text-primary"></i>
+</div>
+<h4 class="text-2xl font-bold mb-4">Eficiencia Mejorada</h4>
+<p class="text-gray-300 mb-6">Automatiza tareas repetitivas y optimiza procesos para aumentar la productividad hasta un 300%.</p>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Automatización inteligente</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Reducción de errores</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-primary mr-3"></i>
+<span>Mayor velocidad operativa</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Benefit 2 -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mb-6">
+<i class="ri-customer-service-2-line ri-2x text-secondary"></i>
+</div>
+<h4 class="text-2xl font-bold mb-4">Experiencia Personalizada</h4>
+<p class="text-gray-300 mb-6">Ofrece una atención al cliente excepcional con asistentes virtuales disponibles 24/7.</p>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Respuestas instantáneas</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Atención multicanal</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-secondary mr-3"></i>
+<span>Aprendizaje continuo</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Benefit 3 -->
+<div class="bg-gray-900 rounded-xl p-8 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6">
+<i class="ri-line-chart-line ri-2x text-blue-500"></i>
+</div>
+<h4 class="text-2xl font-bold mb-4">Crecimiento Escalable</h4>
+<p class="text-gray-300 mb-6">Expande tu negocio sin límites con soluciones que crecen contigo.</p>
+<ul class="space-y-3">
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-blue-500 mr-3"></i>
+<span>Adaptabilidad total</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-blue-500 mr-3"></i>
+<span>Integración perfecta</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-check-line ri-lg text-blue-500 mr-3"></i>
+<span>Análisis en tiempo real</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Botón Saber más centrado correctamente -->
+<div class="w-full flex justify-center mt-12">
+  <a href="/beneficiosia" class="px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary/80 transition">
+    Saber más
+  </a>
+</div>
+<!-- Stats Section -->
+<div class="grid md:grid-cols-4 gap-8 mt-16">
+<div class="bg-gray-900/50 rounded-xl p-6 text-center">
+<div class="text-4xl font-bold text-primary mb-2">
+<span class="stat-number" data-target="300">0</span>%
+</div>
+<p class="text-gray-400">Aumento en Productividad</p>
+</div>
+<div class="bg-gray-900/50 rounded-xl p-6 text-center">
+<div class="text-4xl font-bold text-secondary mb-2">
+<span class="stat-number" data-target="24">0</span>/7
+</div>
+<p class="text-gray-400">Disponibilidad</p>
+</div>
+<div class="bg-gray-900/50 rounded-xl p-6 text-center">
+<div class="text-4xl font-bold text-blue-500 mb-2">
+<span class="stat-number" data-target="95">0</span>%
+</div>
+<p class="text-gray-400">Satisfacción Cliente</p>
+</div>
+<div class="bg-gray-900/50 rounded-xl p-6 text-center">
+<div class="text-4xl font-bold text-purple-500 mb-2">
+<span class="stat-number" data-target="50">0</span>%
+</div>
+<p class="text-gray-400">Reducción de Costos</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Values Section -->
+<section class="py-20 px-6 bg-black scroll-mt-20 fade-section">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">Nuestros Valores</h2>
+<h3 class="text-4xl font-bold text-white mb-6">Los pilares que nos definen</h3>
+<p class="text-gray-300 max-w-2xl mx-auto">Construimos el futuro de la IA con valores sólidos que guían cada una de nuestras acciones y decisiones.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Value 1 -->
+<div class="bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 border border-gray-800">
+<div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-6">
+<i class="ri-brain-line ri-2x text-primary"></i>
+</div>
+<h4 class="text-xl font-bold text-white mb-4">Eficiencia que enamora</h4>
+<p class="text-gray-300">Creamos soluciones que no solo optimizan procesos, sino que transforman la experiencia del usuario en algo extraordinario.</p>
+</div>
+<!-- Value 2 -->
+<div class="bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 border border-gray-800">
+<div class="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mb-6">
+<i class="ri-line-chart-line ri-2x text-secondary"></i>
+</div>
+<h4 class="text-xl font-bold text-white mb-4">Resultados sobre promesas</h4>
+<p class="text-gray-300">Nos comprometemos con resultados tangibles y medibles, superando expectativas a través de soluciones probadas y efectivas.</p>
+</div>
+<!-- Value 3 -->
+<div class="bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 border border-gray-800">
+<div class="w-16 h-16 rounded-2xl bg-green-500/20 flex items-center justify-center mb-6">
+<i class="ri-plant-line ri-2x text-green-500"></i>
+</div>
+<h4 class="text-xl font-bold text-white mb-4">Impacto positivo</h4>
+<p class="text-gray-300">Desarrollamos tecnología con propósito, buscando generar un impacto positivo en la sociedad. No reemplazamos personas, potenciamos equipos.</p>
+</div>
+<!-- Value 4 -->
+<div class="bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 border border-gray-800">
+<div class="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6">
+<i class="ri-rocket-line ri-2x text-blue-500"></i>
+</div>
+<h4 class="text-xl font-bold text-white mb-4">Innovación aplicada</h4>
+<p class="text-gray-300">Convertimos las últimas tecnologías en soluciones prácticas y accesibles que impulsan el crecimiento real de tu negocio.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Agencies Section -->
+<section id="agencies" class="py-12 md:py-20 px-4 md:px-6 bg-black scroll-mt-20 fade-section">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-12 md:mb-20">
+<h2 class="text-primary text-xl md:text-2xl mb-3 md:mb-4">Nuestras Agencias</h2>
+<h3 class="text-3xl md:text-6xl font-bold mb-4 md:mb-8">Soluciones Especializadas</h3>
+<p class="text-gray-300 max-w-3xl mx-auto text-base md:text-xl">Descubre nuestras agencias especializadas en transformación digital para el sector sanitario.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8 md:gap-16">
+<!-- DENTAL-IA -->
+<div class="bg-gray-900 rounded-xl p-6 md:p-10 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="flex items-center mb-6 md:mb-8">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-primary/20 flex items-center justify-center mr-4 md:mr-5">
+<i class="ri-stethoscope-line ri-2x text-primary"></i>
+</div>
+<h4 class="text-2xl md:text-3xl font-bold">DENTAL-IA</h4>
+</div>
+<p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6 md:mb-8">Prueba cómo un usuario de tu clínica dental real utilizaría nuestro Agente de Presupuestos con IA. Introduce datos auténticos (o ficticios) de un paciente (tipo de tratamiento, historia clínica, fechas) y obtén un presupuesto inmediato, tal como en tu consulta diaria.</p>
+<ul class="space-y-3 md:space-y-4 mb-6 md:mb-8">
+<li class="flex items-center text-gray-300">
+<i class="ri-checkbox-circle-line ri-lg text-primary mr-3"></i>
+<span>Presupuestos automáticos en segundos</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-checkbox-circle-line ri-lg text-primary mr-3"></i>
+<span>Flujo de trabajo idéntico a la clínica</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-checkbox-circle-line ri-lg text-primary mr-3"></i>
+<span>Recomendaciones inteligentes de tratamiento</span>
+</li>
+</ul>
+<a href="/dental-ia" class="inline-flex items-center text-primary hover:text-secondary transition-colors">
+Conocer más
+<i class="ri-arrow-right-line ri-lg ml-2"></i>
+</a>
+</div>
+</div>
+<!-- AI-ESTETHIC -->
+<div class="bg-gray-900 rounded-xl p-6 md:p-10 card-hover group relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+<div class="relative">
+<div class="flex items-center mb-6 md:mb-8">
+<div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-secondary/20 flex items-center justify-center mr-4 md:mr-5">
+<i class="ri-heart-pulse-line ri-2x text-secondary"></i>
+</div>
+<h4 class="text-3xl font-bold">AI-ESTETHIC</h4>
+</div>
+<p class="text-gray-300 text-lg leading-relaxed mb-8">Explora cómo un usuario utilizaría en tu propia clínica nuestro Agente de Presupuestos con IA. Esta demo te permite introducir datos reales (o ficticios) de un cliente (tipo de tratamiento, fechas, descripción de caso) y obtener un presupuesto instantáneo, tal y como lo haría en tu empresa.</p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center text-gray-300">
+<i class="ri-checkbox-circle-line ri-lg text-secondary mr-3"></i>
+<span>Presupuestos instantáneos con IA</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-checkbox-circle-line ri-lg text-secondary mr-3"></i>
+<span>Experiencia de usuario fiel a la clínica</span>
+</li>
+<li class="flex items-center text-gray-300">
+<i class="ri-checkbox-circle-line ri-lg text-secondary mr-3"></i>
+<span>Datos y recomendaciones personalizadas</span>
+</li>
+</ul>
+<a href="/ai-esthetic" class="inline-flex items-center text-secondary hover:text-primary transition-colors">
+Conocer más
+<i class="ri-arrow-right-line ri-lg ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<!-- FAQ Section -->
+<section id="faq" class="py-20 px-6 bg-black scroll-mt-20 fade-section">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-xl mb-3">¿Tienes dudas? Tenemos respuestas.</h2>
+<h3 class="text-4xl font-bold mb-6">Preguntas Frecuentes</h3>
+<p class="text-gray-300">Encuentra respuestas a las preguntas comunes sobre nuestra plataforma.</p>
+</div>
+<div class="space-y-4" id="faq-container">
+<!-- FAQ Item 2 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">¿Puedo cambiar o implementar nuevas soluciones más adelante?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Sí. A medida que tus necesidades evolucionen, podemos incorporar o adaptar nuevas soluciones sin interrumpir tu servicio. Solo contáctanos y nuestro equipo gestionará las mejoras e integraciones que requieras.</p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">¿Ofrecéis soluciones personalizadas?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Sí. Ofrecemos soluciones a medida adaptadas a tu negocio. Cuéntanos tus requisitos y nuestro equipo diseñará e implementará la funcionalidad específica que necesites.</p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">¿Qué tipo de soporte ofrecéis?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Nuestro soporte incluye atención por email y chat durante el horario laboral, con tiempos de respuesta rápidos, y asistencia telefónica para incidencias críticas, escalada a especialistas si lo necesitas.</p>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="border border-gray-800 rounded-lg overflow-hidden">
+<button class="faq-button w-full flex items-center justify-between p-6 text-left focus:outline-none">
+<span class="text-lg font-medium">¿Mis datos están seguros?</span>
+<i class="ri-add-line ri-lg faq-icon"></i>
+</button>
+<div class="faq-content hidden px-6 pb-6">
+<p class="text-gray-300">Tus datos están completamente seguros y encriptados, y solo serán utilizados con tu consentimiento para ponernos en contacto contigo en el caso de que así lo solicites. Para más tranquilidad, revisa nuestras Políticas.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Hero CTA Box with Robot -->
+<div class="relative z-20 flex flex-col md:flex-row items-center justify-center gap-12 p-8 md:p-16 bg-[#111111] rounded-[40px] max-w-5xl mx-auto mt-2 mb-20">
+  <div class="w-full md:w-1/2 overflow-hidden rounded-2xl" style="min-height:320px; height: 320px;">
+    <iframe
+      src="https://my.spline.design/blackabstractart-zpF4tLAb22tlNdy5SSG9hiuk/"
+      frameborder="0"
+      style="width: 200%; height: 200%; transform: scale(1.6) translate(-25%, -25%); pointer-events: none;"
+    ></iframe>
+  </div>
+  <!-- Texto y Botón -->
+  <div class="w-full md:w-1/2 text-center md:text-left">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Desbloquea un<br>crecimiento ilimitado.</h2>
+    <a href="/comenzarahoraform" class="inline-flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-medium px-6 py-3 rounded-[100px] hover:opacity-90 transition-opacity text-lg mt-2 cta-button">
+      Comenzar Ahora
     </a>
   </div>
 </div>
-
-<!-- BANNER DE COOKIES CORREGIDO -->
-<div id="policy-banner">
-  <div class="policy-banner-content">
-    <p class="policy-banner-text">
-      Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
-      <a href="/cookies" class="policy-link">Política de Cookies</a>
-      y
-      <a href="/privacidad" class="policy-link">Política de Privacidad</a>.
-    </p>
-    <div class="policy-banner-buttons">
-      <button id="policy-reject" class="policy-btn policy-btn-reject">
-        Rechazar
-      </button>
-      <button id="policy-accept" class="policy-btn policy-btn-accept">
-        Aceptar todas
-      </button>
-    </div>
-  </div>
+<!-- Footer -->
+<footer class="bg-gray-950 py-16 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+<div class="md:col-span-2">
+<a href="#" class="inline-block mb-6" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+<img src="logoonlyia.png" alt="IA Solutions Logo" class="h-12 w-auto">
+</a>
+<p class="text-gray-400 mb-6 max-w-md">Escala tu negocio con soluciones impulsadas por IA, agentes personalizados y flujos de trabajo automatizados que entregan resultados 10 veces más rápido.</p>
 </div>
+</div>
+<div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+<div class="flex flex-col md:flex-row items-center gap-4">
+<p class="text-gray-500">© 2025 IA Solutions. Todos los derechos reservados.</p>
+<div class="flex items-center gap-2">
+<span class="text-gray-500">Contacto:</span>
+<a href="mailto:hola@onlyiasolutions.com" class="text-primary hover:text-secondary transition-colors">hola@onlyiasolutions.com</a>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 mt-4 md:mt-0 items-center">
+  <a href="/terminosservicio" class="text-gray-500 hover:text-primary transition-colors">Términos de Servicio</a>
+  <a href="/privacidad" class="text-gray-500 hover:text-primary transition-colors">Política de Privacidad</a>
+  <a href="/cookies" class="text-gray-500 hover:text-primary transition-colors">Política de Cookies</a>
 
-<!-- SCRIPT PRINCIPAL DE COOKIES (AL FINAL DEL BODY) -->
-<script>
+  <!-- Botón para reabrir el banner -->
+  <button id="policy-manage" data-policy="manage"
+          type="button"
+          title="Gestionar privacidad"
+          class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition">
+    Gestionar privacidad
+  </button>
+</div>
+</div>
+</div>
+</footer>
+<!-- Chatbot Widget -->
+<div id="chatbot-container" class="fixed bottom-10 right-6 z-50">
+<!-- Chat Window -->
+<div id="chat-window" class="hidden chat-window bg-gray-900 w-[360px] h-[480px] rounded-2xl shadow-2xl flex flex-col mb-4 border border-gray-800 origin-bottom-right">
+<!-- Chat Header -->
+<div class="p-4 border-b border-gray-800 flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line ri-lg text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium">Chat Support</h4>
+<p class="text-sm text-gray-400">Online</p>
+</div>
+</div>
+<button id="close-chat" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-800 transition-colors">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<!-- Chat Messages -->
+<div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+<div class="chat-message-bot flex items-start">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line text-primary"></i>
+</div>
+<div class="bg-gray-800 rounded-lg rounded-tl-none p-3 max-w-[80%]">
+<p class="text-sm">¡Hola! 👋 ¿Cómo puedo ayudarte hoy?</p>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 border-t border-gray-800">
+<div class="flex items-center gap-2">
+<input type="text" id="chat-input" placeholder="Escribe tu mensaje..." class="flex-1 bg-gray-800 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 border-none">
+<button id="send-message" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
+<i class="ri-send-plane-fill ri-sm"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script id="chart-script">
 document.addEventListener('DOMContentLoaded', function() {
-  const STORAGE_KEY = 'ias_cookie_consent_v8';
-  const banner = document.getElementById('policy-banner');
-  const acceptBtn = document.getElementById('policy-accept');
-  const rejectBtn = document.getElementById('policy-reject');
-  const manageBtn = document.getElementById('policy-manage'); // Si existe en tu footer
-  
-  // Funciones de utilidad
-  function getStoredConsent() {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(stored) : null;
-    } catch (e) {
-      console.error('Error reading consent:', e);
-      return null;
-    }
-  }
-  
-  function setConsent(status) {
-    try {
-      const consentData = {
-        status: status,
-        timestamp: Date.now(),
-        version: 8
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(consentData));
-      hideBanner();
-      console.log('Consent saved:', status);
-    } catch (e) {
-      console.error('Error saving consent:', e);
-    }
-  }
-  
-  function showBanner() {
-    if (banner) {
-      console.log('Showing cookie banner');
-      banner.classList.add('show');
-      
-      // Asegurar que el banner sea visible con máxima prioridad
-      setTimeout(() => {
-        banner.style.setProperty('display', 'block', 'important');
-        banner.style.setProperty('opacity', '1', 'important');
-        banner.style.setProperty('visibility', 'visible', 'important');
-      }, 100);
-    }
-  }
-  
-  function hideBanner() {
-    if (banner) {
-      console.log('Hiding cookie banner');
-      banner.classList.remove('show');
-      banner.style.display = 'none';
-    }
-  }
-  
-  function resetConsent() {
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-      showBanner();
-      console.log('Consent reset');
-    } catch (e) {
-      console.error('Error resetting consent:', e);
-    }
-  }
-  
-  // Inicialización
-  function initCookieConsent() {
-    // Verificar query parameter para reset
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('consent') === 'reset') {
-      resetConsent();
-      // Limpiar el parámetro de la URL
-      urlParams.delete('consent');
-      const newUrl = window.location.pathname + 
-        (urlParams.toString() ? '?' + urlParams.toString() : '') + 
-        window.location.hash;
-      window.history.replaceState({}, '', newUrl);
-      return;
-    }
-    
-    // Verificar consentimiento existente
-    const consent = getStoredConsent();
-    if (!consent || consent.status !== 'accepted') {
-      // No hay consentimiento válido, mostrar banner
-      showBanner();
-    } else {
-      // Ya hay consentimiento, ocultar banner
-      hideBanner();
-      console.log('Existing consent found:', consent.status);
-    }
-  }
-  
-  // Event listeners
-  if (acceptBtn) {
-    acceptBtn.addEventListener('click', function() {
-      console.log('Accept button clicked');
-      setConsent('accepted');
-    });
-  }
-  
-  if (rejectBtn) {
-    rejectBtn.addEventListener('click', function() {
-      console.log('Reject button clicked');
-      setConsent('rejected');
-    });
-  }
-  
-  if (manageBtn) {
-    manageBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      resetConsent();
-    });
-  }
-  
-  // Inicializar después de un pequeño delay para asegurar que el DOM esté listo
-  setTimeout(initCookieConsent, 200);
+const chartContainer = document.getElementById('analytics-chart');
+if (chartContainer) {
+const chart = echarts.init(chartContainer);
+const option = {
+animation: false,
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+top: 10,
+right: 10,
+bottom: 20,
+left: 40
+},
+xAxis: {
+type: 'category',
+data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+axisLine: {
+lineStyle: {
+color: '#4b5563'
+}
+},
+axisLabel: {
+color: '#9ca3af'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#4b5563'
+}
+},
+splitLine: {
+lineStyle: {
+color: '#374151'
+}
+},
+axisLabel: {
+color: '#9ca3af'
+}
+},
+series: [
+{
+name: 'Engagement',
+type: 'line',
+smooth: true,
+data: [120, 132, 101, 134, 90, 180],
+lineStyle: {
+color: 'rgba(87, 181, 231, 1)'
+},
+itemStyle: {
+color: 'rgba(87, 181, 231, 1)'
+},
+showSymbol: false,
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(87, 181, 231, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(87, 181, 231, 0.1)'
+}
+])
+}
+},
+{
+name: 'Conversions',
+type: 'line',
+smooth: true,
+data: [220, 182, 191, 234, 290, 330],
+lineStyle: {
+color: 'rgba(141, 211, 199, 1)'
+},
+itemStyle: {
+color: 'rgba(141, 211, 199, 1)'
+},
+showSymbol: false,
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(141, 211, 199, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(141, 211, 199, 0.1)'
+}
+])
+}
+}
+]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+chart.resize();
+});
+}
+});
+</script>
+<script id="faq-script">
+document.addEventListener('DOMContentLoaded', function() {
+const faqButtons = document.querySelectorAll('.faq-button');
+faqButtons.forEach(button => {
+button.addEventListener('click', function() {
+const content = this.nextElementSibling;
+const icon = this.querySelector('.faq-icon');
+if (content.classList.contains('hidden')) {
+content.classList.remove('hidden');
+icon.classList.remove('ri-add-line');
+icon.classList.add('ri-subtract-line');
+} else {
+content.classList.add('hidden');
+icon.classList.remove('ri-subtract-line');
+icon.classList.add('ri-add-line');
+}
+});
+});
+});
+</script>
+<script id="pricing-toggle-script">
+document.addEventListener('DOMContentLoaded', function() {
+const monthlyBtn = document.getElementById('monthly-btn');
+const annualBtn = document.getElementById('annual-btn');
+if (monthlyBtn && annualBtn) {
+monthlyBtn.addEventListener('click', function() {
+monthlyBtn.classList.add('bg-primary', 'text-white');
+monthlyBtn.classList.remove('text-gray-300');
+annualBtn.classList.remove('bg-primary', 'text-white');
+annualBtn.classList.add('text-gray-300');
+});
+annualBtn.addEventListener('click', function() {
+annualBtn.classList.add('bg-primary', 'text-white');
+annualBtn.classList.remove('text-gray-300');
+monthlyBtn.classList.remove('bg-primary', 'text-white');
+monthlyBtn.classList.add('text-gray-300');
+});
+}
+});
+</script>
+<script id="mobile-menu">
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('.md\\:hidden');
+const mobileMenu = document.createElement('div');
+mobileMenu.className = 'fixed inset-0 bg-black bg-opacity-90 z-50 transform transition-transform duration-300 translate-x-full';
+mobileMenu.innerHTML = `
+<div class="h-full flex flex-col">
+<div class="flex justify-end p-6">
+<button class="text-white w-10 h-10 flex items-center justify-center" id="close-mobile-menu">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<nav class="flex flex-col items-center gap-8 p-6">
+<a href="#" class="text-white text-xl hover:text-primary transition-colors">Inicio</a>
+<a href="#services" class="text-white text-xl hover:text-primary transition-colors">Servicios</a>
+<a href="#benefits" class="text-white text-xl hover:text-primary transition-colors">Beneficios</a>
+<a href="#agencies" class="text-white text-xl hover:text-primary transition-colors">Agencias</a>
+<a href="#faq" class="text-white text-xl hover:text-primary transition-colors">Preguntas frecuentes</a>
+<a href="/comenzarahoraform" class="bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary rounded-full text-white font-medium px-8 py-3 transition-all duration-300 shadow-lg hover:shadow-xl">Comienza Ahora</a>
+</nav>
+</div>
+`;
+document.body.appendChild(mobileMenu);
+menuButton.addEventListener('click', function() {
+mobileMenu.classList.remove('translate-x-full');
+});
+document.getElementById('close-mobile-menu').addEventListener('click', function() {
+mobileMenu.classList.add('translate-x-full');
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('translate-x-full');
+});
+});
+});
+</script>
+<script id="word-rotation">
+document.addEventListener('DOMContentLoaded', () => {
+const words = ['Transforma','Potencia','Crea'];
+const rot = document.getElementById('rotating-word');
+const wrap = document.getElementById('rot-wrap');
+let currentWordIndex = 0;
+rot.style.background = 'linear-gradient(-45deg, #8b5cf6, #ec4899)';
+rot.style.backgroundSize = '200% 200%';
+rot.style.WebkitBackgroundClip = 'text';
+rot.style.backgroundClip = 'text';
+rot.style.WebkitTextFillColor = 'transparent';
+rot.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+function animateGradient() {
+let pos = 0;
+const gradientAnimation = setInterval(() => {
+pos = (pos + 1) % 200;
+rot.style.backgroundPosition = `${pos}% 50%`;
+}, 20);
+return gradientAnimation;
+}
+let gradientInterval = animateGradient();
+function showWord(word) {
+rot.textContent = word;
+wrap.style.width = rot.offsetWidth + 'px';
+rot.style.opacity = '1';
+rot.style.transform = 'rotateX(0deg)';
+setTimeout(() => {
+rot.style.opacity = '0';
+rot.style.transform = 'rotateX(-90deg)';
+clearInterval(gradientInterval);
+setTimeout(() => {
+currentWordIndex = (currentWordIndex + 1) % words.length;
+rot.style.transform = 'rotateX(90deg)';
+rot.style.opacity = '0';
+setTimeout(() => {
+gradientInterval = animateGradient();
+showWord(words[currentWordIndex]);
+}, 50);
+}, 800);
+}, 2000);
+}
+showWord(words[currentWordIndex]);
+});
+</script>
+<script id="chatbot-script">
+document.addEventListener('DOMContentLoaded', function() {
+const chatWindow = document.getElementById('chat-window');
+const closeChat = document.getElementById('close-chat');
+const chatInput = document.getElementById('chat-input');
+const sendMessage = document.getElementById('send-message');
+const chatMessages = document.getElementById('chat-messages');
+function addMessage(message, isUser = false) {
+const messageDiv = document.createElement('div');
+messageDiv.className = isUser ? 'chat-message-user flex items-start justify-end' : 'chat-message-bot flex items-start';
+const messageContent = `
+${isUser ? '' : `
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+<i class="ri-customer-service-2-line text-primary"></i>
+</div>
+`}
+<div class="bg-${isUser ? 'primary' : 'gray-800'} rounded-lg ${isUser ? 'rounded-tr-none' : 'rounded-tl-none'} p-3 max-w-[80%]">
+<p class="text-sm">${message}</p>
+</div>
+`;
+messageDiv.innerHTML = messageContent;
+chatMessages.appendChild(messageDiv);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+closeChat.addEventListener('click', function() {
+chatWindow.classList.add('hidden');
+});
+function handleSendMessage() {
+const message = chatInput.value.trim();
+if (message) {
+addMessage(message, true);
+chatInput.value = '';
+// Simulate bot response
+setTimeout(() => {
+addMessage("Thanks for your message! Our team will get back to you soon.");
+}, 1000);
+}
+}
+sendMessage.addEventListener('click', handleSendMessage);
+chatInput.addEventListener('keypress', function(e) {
+if (e.key === 'Enter') {
+handleSendMessage();
+}
+});
 });
 </script>
 
+<script id="cookie-consent">
+(function(){
+  const KEY = 'ias_cookie_consent_v8';        // sube versión para invalidar guardados
+  const bannerSel = '#prv-banner';
+
+  function get(){ try{ return JSON.parse(localStorage.getItem(KEY)); } catch(e){ return null; } }
+  function put(status){
+    try{ localStorage.setItem(KEY, JSON.stringify({status, ts: Date.now()})); }catch(e){}
+    document.documentElement.classList.toggle('policy-accepted', status === 'accepted');
+    hide();
+  }
+
+  function show(){
+    const b = document.querySelector(bannerSel);
+    if (!b) return;
+
+    document.documentElement.classList.add('policy-open');
+
+    // Quitar ocultaciones previas
+    b.classList.remove('hidden');
+    b.style.setProperty('display', 'block', 'important');
+    b.style.setProperty('visibility', 'visible', 'important');
+    b.style.setProperty('opacity', '1', 'important');
+    b.style.setProperty('pointer-events', 'auto', 'important');
+    b.style.animation = 'none';
+
+    // Mantener "forzado" unos segundos por si un filtro intenta tocarlo
+    const t0 = performance.now();
+    (function keep(){
+      if (performance.now() - t0 > 8000) return;
+      b.style.setProperty('display', 'block', 'important');
+      requestAnimationFrame(keep);
+    })();
+
+    // Si cambian class/style, lo reponemos durante 8s
+    const mo = new MutationObserver(() => {
+      b.classList.remove('hidden');
+      b.style.setProperty('display', 'block', 'important');
+      b.style.setProperty('visibility', 'visible', 'important');
+    });
+    mo.observe(b, { attributes: true, attributeFilter: ['style','class'] });
+    setTimeout(() => mo.disconnect(), 8000);
+
+    // Vigilar la clase de <html> para que no quiten policy-open durante el arranque
+    const ro = new MutationObserver(() => {
+      const saved = get();
+      if ((!saved || saved.status !== 'accepted')
+          && !document.documentElement.classList.contains('policy-open')) {
+        document.documentElement.classList.add('policy-open');
+      }
+    });
+    ro.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    setTimeout(() => ro.disconnect(), 8000);
+  }
+
+  function hide(){
+    const b = document.querySelector(bannerSel);
+    document.documentElement.classList.remove('policy-open');
+    if (b){
+      b.classList.add('hidden');
+      b.style.display = 'none';
+    }
+  }
+
+  function reset(){
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    document.documentElement.classList.remove('policy-accepted');
+    show();
+  }
+
+  function init(){
+    // Reset manual con ?consent=reset
+    const params = new URLSearchParams(location.search);
+    if (params.get('consent') === 'reset'){
+      reset();
+      params.delete('consent');
+      history.replaceState({}, '', location.pathname + (params.toString()?('?'+params):'') + location.hash);
+      return;
+    }
+
+    const saved = get();
+    if (!saved || saved.status !== 'accepted') {
+      show();
+    } else {
+      document.documentElement.classList.add('policy-accepted');
+    }
+
+    document.querySelector('[data-policy="accept"]')?.addEventListener('click', ()=>put('accepted'));
+    document.querySelector('[data-policy="reject"]')?.addEventListener('click', ()=>put('rejected'));
+    document.querySelector('[data-policy="manage"]')?.addEventListener('click', (e)=>{ e.preventDefault(); reset(); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+<div id="prv-banner" data-policy="banner" role="dialog" aria-live="polite" aria-label="Preferencias de privacidad" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
+    <p class="text-gray-300 text-sm md:text-base leading-snug">
+      Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
+      <a href="/cookies" class="text-primary hover:text-secondary underline">Política de Cookies</a>
+      y
+      <a href="/privacidad" class="text-primary hover:text-secondary underline">Política de Privacidad</a>.
+    </p>
+    <div class="flex gap-2 md:ml-auto">
+      <button id="policy-reject" data-policy="reject" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition">Rechazar</button>
+      <button id="policy-accept" data-policy="accept" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition">Aceptar todas</button>
+    </div>
+  </div>
+</div>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<script>
+  // Fade in de secciones con clase .fade-section
+  gsap.utils.toArray(".fade-section").forEach((section) => {
+    gsap.from(section, {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        toggleActions: "play none none none"
+      },
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      ease: "power3.out"
+    });
+  });
+
+  // Animación del título principal
+  gsap.from(".main-title", {
+    opacity: 0,
+    y: 60,
+    duration: 1,
+    delay: 0.5,
+    ease: "power2.out"
+  });
+</script>
 </body>
 </html>
