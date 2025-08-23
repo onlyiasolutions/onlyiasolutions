@@ -1168,7 +1168,7 @@ handleSendMessage();
 
 <script id="cookie-consent">
 (function() {
-  const KEY = 'ias_cookie_consent_v3'; // nueva versión para forzar que vuelva a mostrarse
+  const KEY = 'ias_cookie_consent_v4'; // bump version para forzar banner
 
   function getConsent() {
     try { return JSON.parse(localStorage.getItem(KEY)); } catch(e) { return null; }
