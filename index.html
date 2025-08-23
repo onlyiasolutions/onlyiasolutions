@@ -100,7 +100,7 @@ animation: fadeIn 0.5s ease-out;
 </style>
 <script>
   (function(){
-    var KEY='ias_cookie_consent_v8';
+    var KEY='ias_cookie_consent_v9';
     try{
       var saved = JSON.parse(localStorage.getItem(KEY));
       if (!saved || saved.status !== 'accepted') {
@@ -1068,14 +1068,58 @@ handleSendMessage();
   const rejectBtn = document.getElementById('policy-reject');
   const manageBtn = document.getElementById('policy-manage');
 
-  // Cleanup de banners duplicados/legados: conserva solo #prv-banner
+  // 1) Elimina banners duplicados/legados y conserva solo #prv-banner
   try {
-    document.querySelectorAll('#cookie-banner, .cookie-banner, .cookies-banner, .cc-window, .cc-banner, [data-cookieconsent], [data-policy="banner"]').forEach(el => {
-      if (el.id !== 'prv-banner') el.remove();
-    });
+    document.querySelectorAll('#cookie-banner, .cookie-banner, .cookies-banner, .cc-window, .cc-banner, [data-cookieconsent]').forEach(el => el.remove());
+    const allPrv = document.querySelectorAll('#prv-banner');
+    allPrv.forEach((el, i) => { if (i > 0) el.remove(); });
   } catch(_) {}
 
-</script>
+  function save(status){
+    try { localStorage.setItem(KEY, JSON.stringify({status, ts: Date.now()})); } catch(e) {}
+    document.documentElement.classList.toggle('policy-accepted', status === 'accepted');
+    document.documentElement.classList.remove('policy-open');
+    if (banner) { banner.classList.add('hidden'); banner.style.display = 'none'; }
+  }
+
+  function needsConsent(){
+    try { const v = JSON.parse(localStorage.getItem(KEY)); return !v || v.status !== 'accepted'; }
+    catch(e){ return true; }
+  }
+
+  // 2) Estado inicial visible/oculto
+  if (needsConsent()){
+    document.documentElement.classList.add('policy-open');
+    if (banner) { banner.classList.remove('hidden'); banner.style.display = 'block'; }
+  } else {
+    document.documentElement.classList.add('policy-accepted');
+    if (banner) { banner.classList.add('hidden'); banner.style.display = 'none'; }
+  }
+
+  // 3) Soporte de reset con ?consent=reset
+  try {
+    const q = new URLSearchParams(location.search);
+    if (q.get('consent') === 'reset') {
+      localStorage.removeItem(KEY);
+      document.documentElement.classList.remove('policy-accepted');
+      document.documentElement.classList.add('policy-open');
+      if (banner) { banner.classList.remove('hidden'); banner.style.display = 'block'; }
+      q.delete('consent');
+      history.replaceState({}, '', location.pathname + (q.toString()?('?'+q.toString()):'') + location.hash);
+    }
+  } catch(_) {}
+
+  // 4) Conectar botones (sin delegación para evitar dobles manejadores)
+  if (acceptBtn) acceptBtn.addEventListener('click', function(e){ e.preventDefault(); save('accepted'); });
+  if (rejectBtn) rejectBtn.addEventListener('click', function(e){ e.preventDefault(); save('rejected'); });
+  if (manageBtn) manageBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    try { localStorage.removeItem(KEY); } catch(_) {}
+    document.documentElement.classList.remove('policy-accepted');
+    document.documentElement.classList.add('policy-open');
+    if (banner) { banner.classList.remove('hidden'); banner.style.display = 'block'; }
+  });
+})();
 </script>
 <div id="prv-banner" data-policy="banner" role="dialog" aria-modal="true" aria-live="polite" aria-label="Preferencias de privacidad" aria-describedby="prv-banner-desc" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
