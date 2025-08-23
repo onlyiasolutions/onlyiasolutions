@@ -194,6 +194,13 @@ animation: fadeIn 0.5s ease-out;
     justify-content:flex-end !important;
     align-items:center !important;
   }
+  #prv-banner [data-buttons] > #policy-accept,
+#prv-banner [data-buttons] > #policy-reject{
+  display:inline-flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+}
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
@@ -1209,10 +1216,12 @@ handleSendMessage();
 
     <!-- Botones -->
     <div data-buttons style="display:flex!important;flex-wrap:wrap!important;gap:.5rem!important;align-items:center!important;justify-content:flex-end!important">
-<button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies">
+<button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies"
+  style="display:inline-flex!important;align-items:center;justify-content:center;padding:.5rem 1rem;border-radius:9999px;min-width:140px;border:1px solid #a855f7;background:#a855f7;color:#fff;font-weight:600;cursor:pointer;">
   Aceptar todas
 </button>
-<button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies">
+<button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies"
+  style="display:inline-flex!important;align-items:center;justify-content:center;padding:.5rem 1rem;border-radius:9999px;min-width:120px;border:1px solid #374151;background:transparent;color:#e5e7eb;cursor:pointer;">
   Rechazar
 </button>
 </div>
