@@ -125,6 +125,8 @@ animation: fadeIn 0.5s ease-out;
   /* Botones del banner: no colapsar y alinear a la derecha */
 #prv-banner .flex.flex-wrap > button { flex: 0 1 auto; }
 #prv-banner .flex.flex-wrap { justify-content: flex-end; }
+  #prv-banner .flex.flex-wrap{ gap:.5rem; flex-wrap:wrap; }
+  #prv-banner .flex.flex-wrap > button{ flex:0 0 auto; }
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
@@ -1142,7 +1144,7 @@ handleSendMessage();
       <button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition w-full sm:w-auto min-w-[120px]">
         Rechazar
       </button>
-      <button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto min-w-[120px]">
+      <button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies" class="px-4 py-2 rounded-full bg-[#a855f7] text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto min-w-[120px]">
         Aceptar todas
       </button>
     </div>
