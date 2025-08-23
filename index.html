@@ -127,6 +127,19 @@ animation: fadeIn 0.5s ease-out;
 #prv-banner .flex.flex-wrap { justify-content: flex-end; }
   #prv-banner .flex.flex-wrap{ gap:.5rem; flex-wrap:wrap; }
   #prv-banner .flex.flex-wrap > button{ flex:0 0 auto; }
+
+  /* Kill-switch: oculta cualquier banner de cookies ajeno al nuestro */
+  :is([id*="cookie" i],[class*="cookie" i],[aria-label*="cookie" i],[data-cookieconsent],[data-policy="banner"]):not(#prv-banner){
+    display:none !important;
+    visibility:hidden !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+  /* Extra: cualquier barra fija al fondo que no sea la nuestra y huela a aviso */
+  :is(div,section,aside)[style*="position: fixed" i]:not(#prv-banner),
+  :is(div,section,aside).fixed:not(#prv-banner){
+    /* se volverán a mostrar si no coinciden con el filtro JS */
+  }
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
@@ -1067,6 +1080,29 @@ handleSendMessage();
   const acceptBtn = document.getElementById('policy-accept');
   const rejectBtn = document.getElementById('policy-reject');
   const manageBtn = document.getElementById('policy-manage');
+
+  // Kill-switch JS: elimina banners duplicados o inyectados que no sean el nuestro
+  (function cleanForeignBanners(){
+    try {
+      // 1) Selectores típicos de librerías de consentimiento
+      document.querySelectorAll('#cookie-banner, .cookie-banner, .cookies-banner, .cc-window, .cc-banner, [data-cookieconsent]').forEach(el => {
+        if (el && el.id !== 'prv-banner' && !el.closest('#prv-banner')) el.remove();
+      });
+      // 2) Barras fijas al fondo con texto típico de aviso
+      Array.from(document.querySelectorAll('div,section,aside')).forEach(el => {
+        if (!el || el.id === 'prv-banner' || el.closest('#prv-banner')) return;
+        const cs = getComputedStyle(el);
+        const isFixed = cs.position === 'fixed';
+        const rect = el.getBoundingClientRect();
+        const nearBottom = rect.bottom >= (window.innerHeight - 2) && rect.top < window.innerHeight;
+        const txt = (el.innerText || '').toLowerCase();
+        const looksLikeBanner = /cookie|cookies|privacidad|privacy|consent|consentimiento|política/i.test(txt);
+        if (isFixed && nearBottom && looksLikeBanner) {
+          el.remove();
+        }
+      });
+    } catch(_) {}
+  })();
 
   // 1) Elimina banners duplicados/legados y conserva solo #prv-banner
   try {
