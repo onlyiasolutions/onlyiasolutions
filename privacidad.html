@@ -9,35 +9,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
-<script>
-tailwind.config = {
-theme: {
-extend: {
-colors: {
-primary: '#0F172A',
-secondary: '#60A5FA'
-},
-borderRadius: {
-'none': '0px',
-'sm': '4px',
-DEFAULT: '8px',
-'md': '12px',
-'lg': '16px',
-'xl': '20px',
-'2xl': '24px',
-'3xl': '32px',
-'full': '9999px',
-'button': '8px'
-}
-}
-}
-}
-</script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 </style>
 </head>
 <link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Fallback por si los estilos cargan tarde: asegura fondo oscuro */
+  .bg-primary{background-color:#0F172A !important;}
+  body.bg-primary{color:#fff;}
+</style>
 <body class="bg-primary text-white min-h-screen">
 <header class="w-full border-b border-white/10">
 <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-3 sm:py-4 md:px-8">
