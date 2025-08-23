@@ -113,73 +113,54 @@ animation: fadeIn 0.5s ease-out;
 </script>
 <noscript><style>#prv-banner{display:block}</style></noscript>
 <style>
-  /* Visibilidad por defecto */
-  #prv-banner{display:none;}
-  /* Cuando la raíz lleva policy-open -> SIEMPRE visible */
-  .policy-open #prv-banner{
-    display:block !important;
-    visibility:visible !important;
-    opacity:1 !important;
-    pointer-events:auto !important;
-  }
-  /* Botones del banner: no colapsar y alinear a la derecha */
-#prv-banner .flex.flex-wrap > button { flex: 0 1 auto; }
-#prv-banner .flex.flex-wrap { justify-content: flex-end; }
-  #prv-banner .flex.flex-wrap{ gap:.5rem; flex-wrap:wrap; }
-  #prv-banner .flex.flex-wrap > button{ flex:0 0 auto; }
+  /* Cookie banner: reglas mínimas y seguras */
+  /* Oculto por defecto */
+  #prv-banner { display: none; }
 
-  /* Fuerza visibilidad y layout de los botones del banner */
-  #prv-banner [data-buttons]{
-    display:flex !important;
-    gap:.5rem !important;
-    align-items:center !important;
-    justify-content:flex-end !important;
-    flex-wrap:wrap !important;
+  /* Visible cuando se pide consentimiento */
+  .policy-open #prv-banner {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
-  /* --- Cookie banner buttons: hard fallback so they are always visible --- */
-  #prv-banner button{
-    display:inline-flex !important;
-    align-items:center;
-    justify-content:center;
-    padding:.5rem 1rem;
-    border-radius:9999px;
-    border:1px solid #374151;
-    background:transparent;
-    color:#e5e7eb;
-    font: inherit; /* keep site font */
-    line-height:1.25;
-    white-space:nowrap;
-  }
-  #prv-banner #policy-accept{
-    background:#a855f7 !important; /* purple */
-    border-color:#a855f7 !important;
-    color:#fff !important;
-  }
-  #prv-banner #policy-reject{
-    background:transparent !important;
-    color:#e5e7eb !important;
-  }
-  /* Ensure buttons container wraps nicely on small screens */
-  #prv-banner [data-buttons]{
-    display:flex !important;
-    flex-wrap:wrap !important;
-    gap:.5rem !important;
-    justify-content:flex-end !important;
-    align-items:center !important;
+  /* Contenedor de botones: siempre visible y alineado a la derecha */
+  #prv-banner [data-buttons] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .5rem !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
   }
 
-  /* Kill-switch: oculta cualquier banner de cookies ajeno al nuestro */
-  :is([id*="cookie" i],[class*="cookie" i],[aria-label*="cookie" i],[data-cookieconsent],[data-policy="banner"]):not(#prv-banner){
-    display:none !important;
-    visibility:hidden !important;
-    opacity:0 !important;
-    pointer-events:none !important;
+  /* Estilos básicos de los botones */
+  #prv-banner [data-buttons] button {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    border-radius: 9999px;
+    line-height: 1.25;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font: inherit;
   }
-  /* Extra: cualquier barra fija al fondo que no sea la nuestra y huela a aviso */
-  :is(div,section,aside)[style*="position: fixed" i]:not(#prv-banner),
-  :is(div,section,aside).fixed:not(#prv-banner){
-    /* se volverán a mostrar si no coinciden con el filtro JS */
+
+  /* Rechazar */
+  #prv-banner #policy-reject {
+    background: transparent;
+    color: #e5e7eb;
+    border-color: #374151;
+  }
+
+  /* Aceptar */
+  #prv-banner #policy-accept {
+    background: #a855f7;
+    color: #ffffff;
+    border-color: #a855f7;
+    font-weight: 600;
   }
 </style>
 </head>
