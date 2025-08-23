@@ -170,6 +170,34 @@ animation: fadeIn 0.5s ease-out;
     border-color: #a855f7 !important;
     font-weight: 600;
   }
+
+  /* --- Hard guarantees for layout & visibility (anti-clipping) --- */
+  #prv-banner, #prv-banner * {
+    overflow: visible !important;
+  }
+
+  /* Buttons container never collapses and stays at the right, on one or two lines */
+  #prv-banner [data-buttons]{
+    flex: 0 0 auto !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: .75rem !important;
+  }
+
+  /* Buttons never shrink or wrap weirdly */
+  #prv-banner #policy-accept,
+  #prv-banner #policy-reject{
+    flex: 0 0 auto !important;
+    position: relative !important;
+    z-index: 100000 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure Accept is last (rightmost) even if DOM order changes */
+  #prv-banner #policy-reject{ order: 1 !important; }
+  #prv-banner #policy-accept{ order: 2 !important; }
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
