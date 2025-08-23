@@ -122,6 +122,9 @@ animation: fadeIn 0.5s ease-out;
     opacity:1 !important;
     pointer-events:auto !important;
   }
+  /* Botones del banner: no colapsar y alinear a la derecha */
+#prv-banner .flex.flex-wrap > button { flex: 0 1 auto; }
+#prv-banner .flex.flex-wrap { justify-content: flex-end; }
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
@@ -722,7 +725,7 @@ Conocer más
 <a href="mailto:hola@onlyiasolutions.com" class="text-primary hover:text-secondary transition-colors">hola@onlyiasolutions.com</a>
 </div>
 </div>
-<div class="flex flex-wrap gap-4 mt-4 md:mt-0 items-center">
+<div class="flex flex-wrap items-center gap-2 md:ml-auto">
   <a href="/terminosservicio" class="text-gray-500 hover:text-primary transition-colors">Términos de Servicio</a>
   <a href="/privacidad" class="text-gray-500 hover:text-primary transition-colors">Política de Privacidad</a>
   <a href="/cookies" class="text-gray-500 hover:text-primary transition-colors">Política de Cookies</a>
@@ -1057,7 +1060,7 @@ handleSendMessage();
 
 <script id="cookie-consent">
 (function(){
-  const KEY = 'ias_cookie_consent_v8';        // sube versión para invalidar guardados
+  const KEY = 'ias_cookie_consent_v8';
   const bannerSel = '#prv-banner';
 
   function get(){ try{ return JSON.parse(localStorage.getItem(KEY)); } catch(e){ return null; } }
@@ -1070,44 +1073,12 @@ handleSendMessage();
   function show(){
     const b = document.querySelector(bannerSel);
     if (!b) return;
-
     document.documentElement.classList.add('policy-open');
-
-    // Quitar ocultaciones previas
     b.classList.remove('hidden');
     b.style.setProperty('display', 'block', 'important');
     b.style.setProperty('visibility', 'visible', 'important');
     b.style.setProperty('opacity', '1', 'important');
     b.style.setProperty('pointer-events', 'auto', 'important');
-    b.style.animation = 'none';
-
-    // Mantener "forzado" unos segundos por si un filtro intenta tocarlo
-    const t0 = performance.now();
-    (function keep(){
-      if (performance.now() - t0 > 8000) return;
-      b.style.setProperty('display', 'block', 'important');
-      requestAnimationFrame(keep);
-    })();
-
-    // Si cambian class/style, lo reponemos durante 8s
-    const mo = new MutationObserver(() => {
-      b.classList.remove('hidden');
-      b.style.setProperty('display', 'block', 'important');
-      b.style.setProperty('visibility', 'visible', 'important');
-    });
-    mo.observe(b, { attributes: true, attributeFilter: ['style','class'] });
-    setTimeout(() => mo.disconnect(), 8000);
-
-    // Vigilar la clase de <html> para que no quiten policy-open durante el arranque
-    const ro = new MutationObserver(() => {
-      const saved = get();
-      if ((!saved || saved.status !== 'accepted')
-          && !document.documentElement.classList.contains('policy-open')) {
-        document.documentElement.classList.add('policy-open');
-      }
-    });
-    ro.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    setTimeout(() => ro.disconnect(), 8000);
   }
 
   function hide(){
@@ -1126,7 +1097,6 @@ handleSendMessage();
   }
 
   function init(){
-    // Reset manual con ?consent=reset
     const params = new URLSearchParams(location.search);
     if (params.get('consent') === 'reset'){
       reset();
@@ -1142,9 +1112,15 @@ handleSendMessage();
       document.documentElement.classList.add('policy-accepted');
     }
 
-    document.querySelector('[data-policy="accept"]')?.addEventListener('click', ()=>put('accepted'));
-    document.querySelector('[data-policy="reject"]')?.addEventListener('click', ()=>put('rejected'));
-    document.querySelector('[data-policy="manage"]')?.addEventListener('click', (e)=>{ e.preventDefault(); reset(); });
+    // 🔧 Delegación de eventos: funciona siempre, aunque el DOM cambie
+    document.addEventListener('click', function(ev){
+      const btn = ev.target.closest('[data-policy]');
+      if (!btn) return;
+      const action = btn.getAttribute('data-policy');
+      if (action === 'accept') { ev.preventDefault(); put('accepted'); }
+      if (action === 'reject') { ev.preventDefault(); put('rejected'); }
+      if (action === 'manage') { ev.preventDefault(); reset(); }
+    });
   }
 
   if (document.readyState === 'loading') {
@@ -1154,19 +1130,19 @@ handleSendMessage();
   }
 })();
 </script>
-<div id="prv-banner" data-policy="banner" role="dialog" aria-live="polite" aria-label="Preferencias de privacidad" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4">
+<div id="prv-banner" data-policy="banner" role="dialog" aria-modal="true" aria-live="polite" aria-label="Preferencias de privacidad" aria-describedby="prv-banner-desc" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
-    <p class="text-gray-300 text-sm md:text-base leading-snug">
+    <p id="prv-banner-desc" class="text-gray-300 text-sm md:text-base leading-snug">
       Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
       <a href="/cookies" class="text-primary hover:text-secondary underline">Política de Cookies</a>
       y
       <a href="/privacidad" class="text-primary hover:text-secondary underline">Política de Privacidad</a>.
     </p>
-    <div class="flex flex-wrap items-center gap-2 md:ml-auto shrink-0">
-      <button id="policy-reject" data-policy="reject" type="button" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition w-full sm:w-auto">
+    <div class="flex flex-wrap items-center gap-2 md:ml-auto">
+      <button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition w-full sm:w-auto min-w-[120px]">
         Rechazar
       </button>
-      <button id="policy-accept" data-policy="accept" type="button" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto">
+      <button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto min-w-[120px]">
         Aceptar todas
       </button>
     </div>
