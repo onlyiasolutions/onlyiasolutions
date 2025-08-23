@@ -1122,12 +1122,17 @@ handleSendMessage();
       }
     });
 
-    // 🛡️ Salvaguarda: si por cualquier motivo faltara el botón "Aceptar todas", lo creamos
+    // 🛡️ Salvaguarda: asegurar que exista el botón "Aceptar todas"
     const bNode = document.querySelector(bannerSel);
     if (bNode) {
-      const btnRow = bNode.querySelector('.flex.flex-wrap.items-center');
-      let acceptBtn = bNode.querySelector('#policy-accept');
-      if (!acceptBtn && btnRow) {
+      // fila de botones (intenta localizarla de varias formas)
+      let btnRow =
+        bNode.querySelector('.flex.flex-wrap.items-center') ||
+        bNode.querySelector('.flex.items-center') ||
+        bNode;
+
+      let acceptBtn = bNode.querySelector('#policy-accept,[data-policy="accept"]');
+      if (!acceptBtn) {
         acceptBtn = document.createElement('button');
         acceptBtn.id = 'policy-accept';
         acceptBtn.setAttribute('data-policy', 'accept');
@@ -1135,7 +1140,13 @@ handleSendMessage();
         acceptBtn.setAttribute('aria-label', 'Aceptar todas las cookies');
         acceptBtn.className = 'px-4 py-2 rounded-full bg-[#a855f7] text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto min-w-[120px]';
         acceptBtn.textContent = 'Aceptar todas';
-        btnRow.appendChild(acceptBtn);
+        // colocar después del botón Rechazar si existe; si no, añadir al final
+        const rejectBtn = bNode.querySelector('#policy-reject,[data-policy="reject"]');
+        if (rejectBtn && rejectBtn.parentElement) {
+          rejectBtn.insertAdjacentElement('afterend', acceptBtn);
+        } else {
+          btnRow.appendChild(acceptBtn);
+        }
       }
     }
 
