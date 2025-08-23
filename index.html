@@ -137,8 +137,9 @@ animation: fadeIn 0.5s ease-out;
     justify-content: flex-end !important;
   }
 
-  /* Estilos básicos de los botones */
-  #prv-banner [data-buttons] button {
+  /* Botones: hard fallback para que nunca desaparezcan */
+  #prv-banner #policy-accept,
+  #prv-banner #policy-reject {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
@@ -147,60 +148,28 @@ animation: fadeIn 0.5s ease-out;
     line-height: 1.25;
     white-space: nowrap;
     cursor: pointer;
+    min-width: 140px;
     border: 1px solid transparent;
     font: inherit;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   /* Rechazar */
   #prv-banner #policy-reject {
-    background: transparent;
-    color: #e5e7eb;
-    border-color: #374151;
+    background: transparent !important;
+    color: #e5e7eb !important;
+    border-color: #374151 !important;
   }
 
   /* Aceptar */
   #prv-banner #policy-accept {
-    background: #a855f7;
-    color: #ffffff;
-    border-color: #a855f7;
+    background: #a855f7 !important;
+    color: #ffffff !important;
+    border-color: #a855f7 !important;
     font-weight: 600;
   }
-
-  #prv-banner #policy-accept {
-    display:inline-flex !important;
-    background:#a855f7 !important;
-    border:1px solid #a855f7 !important;
-    color:#fff !important;
-    font-weight:600;
-    padding:.5rem 1rem;
-    border-radius:9999px;
-    min-width:140px;
-    cursor:pointer;
-  }
-  #prv-banner [data-buttons] button { min-width: 120px; }
-  /* Fuerza render de ambos botones */
-  #prv-banner #policy-accept,
-  #prv-banner #policy-reject{
-    display: inline-flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  /* Contenedor de botones: no colapsa nunca */
-  #prv-banner [data-buttons]{
-    display:flex !important;
-    flex-wrap:wrap !important;
-    gap:.5rem !important;
-    justify-content:flex-end !important;
-    align-items:center !important;
-  }
-  #prv-banner [data-buttons] > #policy-accept,
-#prv-banner [data-buttons] > #policy-reject{
-  display:inline-flex!important;
-  visibility:visible!important;
-  opacity:1!important;
-  pointer-events:auto!important;
-}
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
