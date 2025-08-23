@@ -1162,9 +1162,13 @@ handleSendMessage();
       y
       <a href="/privacidad" class="text-primary hover:text-secondary underline">Política de Privacidad</a>.
     </p>
-    <div class="flex gap-2 md:ml-auto">
-      <button id="policy-reject" data-policy="reject" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition">Rechazar</button>
-      <button id="policy-accept" data-policy="accept" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition">Aceptar todas</button>
+    <div class="flex flex-wrap items-center gap-2 md:ml-auto shrink-0">
+      <button id="policy-reject" data-policy="reject" type="button" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition w-full sm:w-auto">
+        Rechazar
+      </button>
+      <button id="policy-accept" data-policy="accept" type="button" class="px-4 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto">
+        Aceptar todas
+      </button>
     </div>
   </div>
 </div>
