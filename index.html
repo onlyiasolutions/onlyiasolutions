@@ -137,6 +137,38 @@ animation: fadeIn 0.5s ease-out;
     flex-wrap:wrap !important;
   }
 
+  /* --- Cookie banner buttons: hard fallback so they are always visible --- */
+  #prv-banner button{
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+    padding:.5rem 1rem;
+    border-radius:9999px;
+    border:1px solid #374151;
+    background:transparent;
+    color:#e5e7eb;
+    font: inherit; /* keep site font */
+    line-height:1.25;
+    white-space:nowrap;
+  }
+  #prv-banner #policy-accept{
+    background:#a855f7 !important; /* purple */
+    border-color:#a855f7 !important;
+    color:#fff !important;
+  }
+  #prv-banner #policy-reject{
+    background:transparent !important;
+    color:#e5e7eb !important;
+  }
+  /* Ensure buttons container wraps nicely on small screens */
+  #prv-banner [data-buttons]{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:.5rem !important;
+    justify-content:flex-end !important;
+    align-items:center !important;
+  }
+
   /* Kill-switch: oculta cualquier banner de cookies ajeno al nuestro */
   :is([id*="cookie" i],[class*="cookie" i],[aria-label*="cookie" i],[data-cookieconsent],[data-policy="banner"]):not(#prv-banner){
     display:none !important;
@@ -1177,7 +1209,7 @@ handleSendMessage();
     </p>
 
     <!-- Botones -->
-    <div class="mt-3 md:mt-0 flex-shrink-0 flex items-center gap-2 justify-end" data-buttons>
+    <div class="mt-3 md:mt-0 flex-shrink-0 flex flex-wrap items-center gap-2 justify-end" data-buttons>
       <button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies" class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition min-w-[120px]">
         Rechazar
       </button>
