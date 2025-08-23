@@ -10,8 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
-:root {
-}
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 @keyframes gradientFlow {
@@ -115,9 +113,15 @@ animation: fadeIn 0.5s ease-out;
 </script>
 <noscript><style>#policy-banner{display:block}</style></noscript>
 <style>
-/* --- Cookie banner visibility guard --- */
-#policy-banner{display:none;}
-.policy-open #policy-banner{display:block;}
+  /* Visibilidad por defecto */
+  #policy-banner{display:none;}
+  /* Cuando la raíz lleva policy-open -> SIEMPRE visible */
+  .policy-open #policy-banner{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+  }
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
@@ -1056,21 +1060,39 @@ handleSendMessage();
   const KEY = 'ias_cookie_consent_v7';             // subimos versión para invalidar anteriores
   const bannerSel = '#policy-banner';
 
-  function showBanner(){
+    function showBanner(){
     const b = document.querySelector(bannerSel);
-    if(!b) return;
-    document.documentElement.classList.add('policy-open');
-    b.classList.remove('hidden');                  // por si estaba
-    b.style.display = 'block';                     // forzamos visibilidad
+    if (!b) return;
 
-    // “Blindaje” durante ~1s para evitar que otro script lo tape de nuevo
-    let frames = 60;
-    (function tick(){
-      if (frames-- <= 0) return;
-      b.style.display = 'block';
-      b.classList.remove('hidden');
-      requestAnimationFrame(tick);
+    document.documentElement.classList.add('policy-open');
+
+    // Quitar cualquier ocultación previa
+    b.classList.remove('hidden');
+    b.style.removeProperty('display');
+
+    // Forzar visibilidad con máxima prioridad
+    b.style.setProperty('display', 'block', 'important');
+    b.style.setProperty('visibility', 'visible', 'important');
+    b.style.setProperty('opacity', '1', 'important');
+    b.style.setProperty('pointer-events', 'auto', 'important');
+    b.style.animation = 'none';
+
+    // Mantener la visibilidad durante ~2s para bloquear scripts agresivos
+    const start = performance.now();
+    (function keep(){
+      if (performance.now() - start > 2000) return;
+      b.style.setProperty('display', 'block', 'important');
+      requestAnimationFrame(keep);
     })();
+
+    // Si algún script cambia estilos/clases, los reponemos durante 3s
+    const mo = new MutationObserver(() => {
+      b.style.setProperty('display', 'block', 'important');
+      b.style.setProperty('visibility', 'visible', 'important');
+      b.classList.remove('hidden');
+    });
+    mo.observe(b, { attributes: true, attributeFilter: ['style', 'class'] });
+    setTimeout(() => mo.disconnect(), 3000);
   }
 
   function hideBanner(){
