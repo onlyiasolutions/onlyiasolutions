@@ -137,67 +137,58 @@ animation: fadeIn 0.5s ease-out;
     justify-content: flex-end !important;
   }
 
-  /* Botones: hard fallback para que nunca desaparezcan */
+  /* Botones: fallback duro (IDs originales + neutros + atributos) */
   #prv-banner #policy-accept,
-  #prv-banner #policy-reject {
+  #prv-banner #policy-reject,
+  #prv-banner #policy-yes,
+  #prv-banner #policy-no,
+  #prv-banner [data-ck],
+  #prv-banner [data-policy] {
     display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
+    align-items: center !important;
+    justify-content: center !important;
     padding: .5rem 1rem;
     border-radius: 9999px;
     line-height: 1.25;
     white-space: nowrap;
     cursor: pointer;
-    min-width: 140px;
+    min-width: 120px;
     border: 1px solid transparent;
     font: inherit;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+    position: relative !important;
+    z-index: 100000 !important;
   }
 
   /* Rechazar */
-  #prv-banner #policy-reject {
+  #prv-banner #policy-reject,
+  #prv-banner #policy-no,
+  #prv-banner [data-ck="no"],
+  #prv-banner [data-policy="reject"] {
     background: transparent !important;
     color: #e5e7eb !important;
     border-color: #374151 !important;
+    min-width: 120px;
   }
 
   /* Aceptar */
-  #prv-banner #policy-accept {
+  #prv-banner #policy-accept,
+  #prv-banner #policy-yes,
+  #prv-banner [data-ck="yes"],
+  #prv-banner [data-policy="accept"] {
     background: #a855f7 !important;
     color: #ffffff !important;
     border-color: #a855f7 !important;
     font-weight: 600;
+    min-width: 140px;
   }
 
-  /* --- Hard guarantees for layout & visibility (anti-clipping) --- */
-  #prv-banner, #prv-banner * {
-    overflow: visible !important;
-  }
-
-  /* Buttons container never collapses and stays at the right, on one or two lines */
-  #prv-banner [data-buttons]{
-    flex: 0 0 auto !important;
-    justify-content: flex-end !important;
-    align-items: center !important;
-    gap: .75rem !important;
-  }
-
-  /* Buttons never shrink or wrap weirdly */
-  #prv-banner #policy-accept,
-  #prv-banner #policy-reject{
-    flex: 0 0 auto !important;
-    position: relative !important;
-    z-index: 100000 !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-
-  /* Ensure Accept is last (rightmost) even if DOM order changes */
-  #prv-banner #policy-reject{ order: 1 !important; }
-  #prv-banner #policy-accept{ order: 2 !important; }
+  /* Anti-clipping y orden estable */
+  #prv-banner, #prv-banner * { overflow: visible !important; }
+  #prv-banner #policy-reject, #prv-banner #policy-no { order: 1 !important; }
+  #prv-banner #policy-accept, #prv-banner #policy-yes { order: 2 !important; }
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
@@ -1152,6 +1143,9 @@ handleSendMessage();
 
     const banner = qs('prv-banner');
 
+    // Limpia duplicados si el navegador dejó uno antiguo
+    try { document.querySelectorAll('#prv-banner').forEach((el, i) => { if (i > 0) el.remove(); }); } catch (_) {}
+
     // Estado inicial
     if (needsConsent()) {
       document.documentElement.classList.add('policy-open');
@@ -1175,18 +1169,18 @@ handleSendMessage();
       }
     } catch (_) {}
 
-    // Fallback: delegación de eventos para que siempre funcionen los botones
+    // Delegación robusta: acepta cualquier elemento con data-ck/data-policy/ids neutros
     if (banner) {
       banner.addEventListener('click', function (e) {
-        const t = e.target.closest('button');
+        const t = e.target.closest('[data-ck],[data-policy],button,a');
         if (!t) return;
-        if (t.matches('#policy-accept,[data-policy="accept"]')) {
-          e.preventDefault();
-          save('accepted');
-        } else if (t.matches('#policy-reject,[data-policy="reject"]')) {
-          e.preventDefault();
-          save('rejected');
+        let act = (t.getAttribute('data-ck') || t.getAttribute('data-policy') || '').toLowerCase();
+        if (!act) {
+          if (t.id === 'policy-yes') act = 'yes';
+          else if (t.id === 'policy-no') act = 'no';
         }
+        if (act === 'yes' || act === 'accept') { e.preventDefault(); save('accepted'); }
+        else if (act === 'no' || act === 'reject') { e.preventDefault(); save('rejected'); }
       }, { passive: false });
     }
 
@@ -1213,11 +1207,11 @@ handleSendMessage();
 
     <!-- Botones -->
     <div data-buttons style="display:flex!important;flex-wrap:wrap!important;gap:.5rem!important;align-items:center!important;justify-content:flex-end!important">
-<button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies"
+<button id="policy-yes" data-ck="yes" type="button" aria-label="Aceptar todas las cookies"
   style="display:inline-flex!important;align-items:center;justify-content:center;padding:.5rem 1rem;border-radius:9999px;min-width:140px;border:1px solid #a855f7;background:#a855f7;color:#fff;font-weight:600;cursor:pointer;">
   Aceptar todas
 </button>
-<button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies"
+<button id="policy-no" data-ck="no" type="button" aria-label="Rechazar cookies"
   style="display:inline-flex!important;align-items:center;justify-content:center;padding:.5rem 1rem;border-radius:9999px;min-width:120px;border:1px solid #374151;background:transparent;color:#e5e7eb;cursor:pointer;">
   Rechazar
 </button>
