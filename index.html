@@ -1103,11 +1103,42 @@ handleSendMessage();
   }
 
   function init(){
-    // ✅ Elimina banners duplicados si existiera más de uno en el DOM
-    const duplicates = document.querySelectorAll('[data-policy="banner"]');
-    if (duplicates.length > 1) {
-      duplicates.forEach((node, idx) => { if (idx > 0) node.remove(); });
+    // ✅ Elimina banners duplicados/legados (de librerías antiguas) y deja solo #prv-banner
+    const dupSel = [
+      '[data-policy="banner"]',
+      '#cookie-banner',
+      '.cookie-banner',
+      '.cookies-banner',
+      '#cookie-consent',
+      '.cookie-consent',
+      '.cc-window',
+      '.cc-banner',
+      '[data-cookieconsent]'
+    ].join(',');
+    document.querySelectorAll(dupSel).forEach(node => {
+      // conserva exclusivamente nuestro banner oficial
+      if (node.id !== 'prv-banner' && !node.closest('#prv-banner')) {
+        node.remove();
+      }
+    });
+
+    // 🛡️ Salvaguarda: si por cualquier motivo faltara el botón "Aceptar todas", lo creamos
+    const bNode = document.querySelector(bannerSel);
+    if (bNode) {
+      const btnRow = bNode.querySelector('.flex.flex-wrap.items-center');
+      let acceptBtn = bNode.querySelector('#policy-accept');
+      if (!acceptBtn && btnRow) {
+        acceptBtn = document.createElement('button');
+        acceptBtn.id = 'policy-accept';
+        acceptBtn.setAttribute('data-policy', 'accept');
+        acceptBtn.type = 'button';
+        acceptBtn.setAttribute('aria-label', 'Aceptar todas las cookies');
+        acceptBtn.className = 'px-4 py-2 rounded-full bg-[#a855f7] text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto min-w-[120px]';
+        acceptBtn.textContent = 'Aceptar todas';
+        btnRow.appendChild(acceptBtn);
+      }
     }
+
     const params = new URLSearchParams(location.search);
     if (params.get('consent') === 'reset'){
       reset();
