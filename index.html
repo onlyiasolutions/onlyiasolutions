@@ -1070,6 +1070,10 @@ handleSendMessage();
     try{ localStorage.setItem(KEY, JSON.stringify({status, ts: Date.now()})); }catch(e){}
     document.documentElement.classList.toggle('policy-accepted', status === 'accepted');
     hide();
+    // Limpieza final: elimina posibles duplicados residuales
+    document.querySelectorAll('[data-policy="banner"]').forEach((n, idx) => {
+      if (idx > 0) n.remove();
+    });
   }
 
   function show(){
@@ -1099,6 +1103,11 @@ handleSendMessage();
   }
 
   function init(){
+    // ✅ Elimina banners duplicados si existiera más de uno en el DOM
+    const duplicates = document.querySelectorAll('[data-policy="banner"]');
+    if (duplicates.length > 1) {
+      duplicates.forEach((node, idx) => { if (idx > 0) node.remove(); });
+    }
     const params = new URLSearchParams(location.search);
     if (params.get('consent') === 'reset'){
       reset();
