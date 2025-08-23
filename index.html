@@ -833,10 +833,18 @@ stats.forEach(stat => observer.observe(stat));
 <a href="mailto:hola@onlyiasolutions.com" class="text-primary hover:text-secondary transition-colors">hola@onlyiasolutions.com</a>
 </div>
 </div>
-<div class="flex flex-wrap gap-4 mt-4 md:mt-0">
-<a href="/terminosservicio" class="text-gray-500 hover:text-primary transition-colors">Términos de Servicio</a>
-<a href="/privacidad" class="text-gray-500 hover:text-primary transition-colors">Política de Privacidad</a>
-<a href="/cookies" class="text-gray-500 hover:text-primary transition-colors">Política de Cookies</a>
+<div class="flex flex-wrap gap-4 mt-4 md:mt-0 items-center">
+  <a href="/terminosservicio" class="text-gray-500 hover:text-primary transition-colors">Términos de Servicio</a>
+  <a href="/privacidad" class="text-gray-500 hover:text-primary transition-colors">Política de Privacidad</a>
+  <a href="/cookies" class="text-gray-500 hover:text-primary transition-colors">Política de Cookies</a>
+
+  <!-- Botón para reabrir el banner -->
+  <button id="cookie-manage"
+          type="button"
+          title="Gestionar cookies"
+          class="px-4 py-2 rounded-full border border-gray-700 text-gray-200 hover:bg-gray-800 transition">
+    Gestionar cookies
+  </button>
 </div>
 </div>
 </div>
@@ -1160,8 +1168,7 @@ handleSendMessage();
 
 <script id="cookie-consent">
 (function() {
-  const KEY = 'ias_cookie_consent_v2';
-  const banner = document.getElementById('cookie-banner');
+  const KEY = 'ias_cookie_consent_v3'; // nueva versión para forzar que vuelva a mostrarse
 
   function getConsent() {
     try { return JSON.parse(localStorage.getItem(KEY)); } catch(e) { return null; }
@@ -1169,25 +1176,50 @@ handleSendMessage();
   function setConsent(status) {
     const payload = { status, ts: new Date().toISOString() };
     try { localStorage.setItem(KEY, JSON.stringify(payload)); } catch(e) {}
-    if (status === 'accepted') document.documentElement.classList.add('cookie-consent-accepted');
-    banner && banner.classList.add('hidden');
+    document.documentElement.classList.toggle('cookie-consent-accepted', status === 'accepted');
+    const b = document.getElementById('cookie-banner');
+    if (b) b.classList.add('hidden');
+  }
+  function resetConsent() {
+    try { localStorage.removeItem(KEY); } catch(e) {}
+    const b = document.getElementById('cookie-banner');
+    if (b) b.classList.remove('hidden');
+    document.documentElement.classList.remove('cookie-consent-accepted');
   }
   function init() {
+    // Permite reabrir con ?consent=reset
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('consent') === 'reset') {
+      resetConsent();
+      params.delete('consent');
+      history.replaceState({}, '', `${location.pathname}${params.toString() ? '?' + params.toString() : ''}${location.hash}`);
+    }
+
     const saved = getConsent();
+    const banner = document.getElementById('cookie-banner');
     if (!saved || !saved.status) {
-      banner && banner.classList.remove('hidden');
+      if (banner) banner.classList.remove('hidden');
     } else if (saved.status === 'accepted') {
       document.documentElement.classList.add('cookie-consent-accepted');
     }
+
     const acceptBtn = document.getElementById('cookie-accept');
     const rejectBtn = document.getElementById('cookie-reject');
+    const manageBtn = document.getElementById('cookie-manage');
+
     acceptBtn && acceptBtn.addEventListener('click', () => setConsent('accepted'));
     rejectBtn && rejectBtn.addEventListener('click', () => setConsent('rejected'));
-    // Accesibilidad: ESC para cerrar (rechaza si no hay decisión previa)
+    manageBtn && manageBtn.addEventListener('click', (e) => { e.preventDefault(); resetConsent(); });
+
+    // Accesibilidad: ESC rechaza si aún no hay decisión
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && (!getConsent() || !getConsent().status)) setConsent('rejected');
+      if (e.key === 'Escape') {
+        const c = getConsent();
+        if (!c || !c.status) setConsent('rejected');
+      }
     });
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
