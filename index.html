@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+:root {
+}
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 @keyframes gradientFlow {
@@ -97,6 +99,25 @@ animation: fadeIn 0.5s ease-out;
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
 }
+</style>
+<script>
+  (function(){
+    var KEY='ias_cookie_consent_v7';
+    try{
+      var saved = JSON.parse(localStorage.getItem(KEY));
+      if (!saved || saved.status !== 'accepted') {
+        document.documentElement.classList.add('policy-open');
+      } else {
+        document.documentElement.classList.add('policy-accepted');
+      }
+    }catch(e){}
+  })();
+</script>
+<noscript><style>#policy-banner{display:block}</style></noscript>
+<style>
+/* --- Cookie banner visibility guard --- */
+#policy-banner{display:none;}
+.policy-open #policy-banner{display:block;}
 </style>
 </head>
 <body class="bg-black text-white min-h-screen relative">
@@ -1031,56 +1052,68 @@ handleSendMessage();
 </script>
 
 <script id="cookie-consent">
-(function() {
-  const KEY = 'ias_cookie_consent_v6'; // bump version para forzar banner
+(function(){
+  const KEY = 'ias_cookie_consent_v7';             // subimos versión para invalidar anteriores
+  const bannerSel = '#policy-banner';
 
-  function getConsent() {
-    try { return JSON.parse(localStorage.getItem(KEY)); } catch(e) { return null; }
+  function showBanner(){
+    const b = document.querySelector(bannerSel);
+    if(!b) return;
+    document.documentElement.classList.add('policy-open');
+    b.classList.remove('hidden');                  // por si estaba
+    b.style.display = 'block';                     // forzamos visibilidad
+
+    // “Blindaje” durante ~1s para evitar que otro script lo tape de nuevo
+    let frames = 60;
+    (function tick(){
+      if (frames-- <= 0) return;
+      b.style.display = 'block';
+      b.classList.remove('hidden');
+      requestAnimationFrame(tick);
+    })();
   }
-  function setConsent(status) {
-    const payload = { status, ts: new Date().toISOString() };
-    try { localStorage.setItem(KEY, JSON.stringify(payload)); } catch(e) {}
+
+  function hideBanner(){
+    const b = document.querySelector(bannerSel);
+    document.documentElement.classList.remove('policy-open');
+    if (b){
+      b.classList.add('hidden');
+      b.style.display = 'none';
+    }
+  }
+
+  function get(){ try{ return JSON.parse(localStorage.getItem(KEY)); } catch(e){ return null; } }
+  function set(status){
+    try{ localStorage.setItem(KEY, JSON.stringify({status, ts: Date.now()})); }catch(e){}
     document.documentElement.classList.toggle('policy-accepted', status === 'accepted');
-    const b = document.querySelector('[data-policy="banner"]');
-    if (b) b.classList.add('hidden');
+    hideBanner();
   }
-  function resetConsent() {
-    try { localStorage.removeItem(KEY); } catch(e) {}
-    const b = document.querySelector('[data-policy="banner"]');
-    if (b) b.classList.remove('hidden');
+  function reset(){
+    try{ localStorage.removeItem(KEY); }catch(e){}
     document.documentElement.classList.remove('policy-accepted');
+    showBanner();
   }
-  function init() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('consent') === 'reset') {
-      resetConsent();
+
+  function init(){
+    // reset por query param ?consent=reset
+    const params = new URLSearchParams(location.search);
+    if (params.get('consent') === 'reset'){
+      reset();
       params.delete('consent');
-      history.replaceState({}, '', `${location.pathname}${params.toString() ? '?' + params.toString() : ''}${location.hash}`);
+      history.replaceState({}, '', location.pathname + (params.toString()?('?'+params):'') + location.hash);
+      return;
     }
 
-    const saved = getConsent();
-    const banner = document.querySelector('[data-policy="banner"]');
-    // Mostrar el banner siempre que no esté ACCEPTED
-    if (!saved || saved.status !== 'accepted') {
-      if (banner) banner.classList.remove('hidden');
+    const saved = get();
+    if (!saved || saved.status !== 'accepted'){
+      showBanner();
     } else {
       document.documentElement.classList.add('policy-accepted');
     }
 
-    const acceptBtn = document.querySelector('[data-policy="accept"]');
-    const rejectBtn = document.querySelector('[data-policy="reject"]');
-    const manageBtn = document.querySelector('[data-policy="manage"]');
-
-    acceptBtn && acceptBtn.addEventListener('click', () => setConsent('accepted'));
-    rejectBtn && rejectBtn.addEventListener('click', () => setConsent('rejected'));
-    manageBtn && manageBtn.addEventListener('click', (e) => { e.preventDefault(); resetConsent(); });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const c = getConsent();
-        if (!c || !c.status) setConsent('rejected');
-      }
-    });
+    document.querySelector('[data-policy="accept"]')?.addEventListener('click', ()=>set('accepted'));
+    document.querySelector('[data-policy="reject"]')?.addEventListener('click', ()=>set('rejected'));
+    document.querySelector('[data-policy="manage"]')?.addEventListener('click', (e)=>{ e.preventDefault(); reset(); });
   }
 
   if (document.readyState === 'loading') {
@@ -1090,7 +1123,7 @@ handleSendMessage();
   }
 })();
 </script>
-<div id="policy-banner" data-policy="banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4 hidden">
+<div id="policy-banner" data-policy="banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
     <p class="text-gray-300 text-sm md:text-base leading-snug">
       Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Consulta nuestra
