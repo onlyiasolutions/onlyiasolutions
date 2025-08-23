@@ -1063,124 +1063,42 @@ handleSendMessage();
 <script id="cookie-consent">
 (function(){
   const KEY = 'ias_cookie_consent_v8';
-  const bannerSel = '#prv-banner';
+  const banner = document.getElementById('prv-banner');
+  const acceptBtn = document.getElementById('policy-accept');
+  const rejectBtn = document.getElementById('policy-reject');
+  const manageBtn = document.getElementById('policy-manage');
 
-  function get(){ try{ return JSON.parse(localStorage.getItem(KEY)); } catch(e){ return null; } }
-  function put(status){
+  function save(status){
     try{ localStorage.setItem(KEY, JSON.stringify({status, ts: Date.now()})); }catch(e){}
     document.documentElement.classList.toggle('policy-accepted', status === 'accepted');
-    hide();
-    // Limpieza final: elimina posibles duplicados residuales
-    document.querySelectorAll('[data-policy="banner"]').forEach((n, idx) => {
-      if (idx > 0) n.remove();
-    });
-  }
-
-  function show(){
-    const b = document.querySelector(bannerSel);
-    if (!b) return;
-    document.documentElement.classList.add('policy-open');
-    b.classList.remove('hidden');
-    b.style.setProperty('display', 'block', 'important');
-    b.style.setProperty('visibility', 'visible', 'important');
-    b.style.setProperty('opacity', '1', 'important');
-    b.style.setProperty('pointer-events', 'auto', 'important');
-  }
-
-  function hide(){
-    const b = document.querySelector(bannerSel);
     document.documentElement.classList.remove('policy-open');
-    if (b){
-      b.classList.add('hidden');
-      b.style.display = 'none';
-    }
+    if (banner) { banner.classList.add('hidden'); banner.style.display='none'; }
   }
 
-  function reset(){
-    try{ localStorage.removeItem(KEY); }catch(e){}
-    document.documentElement.classList.remove('policy-accepted');
-    show();
+  function needsConsent(){
+    try{ const v = JSON.parse(localStorage.getItem(KEY)); return !v || v.status !== 'accepted'; }
+    catch(e){ return true; }
   }
 
-  function init(){
-    // ✅ Elimina banners duplicados/legados (de librerías antiguas) y deja solo #prv-banner
-    const dupSel = [
-      '[data-policy="banner"]',
-      '#cookie-banner',
-      '.cookie-banner',
-      '.cookies-banner',
-      '#cookie-consent',
-      '.cookie-consent',
-      '.cc-window',
-      '.cc-banner',
-      '[data-cookieconsent]'
-    ].join(',');
-    document.querySelectorAll(dupSel).forEach(node => {
-      // conserva exclusivamente nuestro banner oficial
-      if (node.id !== 'prv-banner' && !node.closest('#prv-banner')) {
-        node.remove();
-      }
-    });
-
-    // 🛡️ Salvaguarda: asegurar que exista el botón "Aceptar todas"
-    const bNode = document.querySelector(bannerSel);
-    if (bNode) {
-      // fila de botones (intenta localizarla de varias formas)
-      let btnRow =
-        bNode.querySelector('.flex.flex-wrap.items-center') ||
-        bNode.querySelector('.flex.items-center') ||
-        bNode;
-
-      let acceptBtn = bNode.querySelector('#policy-accept,[data-policy="accept"]');
-      if (!acceptBtn) {
-        acceptBtn = document.createElement('button');
-        acceptBtn.id = 'policy-accept';
-        acceptBtn.setAttribute('data-policy', 'accept');
-        acceptBtn.type = 'button';
-        acceptBtn.setAttribute('aria-label', 'Aceptar todas las cookies');
-        acceptBtn.className = 'px-4 py-2 rounded-full bg-[#a855f7] text-white font-medium shadow hover:opacity-90 transition w-full sm:w-auto min-w-[120px]';
-        acceptBtn.textContent = 'Aceptar todas';
-        // colocar después del botón Rechazar si existe; si no, añadir al final
-        const rejectBtn = bNode.querySelector('#policy-reject,[data-policy="reject"]');
-        if (rejectBtn && rejectBtn.parentElement) {
-          rejectBtn.insertAdjacentElement('afterend', acceptBtn);
-        } else {
-          btnRow.appendChild(acceptBtn);
-        }
-      }
-    }
-
-    const params = new URLSearchParams(location.search);
-    if (params.get('consent') === 'reset'){
-      reset();
-      params.delete('consent');
-      history.replaceState({}, '', location.pathname + (params.toString()?('?'+params):'') + location.hash);
-      return;
-    }
-
-    const saved = get();
-    if (!saved || saved.status !== 'accepted') {
-      show();
-    } else {
-      document.documentElement.classList.add('policy-accepted');
-    }
-
-    // 🔧 Delegación de eventos: funciona siempre, aunque el DOM cambie
-    document.addEventListener('click', function(ev){
-      const btn = ev.target.closest('[data-policy]');
-      if (!btn) return;
-      const action = btn.getAttribute('data-policy');
-      if (action === 'accept') { ev.preventDefault(); put('accepted'); }
-      if (action === 'reject') { ev.preventDefault(); put('rejected'); }
-      if (action === 'manage') { ev.preventDefault(); reset(); }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  // Initial state
+  if (needsConsent()){
+    document.documentElement.classList.add('policy-open');
+    if (banner) { banner.classList.remove('hidden'); banner.style.display='block'; }
   } else {
-    init();
+    document.documentElement.classList.add('policy-accepted');
+    if (banner) { banner.classList.add('hidden'); banner.style.display='none'; }
   }
+
+  // Wire buttons (no delegation, no auto-creation → evita duplicados)
+  if (acceptBtn) acceptBtn.addEventListener('click', function(e){ e.preventDefault(); save('accepted'); });
+  if (rejectBtn) rejectBtn.addEventListener('click', function(e){ e.preventDefault(); save('rejected'); });
+  if (manageBtn) manageBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    try{ localStorage.removeItem(KEY); }catch(err){}
+    document.documentElement.classList.remove('policy-accepted');
+    document.documentElement.classList.add('policy-open');
+    if (banner) { banner.classList.remove('hidden'); banner.style.display='block'; }
+  });
 })();
 </script>
 <div id="prv-banner" data-policy="banner" role="dialog" aria-modal="true" aria-live="polite" aria-label="Preferencias de privacidad" aria-describedby="prv-banner-desc" class="fixed bottom-0 left-0 right-0 z-[9999] bg-gray-900/95 border-t border-gray-800 backdrop-blur px-4 md:px-6 py-4">
