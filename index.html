@@ -165,6 +165,18 @@ animation: fadeIn 0.5s ease-out;
     border-color: #a855f7;
     font-weight: 600;
   }
+
+  #prv-banner #policy-accept {
+    display:inline-flex !important;
+    background:#a855f7 !important;
+    border:1px solid #a855f7 !important;
+    color:#fff !important;
+    font-weight:600;
+    padding:.5rem 1rem;
+    border-radius:9999px;
+    min-width:140px;
+    cursor:pointer;
+  }
   #prv-banner [data-buttons] button { min-width: 120px; }
   /* Fuerza render de ambos botones */
   #prv-banner #policy-accept,
@@ -1197,14 +1209,12 @@ handleSendMessage();
 
     <!-- Botones -->
     <div data-buttons style="display:flex!important;flex-wrap:wrap!important;gap:.5rem!important;align-items:center!important;justify-content:flex-end!important">
-  <button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies"
-          style="display:inline-flex!important;appearance:none;-webkit-appearance:none;align-items:center;justify-content:center;padding:.5rem 1rem;border-radius:9999px;border:1px solid #a855f7;background:#a855f7;color:#ffffff;font-weight:600;line-height:1.25;white-space:nowrap;min-width:140px;cursor:pointer">
-    Aceptar todas
-  </button>
-  <button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies"
-          style="display:inline-flex!important;appearance:none;-webkit-appearance:none;align-items:center;justify-content:center;padding:.5rem 1rem;border-radius:9999px;border:1px solid #374151;background:transparent;color:#e5e7eb;line-height:1.25;white-space:nowrap;min-width:120px;cursor:pointer">
-    Rechazar
-  </button>
+<button id="policy-accept" data-policy="accept" type="button" aria-label="Aceptar todas las cookies">
+  Aceptar todas
+</button>
+<button id="policy-reject" data-policy="reject" type="button" aria-label="Rechazar cookies">
+  Rechazar
+</button>
 </div>
   </div>
 </div>
