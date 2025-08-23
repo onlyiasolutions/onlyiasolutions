@@ -1032,7 +1032,7 @@ handleSendMessage();
 
 <script id="cookie-consent">
 (function() {
-  const KEY = 'ias_cookie_consent_v5'; // bump version para forzar banner
+  const KEY = 'ias_cookie_consent_v6'; // bump version para forzar banner
 
   function getConsent() {
     try { return JSON.parse(localStorage.getItem(KEY)); } catch(e) { return null; }
@@ -1060,9 +1060,10 @@ handleSendMessage();
 
     const saved = getConsent();
     const banner = document.querySelector('[data-policy="banner"]');
-    if (!saved || !saved.status) {
+    // Mostrar el banner siempre que no esté ACCEPTED
+    if (!saved || saved.status !== 'accepted') {
       if (banner) banner.classList.remove('hidden');
-    } else if (saved.status === 'accepted') {
+    } else {
       document.documentElement.classList.add('policy-accepted');
     }
 
