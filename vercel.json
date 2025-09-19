@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://wesolai.com",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "destination": "https://wesolai.com/:path*",
       "permanent": true
