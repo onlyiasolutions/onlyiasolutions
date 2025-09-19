@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/(.*)", "destination": "https://wesolai.com/$1", "permanent": true },
     { "source": "/(.+)\\.html", "destination": "/$1", "permanent": true },
     { "source": "/index.html", "destination": "/", "permanent": true }
   ],
